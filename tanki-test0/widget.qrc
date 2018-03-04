@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/widget"/>
+    <qresource prefix="/new/cursor">
+        <file>Resources/cursor/cursorTarget.png</file>
+    </qresource>
+    <qresource prefix="/new/sprites">
+        <file>Resources/sprites/sprite_sheet.png</file>
+    </qresource>
+</RCC>
