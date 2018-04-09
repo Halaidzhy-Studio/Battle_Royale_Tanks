@@ -18,10 +18,14 @@ GameMenu::GameMenu(QWidget *parent) : QWidget(parent)
                 );
 
     spWindow_ = new Singleplayer();
+
+    // connected to slot, which run the main window on the button in the Singleplayer Window
     connect(spWindow_, &Singleplayer::mainWindow, this, &GameMenu::show);
 
     mpWindow_ = new MultiplayerMenu();
 
+    // connected to slot, which run the main window on the button in the Multiplayer Window
+    connect(mpWindow_, &MultiplayerMenu::mainWindow, this, &GameMenu::show);
 
     singleplayerBTN_ = new QPushButton("Singleplayer", this);
 
