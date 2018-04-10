@@ -2,7 +2,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsRectItem>
-#include "gamemenu.h"
+#include "GameMenu/gamemenu.h"
 #include "mainwindow.h"
 #include "playwidget.h"
 

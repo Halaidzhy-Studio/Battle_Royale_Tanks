@@ -15,7 +15,7 @@ TEMPLATE = app
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES +=  QT_DEPRECATED_WARNINGS
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -26,19 +26,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     playwidget.cpp \
-    tank.cpp \
-    gamemenu.cpp \
-    singleplayer.cpp \
-    multiplayermenu.cpp
+    GameObjects/tank.cpp \
+    PlayScene/singleplayer.cpp \
+    GameMenu/multiplayermenu.cpp \
+    GameMenu/gamemenu.cpp \
+    GameMenu/roomlistelement.cpp
 
 HEADERS += \
-    tank.h \
+    GameObjects/tank.h \
     playwidget.h \
-    gamemenu.h \
-    singleplayer.h \
-    multiplayermenu.h
+    PlayScene/singleplayer.h \
+    GameMenu/multiplayermenu.h \
+    GameMenu/gamemenu.h \
+    GameMenu/roomlistelement.h
 
 FORMS += \
     playwidget.ui \
-    singleplayer.ui \
-    multiplayermenu.ui
+    PlayScene/singleplayer.ui \
+    GameMenu/multiplayermenu.ui

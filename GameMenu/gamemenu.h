@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QPushButton>
-#include "singleplayer.h"
+#include "PlayScene/singleplayer.h"
 #include "multiplayermenu.h"
 
 class GameMenu : public QWidget

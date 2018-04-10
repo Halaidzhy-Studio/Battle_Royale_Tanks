@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QTimer>
 
 namespace Ui {
 class Singleplayer;
@@ -24,7 +27,8 @@ public slots:
 private:
     Ui::Singleplayer *ui;
     QPushButton* backToMainWindowBTN_;
-
+    QGraphicsScene* playScene_;
+    QTimer* gameTimer_;
 };
 
 #endif // SINGLEPLAYER_H

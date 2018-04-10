@@ -1,9 +1,9 @@
-#include "playwidget.h"
-#include "tank.h"
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
-
+#include "playwidget.h"
+#include "GameObjects/tank.h"
 #include "ui_playwidget.h"
+
 
 PlayWidget::PlayWidget(QWidget* parent):QWidget(parent), ui(new Ui::PlayWidget){
     ui->setupUi(this);
