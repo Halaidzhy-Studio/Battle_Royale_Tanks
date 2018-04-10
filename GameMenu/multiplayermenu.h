@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QLabel>
+#include <QListWidget>
 
 namespace Ui {
 class MultiplayerMenu;
@@ -23,6 +25,10 @@ public slots:
 private:
     Ui::MultiplayerMenu *ui;
     QPushButton* backToMainWindowBTN_;
+    QLabel* multiplayerMenuTitle_;
+    QListWidget* roomsList_;
+
+    void createRoomsListElement(QListWidget*);
 };
 
 #endif // MULTIPLAYERMENU_H

@@ -29,14 +29,16 @@ SOURCES += \
     GameObjects/tank.cpp \
     PlayScene/singleplayer.cpp \
     GameMenu/multiplayermenu.cpp \
-    GameMenu/gamemenu.cpp
+    GameMenu/gamemenu.cpp \
+    GameMenu/roomlistelement.cpp
 
 HEADERS += \
     GameObjects/tank.h \
     playwidget.h \
     PlayScene/singleplayer.h \
     GameMenu/multiplayermenu.h \
-    GameMenu/gamemenu.h
+    GameMenu/gamemenu.h \
+    GameMenu/roomlistelement.h
 
 FORMS += \
     playwidget.ui \

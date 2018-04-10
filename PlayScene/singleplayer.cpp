@@ -9,7 +9,6 @@ Singleplayer::Singleplayer(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     backToMainWindowBTN_ = new QPushButton("Back", this);
     backToMainWindowBTN_->resize(100, 100);
 
