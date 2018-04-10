@@ -26,19 +26,19 @@ DEFINES +=  QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     playwidget.cpp \
-    tank.cpp \
-    singleplayer.cpp \
+    GameObjects/tank.cpp \
+    PlayScene/singleplayer.cpp \
     GameMenu/multiplayermenu.cpp \
     GameMenu/gamemenu.cpp
 
 HEADERS += \
-    tank.h \
+    GameObjects/tank.h \
     playwidget.h \
-    singleplayer.h \
+    PlayScene/singleplayer.h \
     GameMenu/multiplayermenu.h \
     GameMenu/gamemenu.h
 
 FORMS += \
     playwidget.ui \
-    singleplayer.ui \
+    PlayScene/singleplayer.ui \
     GameMenu/multiplayermenu.ui
