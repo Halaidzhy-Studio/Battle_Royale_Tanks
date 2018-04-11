@@ -59,7 +59,7 @@ void MultiplayerMenu::formRoomsList(QListWidget* roomsListWidget){
     }
 }
 
-void MultiplayerMenu::createRoomsListElement(QListWidget *roomsListWidget){
+void MultiplayerMenu::createRoomsListElement(QListWidget *roomsListWidget, GameRoom* gameRoom){
     RoomListElement* roomElement = new RoomListElement(roomsListWidget);
     QListWidgetItem* item = new QListWidgetItem(roomsListWidget);
 

@@ -5,6 +5,10 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QListWidget>
+#include <QVector>
+
+#include <PlayScene/multiplayer.h>
+#include <GameMenu/gameroom.h>
 
 namespace Ui {
 class MultiplayerMenu;
@@ -23,12 +27,18 @@ signals:
 public slots:
     void backToMainWindow();
 private:
+
     Ui::MultiplayerMenu *ui;
     QPushButton* backToMainWindowBTN_;
     QLabel* multiplayerMenuTitle_;
-    QListWidget* roomsList_;
+    QListWidget* roomsListWidget_;
 
-    void createRoomsListElement(QListWidget*);
+    QVector<GameRoom*> roomsList_;
+
+    void createRoomsListElement(QListWidget*, GameRoom*);
+    void formRoomsList(QListWidget*);
+
+    void getRooms();
 };
 
 #endif // MULTIPLAYERMENU_H
