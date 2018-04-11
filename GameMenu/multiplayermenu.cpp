@@ -2,12 +2,13 @@
 #include <QDesktopWidget>
 
 #include "roomlistelement.h"
+#include <QDebug>
 #include "multiplayermenu.h"
 #include "ui_multiplayermenu.h"
 
 MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MultiplayerMenu)
+    ui(new Ui::MultiplayerMenu), gameScene_(nullptr)
 {
     ui->setupUi(this);
 
@@ -28,18 +29,27 @@ MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
     backToMainWindowBTN_ = new QPushButton("Back", this);
     backToMainWindowBTN_ ->setGeometry(width()/100, width()/100, 100, height()/15);
 
-
     roomsListWidget_ = new QListWidget(this);
     roomsListWidget_->setGeometry(this->width()/100, 2*height()/15, width() - width()/50, height());
 
-    // Download rooms to QVector<GameRoom>
+    // Need write get rooms
     getRooms();
+    initMenu();
 
-    formRoomsList(roomsListWidget_);
-
+    // Need to back to game menu
     connect(backToMainWindowBTN_, &QPushButton::released, this,
             &MultiplayerMenu::backToMainWindow);
 
+
+}
+
+void MultiplayerMenu::initMenu(){
+    if (gameScene_ != nullptr)
+        delete gameScene_;
+
+    gameScene_ = new Multiplayer(nullptr, nullptr);
+
+    formRoomsList(roomsListWidget_);
 }
 
 void MultiplayerMenu::getRooms(){
@@ -47,28 +57,51 @@ void MultiplayerMenu::getRooms(){
     qint16 roomsCount = 1;
 
     while (roomsCount--){
-        roomsList_.push_back(new GameRoom());
+        roomsList_.push_back(new GameRoom("Room1",32,2));
     }
 }
 
 // Form Rooms List Widget
 void MultiplayerMenu::formRoomsList(QListWidget* roomsListWidget){
 
-    for (qint16 i = 0; i < roomsList_.size(); ++i){
-        createRoomsListElement(roomsListWidget, roomsList_[i]);
-    }
+    //
+    qDebug() << roomsListWidget->count() << "\n";
+
+    if (roomsListWidget->count() < roomsList_.size())
+        for (qint16 i = 0; i < roomsList_.size(); ++i){
+            createRoomsListElement(roomsListWidget, roomsList_[i]);
+        }
 }
 
-void MultiplayerMenu::createRoomsListElement(QListWidget *roomsListWidget){
+void MultiplayerMenu::createRoomsListElement(QListWidget *roomsListWidget, GameRoom* gameRoom){
     RoomListElement* roomElement = new RoomListElement(roomsListWidget);
+
+    roomElement->setGameScene(gameScene_);
+    roomElement->setGameRoom(gameRoom);
+
     QListWidgetItem* item = new QListWidgetItem(roomsListWidget);
 
     roomsListWidget->setItemWidget(item, roomElement);
 
+    // To be able close menu, after start Game
+    connect(roomElement, &RoomListElement::doCloseMenu, this, &MultiplayerMenu::close);
+
+    connect(gameScene_, &Multiplayer::multiplayerMenu, this, &MultiplayerMenu::onShow);
 }
+
+void MultiplayerMenu::onShow(){
+    initMenu();
+    show();
+}
+
 void MultiplayerMenu::backToMainWindow(){
     this->close();
     emit mainWindow();
+}
+
+void MultiplayerMenu::closeMenu()
+{
+    qDebug() << __FUNCTION__ << "\n";
 }
 
 MultiplayerMenu::~MultiplayerMenu()

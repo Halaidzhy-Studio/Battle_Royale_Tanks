@@ -6,7 +6,8 @@
 class GameRoom
 {
 public:
-    GameRoom();
+    GameRoom() = default;
+
     GameRoom(QString roomName, quint8 maxPlayerCount, quint8 currentPlayerCount):
         roomName_(roomName), maxPlayerCount_(maxPlayerCount), currentPlayerCount_(currentPlayerCount){}
 

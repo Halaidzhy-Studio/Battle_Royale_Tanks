@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QListWidget>
 #include <QVector>
+#include <memory>
 
 #include <PlayScene/multiplayer.h>
 #include <GameMenu/gameroom.h>
@@ -26,6 +27,8 @@ signals:
     void mainWindow();
 public slots:
     void backToMainWindow();
+    void closeMenu();
+    void onShow();
 private:
 
     Ui::MultiplayerMenu *ui;
@@ -34,11 +37,13 @@ private:
     QListWidget* roomsListWidget_;
 
     QVector<GameRoom*> roomsList_;
+    Multiplayer* gameScene_;
 
     void createRoomsListElement(QListWidget*, GameRoom*);
     void formRoomsList(QListWidget*);
 
     void getRooms();
+    void initMenu();
 };
 
 #endif // MULTIPLAYERMENU_H
