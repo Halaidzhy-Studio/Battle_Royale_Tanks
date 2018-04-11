@@ -33,6 +33,7 @@ MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
 
     // Make list of rooms, instead 1 count of rooms
 
+
     for (int i = 0; i < 1; i++){
         createRoomsListElement(roomsList_);
     }

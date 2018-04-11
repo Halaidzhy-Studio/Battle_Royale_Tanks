@@ -32,6 +32,7 @@ private:
     QGraphicsView* playerView_;
 
     qint16 roomNumber_;
+    
     Tank* player_;
     QVector<Tank*> tanks_;
 };
