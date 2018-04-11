@@ -30,7 +30,8 @@ SOURCES += \
     PlayScene/singleplayer.cpp \
     GameMenu/multiplayermenu.cpp \
     GameMenu/gamemenu.cpp \
-    GameMenu/roomlistelement.cpp
+    GameMenu/roomlistelement.cpp \
+    PlayScene/multiplayer.cpp
 
 HEADERS += \
     GameObjects/tank.h \
@@ -39,7 +40,8 @@ HEADERS += \
     GameMenu/multiplayermenu.h \
     GameMenu/gamemenu.h \
     GameMenu/roomlistelement.h \
-    packages.h
+    packages.h \
+    PlayScene/multiplayer.h
 
 FORMS += \
     playwidget.ui \
