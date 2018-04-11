@@ -5,7 +5,9 @@
 #include <QPushButton>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QVector>
 #include <QTimer>
+#include <GameObjects/tank.h>
 
 namespace Ui {
 class Singleplayer;
@@ -28,7 +30,13 @@ private:
     Ui::Singleplayer *ui;
     QPushButton* backToMainWindowBTN_;
     QGraphicsScene* playScene_;
+    QGraphicsView* playView_;
     QTimer* gameTimer_;
+    QVector<Tank*> tanks_;
+    Tank* player_;
+
+    void getTanks(QVector<Tank *> &tanks);
+    void addTanksToScene(QVector<Tank *> &tanks, QGraphicsScene *playScene);
 };
 
 #endif // SINGLEPLAYER_H

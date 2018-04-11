@@ -38,7 +38,8 @@ HEADERS += \
     PlayScene/singleplayer.h \
     GameMenu/multiplayermenu.h \
     GameMenu/gamemenu.h \
-    GameMenu/roomlistelement.h
+    GameMenu/roomlistelement.h \
+    packages.h
 
 FORMS += \
     playwidget.ui \

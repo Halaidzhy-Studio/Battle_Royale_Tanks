@@ -12,7 +12,7 @@ Tank::~Tank(){
 }
 
 QRectF Tank::boundingRect() const{
-    return QRectF(50, 50, 100, 100);
+    return QRectF(0, 0, 100, 100);
 }
 
 void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
