@@ -4,9 +4,14 @@
 #include <QMap>
 #include <QTimer>
 
+#include "tankgun.h"
+
 class Tank: public QObject, public QGraphicsItem{
 public:
+    enum class TankType { Simple };
+
     Tank();
+    Tank(TankType tankType = TankType::Simple);
     ~Tank();
 
 public slots:
@@ -19,12 +24,17 @@ protected:
     void keyReleaseEvent(QKeyEvent *event);
 
 private:
-    qreal speed;
-    qreal angle;
-    qreal gunAngle;
-    QMap<int, bool> keys;
-    QTimer timer;
-    int hp;
+    TankGun* tankGun_;
+    quint16 tankWidth_;
+    quint16 tankHeight_;
+    qreal speed_;
+    qreal angle_;
+    qreal gunAngle_;
+    qreal gunAngleSpeed_;
+    QMap<int, bool> keys_;
+    QTimer timer_;
+    int hp_;
+    TankType tankType_;
 
 };
 #endif // TANK_H

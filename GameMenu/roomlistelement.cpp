@@ -33,7 +33,7 @@ void RoomListElement::connectToRoom()
     emit doCloseMenu();
 
     gameScene_->renderGame();
-    gameScene_->show();
+    gameScene_->startGame();
 
 }
 

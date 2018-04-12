@@ -12,7 +12,7 @@ PlayWidget::PlayWidget(QWidget* parent):QWidget(parent), ui(new Ui::PlayWidget){
     playScene_ = new QGraphicsScene();
     playScene_->setSceneRect(0, 0, 800, 800 );
 
-    Tank* tank = new Tank();
+    Tank* tank = new Tank(Tank::TankType::Simple);
     tank->setFlag(QGraphicsItem::ItemIsFocusable);
     tank->setFocus();
     playScene_->addItem(tank);

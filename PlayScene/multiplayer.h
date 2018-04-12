@@ -44,12 +44,12 @@ private:
     QTimer* sendPackageTimer_;
 
     QGraphicsScene* playScene_;
-    QGraphicsView* playerView_;
+    QGraphicsView* playView_;
 
     GameRoom* gameRoom_;
     quint16 roomNumber_;
 
-  ////  Tank* player_;
+    Tank* player_;
     QVector<Tank*> tanks_;
 
    // Map

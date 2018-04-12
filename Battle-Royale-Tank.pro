@@ -32,7 +32,8 @@ SOURCES += \
     GameMenu/gamemenu.cpp \
     GameMenu/roomlistelement.cpp \
     PlayScene/multiplayer.cpp \
-    GameMenu/gameroom.cpp
+    GameMenu/gameroom.cpp \
+    GameObjects/tankgun.cpp
 
 HEADERS += \
     GameObjects/tank.h \
@@ -43,7 +44,8 @@ HEADERS += \
     GameMenu/roomlistelement.h \
     packages.h \
     PlayScene/multiplayer.h \
-    GameMenu/gameroom.h
+    GameMenu/gameroom.h \
+    GameObjects/tankgun.h
 
 FORMS += \
     playwidget.ui \

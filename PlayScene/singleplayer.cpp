@@ -50,7 +50,7 @@ void Singleplayer::getTanks(QVector<Tank*>& tanks){
     // Get Tanks
     int tanksCount = 2;
     for (int i = 0; i < tanksCount; ++i){
-        tanks.push_back(new Tank());
+        tanks.push_back(new Tank(Tank::TankType::Simple));
     }
 
 }
