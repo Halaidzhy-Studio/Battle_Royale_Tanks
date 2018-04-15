@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QPushButton>
-#include "PlayScene/singleplayer.h"
+//#include "PlayScene/singleplayer.h"
 #include "multiplayermenu.h"
 
 class GameMenu : public QWidget
@@ -23,7 +23,7 @@ private:
     QPushButton* singleplayerBTN_;
     QPushButton* multiplayerBTN_;
     QPushButton* exitBTN_;
-    Singleplayer* spWindow_;
+    //Singleplayer* spWindow_;
     MultiplayerMenu* mpWindow_;
 };
 

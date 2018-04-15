@@ -12,6 +12,7 @@ MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    roomsCount = 2;
     setStyleSheet("background-color: white;");
 
     setFixedSize(QApplication::desktop()->width()/2,
@@ -32,7 +33,6 @@ MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
     roomsListWidget_ = new QListWidget(this);
     roomsListWidget_->setGeometry(this->width()/100, 2*height()/15, width() - width()/50, height());
 
-    // Need write get rooms
     getRooms();
     initMenu();
 
@@ -47,17 +47,18 @@ void MultiplayerMenu::initMenu(){
     if (gameScene_ != nullptr)
         delete gameScene_;
 
-    gameScene_ = new Multiplayer(nullptr, nullptr);
+    gameScene_ = new GameInstance();
 
     formRoomsList(roomsListWidget_);
 }
 
 void MultiplayerMenu::getRooms(){
     // Download rooms to QVector<GameRoom>
-    qint16 roomsCount = 1;
+    //qint16 roomsCount = 2;
 
     while (roomsCount--){
-        roomsList_.push_back(new GameRoom("Room1",32,2));
+        QString str =  "Room " + QString::number(roomsCount);
+        roomsList_.push_back(new GameRoom(str,32,2));
     }
 }
 
@@ -74,22 +75,23 @@ void MultiplayerMenu::formRoomsList(QListWidget* roomsListWidget){
 }
 
 void MultiplayerMenu::createRoomsListElement(QListWidget *roomsListWidget, GameRoom* gameRoom){
-    RoomListElement* roomElement = new RoomListElement(roomsListWidget);
+    RoomListElement* roomElement = new RoomListElement(roomsListWidget, gameRoom);
 
     roomElement->setGameScene(gameScene_);
-    roomElement->setGameRoom(gameRoom);
+
 
     QListWidgetItem* item = new QListWidgetItem(roomsListWidget);
-
+    item->setSizeHint(QSize(roomsListWidget->width(), 50));
     roomsListWidget->setItemWidget(item, roomElement);
 
     // To be able close menu, after start Game
     connect(roomElement, &RoomListElement::doCloseMenu, this, &MultiplayerMenu::close);
 
-    connect(gameScene_, &Multiplayer::multiplayerMenu, this, &MultiplayerMenu::onShow);
+    //connect(gameScene_, &Multiplayer::multiplayerMenu, this, &MultiplayerMenu::onShow);
 }
 
 void MultiplayerMenu::onShow(){
+
     initMenu();
     show();
 }
@@ -97,11 +99,6 @@ void MultiplayerMenu::onShow(){
 void MultiplayerMenu::backToMainWindow(){
     this->close();
     emit mainWindow();
-}
-
-void MultiplayerMenu::closeMenu()
-{
-    qDebug() << __FUNCTION__ << "\n";
 }
 
 MultiplayerMenu::~MultiplayerMenu()

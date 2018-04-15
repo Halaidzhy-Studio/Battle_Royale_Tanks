@@ -1,13 +1,15 @@
 #include <QDebug>
 #include "roomlistelement.h"
 #include "multiplayermenu.h"
-RoomListElement::RoomListElement(QWidget *parent) : QWidget(parent)
+RoomListElement::RoomListElement(QWidget *parent, GameRoom *gameRoom) : QWidget(parent),
+    gameRoom_(gameRoom)
 {
 
-    setGeometry(width()/50, width()/50, width(), height()/15);
+
+
     setFixedSize(parent->width(), 50);
 
-    connectToRoomBTN_ = new QPushButton("Room 1", this);
+    connectToRoomBTN_ = new QPushButton(gameRoom->roomName(), this);
     connectToRoomBTN_->resize(width(), height());
 
 
@@ -20,8 +22,6 @@ RoomListElement::~RoomListElement()
     qDebug() << __FUNCTION__ << "\n";
 
     delete gameRoom_;
-    delete roomName_;
-    delete connectToRoomBTN_;
 }
 
 void RoomListElement::connectToRoom()
@@ -29,20 +29,19 @@ void RoomListElement::connectToRoom()
     // Make connection
     qDebug() << "Connect to room " << gameRoom_->roomName();
 
-    //gameScene_ = std::make_shared<Multiplayer>(nullptr, gameRoom_);
     emit doCloseMenu();
 
-    gameScene_->renderGame();
-    gameScene_->startGame();
+    //gameScene_->renderGame();
+    //gameScene_->startGame();
 
 }
 
-Multiplayer *RoomListElement::gameScene() const
+GameInstance* RoomListElement::gameScene() const
 {
     return gameScene_;
 }
 
-void RoomListElement::setGameScene(Multiplayer *gameScene)
+void RoomListElement::setGameScene(GameInstance* gameScene)
 {
     gameScene_ = gameScene;
 }

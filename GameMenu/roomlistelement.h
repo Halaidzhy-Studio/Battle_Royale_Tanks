@@ -6,23 +6,23 @@
 #include <QLabel>
 #include <memory>
 
-#include "PlayScene/multiplayer.h"
 #include "GameMenu/gameroom.h"
+#include <PlayScene/gameinstance.h>
 
 class RoomListElement : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit RoomListElement(QWidget *parent = nullptr);
+    explicit RoomListElement(QWidget *parent = nullptr, GameRoom* gameRoom = nullptr);
     ~RoomListElement();
 
     GameRoom *gameRoom() const;
     void setGameRoom(GameRoom *gameRoom);
 
 
-    Multiplayer *gameScene() const;
-    void setGameScene(Multiplayer *gameScene);
+    GameInstance* gameScene() const;
+    void setGameScene(GameInstance* gameScene);
 
 signals:
     void doCloseMenu();
@@ -35,7 +35,7 @@ private:
     QLabel* roomName_;
 
     GameRoom* gameRoom_;
-    Multiplayer* gameScene_;
+    GameInstance* gameScene_;
 
 };
 

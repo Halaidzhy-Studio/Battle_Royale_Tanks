@@ -8,7 +8,8 @@
 #include <QVector>
 #include <memory>
 
-#include <PlayScene/multiplayer.h>
+//#include <PlayScene/multiplayer.h>
+#include <PlayScene/gameinstance.h>
 #include <GameMenu/gameroom.h>
 
 namespace Ui {
@@ -22,13 +23,12 @@ class MultiplayerMenu : public QWidget
 public:
     explicit MultiplayerMenu(QWidget *parent = 0);
     ~MultiplayerMenu();
-
 signals:
     void mainWindow();
 public slots:
     void backToMainWindow();
-    void closeMenu();
     void onShow();
+
 private:
 
     Ui::MultiplayerMenu *ui;
@@ -37,7 +37,10 @@ private:
     QListWidget* roomsListWidget_;
 
     QVector<GameRoom*> roomsList_;
-    Multiplayer* gameScene_;
+    // Test data
+    qint16 roomsCount;
+
+    GameInstance* gameScene_;
 
     void createRoomsListElement(QListWidget*, GameRoom*);
     void formRoomsList(QListWidget*);
