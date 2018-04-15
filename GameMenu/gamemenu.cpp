@@ -17,10 +17,10 @@ GameMenu::GameMenu(QWidget *parent) : QWidget(parent)
                                     QApplication::desktop()->availableGeometry(this))
                 );
 
-    spWindow_ = new Singleplayer();
+   // spWindow_ = new Singleplayer();
 
     // connected to slot, which run the main window on the button in the Singleplayer Window
-    connect(spWindow_, &Singleplayer::mainWindow, this, &GameMenu::show);
+    //connect(spWindow_, &Singleplayer::mainWindow, this, &GameMenu::show);
 
     mpWindow_ = new MultiplayerMenu();
 
@@ -49,7 +49,7 @@ GameMenu::GameMenu(QWidget *parent) : QWidget(parent)
                                  size().width()/3, size().height()/8);
 
     // SingleplayerMenu is opened by singlePlayerBTN_
-    connect(singleplayerBTN_, &QPushButton::released, this, &GameMenu::showSingleplayerMenu);
+   // connect(singleplayerBTN_, &QPushButton::released, this, &GameMenu::showSingleplayerMenu);
 
     // MultiPlayerMenu is opened by multiplayerBTN_
     connect(multiplayerBTN_, &QPushButton::released, this, &GameMenu::showMultiplayerMenu);
@@ -65,7 +65,7 @@ void GameMenu::showMultiplayerMenu(){
 
 void GameMenu::showSingleplayerMenu()
 {
-    spWindow_ ->showFullScreen();
+    //spWindow_ ->showFullScreen();
     this->close();
 }
 

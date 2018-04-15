@@ -22,25 +22,38 @@ DEFINES +=  QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += "Box2D/"
 
 SOURCES += \
         main.cpp \
-    playwidget.cpp \
-    GameObjects/tank.cpp \
-    PlayScene/singleplayer.cpp \
     GameMenu/multiplayermenu.cpp \
     GameMenu/gamemenu.cpp \
-    GameMenu/roomlistelement.cpp
+    GameMenu/roomlistelement.cpp \
+    GameMenu/gameroom.cpp \
+    PlayScene/gameinstance.cpp
 
 HEADERS += \
-    GameObjects/tank.h \
-    playwidget.h \
-    PlayScene/singleplayer.h \
     GameMenu/multiplayermenu.h \
     GameMenu/gamemenu.h \
-    GameMenu/roomlistelement.h
+    GameMenu/roomlistelement.h \
+    packages.h \
+    GameMenu/gameroom.h \
+    PlayScene/gameinstance.h
 
 FORMS += \
     playwidget.ui \
     PlayScene/singleplayer.ui \
     GameMenu/multiplayermenu.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lBox2d
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./debug/ -lBox2d
+else:unix: LIBS += -L$$PWD/./ -lBox2d
+
+INCLUDEPATH += $$PWD/.
+DEPENDPATH += $$PWD/.
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/./release/libBox2d.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/./debug/libBox2d.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/./release/Box2d.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/./debug/Box2d.lib
+else:unix: PRE_TARGETDEPS += $$PWD/./libBox2d.a
