@@ -1,8 +1,18 @@
-#include <QCoreApplication>
+#include <QApplication>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsRectItem>
+#include "GameMenu/gamemenu.h"
+#include "mainwindow.h"
+//#include "playwidget.h"
+
+
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
+    GameMenu gamemenu;
 
+    gamemenu.show();
     return a.exec();
 }
