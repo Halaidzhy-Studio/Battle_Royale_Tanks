@@ -2,13 +2,14 @@
 #include <QDesktopWidget>
 #include <QStyle>
 #include "gamemenu.h"
+#include "utils/constants.h"
 
 GameMenu::GameMenu(QWidget *parent) : QWidget(parent)
 {
 
     setStyleSheet("background-color: white;");
     setFixedSize(QApplication::desktop()->width()/2,
-                 QApplication::desktop()->height()*0.90f);
+                 QApplication::desktop()->height()*MENU_WINDOW_REDUCTION_FACTOR);
 
     // Center widget on screen
     setGeometry(QStyle::alignedRect(Qt::LeftToRight,

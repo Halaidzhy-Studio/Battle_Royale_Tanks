@@ -1,4 +1,4 @@
-#ifndef SINGLEPLAYERMENU_H
+    #ifndef SINGLEPLAYERMENU_H
 #define SINGLEPLAYERMENU_H
 
 #include <QWidget>

@@ -17,7 +17,7 @@ SingleplayerMenu::~SingleplayerMenu()
 void SingleplayerMenu::initWindow()
 {
     setFixedSize(QApplication::desktop()->width()/2,
-                 QApplication::desktop()->height() * 0.9f);
+                 QApplication::desktop()->height() * MENU_WINDOW_REDUCTION_FACTOR);
 
     setGeometry(QStyle::alignedRect(
                     Qt::RightToLeft,
