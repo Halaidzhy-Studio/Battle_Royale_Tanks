@@ -5,6 +5,7 @@
 #include <QDebug>
 #include "multiplayermenu.h"
 #include "ui_multiplayermenu.h"
+#include "utils/constants.h"
 
 MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
     QWidget(parent),
@@ -16,7 +17,7 @@ MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
     setStyleSheet("background-color: white;");
 
     setFixedSize(QApplication::desktop()->width()/2,
-                 QApplication::desktop()->height()*0.9f);
+                 QApplication::desktop()->height()*MENU_WINDOW_REDUCTION_FACTOR);
 
     setGeometry(QStyle::alignedRect(
                     Qt::RightToLeft,
@@ -58,7 +59,7 @@ void MultiplayerMenu::getRooms(){
 
     while (roomsCount--){
         QString str =  "Room " + QString::number(roomsCount);
-        roomsList_.push_back(new GameRoom(str,32,2));
+        roomsList_.push_back(new GameRoom(str,static_cast<short int>(32), static_cast<short int>(2)));
     }
 }
 
