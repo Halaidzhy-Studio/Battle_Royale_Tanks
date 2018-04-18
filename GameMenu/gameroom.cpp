@@ -1,31 +1,31 @@
 #include "gameroom.h"
 
-QString GameRoom::roomName() const
+std::string GameRoom::roomName() const
 {
     return roomName_;
 }
 
-void GameRoom::setRoomName(const QString &roomName)
+void GameRoom::setRoomName(const std::string &roomName)
 {
     roomName_ = roomName;
 }
 
-quint8 GameRoom::maxPlayerCount() const
+short int GameRoom::maxPlayerCount() const
 {
     return maxPlayerCount_;
 }
 
-void GameRoom::setMaxPlayerCount(const quint8 &maxPlayerCount)
+void GameRoom::setMaxPlayerCount(const short int &maxPlayerCount)
 {
     maxPlayerCount_ = maxPlayerCount;
 }
 
-quint8 GameRoom::currentPlayerCount() const
+short int GameRoom::currentPlayerCount() const
 {
     return currentPlayerCount_;
 }
 
-void GameRoom::setCurrentPlayerCount(const quint8 &currentPlayerCount)
+void GameRoom::setCurrentPlayerCount(const short int &currentPlayerCount)
 {
     currentPlayerCount_ = currentPlayerCount;
 }
