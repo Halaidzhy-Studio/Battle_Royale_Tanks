@@ -14,15 +14,9 @@ class RoomListElement : public QWidget
     Q_OBJECT
 
 public:
-    explicit RoomListElement(QWidget *parent = nullptr, GameRoom* gameRoom = nullptr);
+    explicit RoomListElement(QWidget *parent = nullptr, GameRoom* gameRoom = nullptr,
+                             GameInstance* gameInstance = nullptr);
     ~RoomListElement();
-
-    GameRoom *gameRoom() const;
-    void setGameRoom(GameRoom *gameRoom);
-
-
-    GameInstance* gameScene() const;
-    void setGameScene(GameInstance* gameScene);
 
 signals:
     void doCloseMenu();
@@ -35,7 +29,7 @@ private:
     QLabel* roomName_;
 
     GameRoom* gameRoom_;
-    GameInstance* gameScene_;
+    GameInstance* gameInstance_;
 
 };
 

@@ -1,13 +1,13 @@
 #include <QDebug>
 #include "roomlistelement.h"
 #include "multiplayermenu.h"
-RoomListElement::RoomListElement(QWidget *parent, GameRoom *gameRoom) : QWidget(parent),
-    gameRoom_(gameRoom)
+RoomListElement::RoomListElement(QWidget *parent, GameRoom *gameRoom, GameInstance * gameInstance) : QWidget(parent),
+    gameRoom_(gameRoom), gameInstance_(gameInstance)
 {
 
     setFixedSize(parent->width(), 50);
 
-    connectToRoomBTN_ = new QPushButton(gameRoom->roomName(), this);
+    connectToRoomBTN_ = new QPushButton(QString::fromStdString(gameRoom->roomName()), this);
     connectToRoomBTN_->resize(width(), height());
 
 
@@ -17,8 +17,7 @@ RoomListElement::RoomListElement(QWidget *parent, GameRoom *gameRoom) : QWidget(
 
 RoomListElement::~RoomListElement()
 {
-    qDebug() << __FUNCTION__ << "\n";
-
+    delete gameInstance_;
     delete gameRoom_;
 }
 
@@ -28,9 +27,6 @@ void RoomListElement::connectToRoom()
     qDebug() << "Connect to room " << gameRoom_->roomName();
 
     emit doCloseMenu();
-
-    //gameScene_->renderGame();
-    //gameScene_->startGame();
 
 }
 
