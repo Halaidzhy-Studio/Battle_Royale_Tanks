@@ -9,7 +9,7 @@
 #include <memory>
 
 //#include <PlayScene/multiplayer.h>
-#include <PlayScene/gameinstance.h>
+#include <GameObjects//gameinstance.h>
 #include <GameMenu/gameroom.h>
 
 namespace Ui {

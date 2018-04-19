@@ -1,6 +1,6 @@
 #include "gameinstance.h"
 
-GameInstance::GameInstance()
+GameInstance::GameInstance() : gamePhysicsEngine_(new GamePhysicsEngineImpl())
 {
-
+    gameScene_ = new GameScene(gamePhysicsEngine_);
 }

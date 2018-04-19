@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include <PlayScene/gameinstance.h>
+#include <GameObjects/gameinstance.h>
 
 class SingleplayerMenu: public QWidget
 {
