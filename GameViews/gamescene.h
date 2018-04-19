@@ -3,13 +3,16 @@
 
 #include <QGraphicsScene>
 #include <Box2D.h>
+#include <memory>
+#include <GameObjects/gamephysicsengine.h>
 
 class GameScene : public QGraphicsScene
 {
 public:
-    GameScene();
+    GameScene() = delete;
+    GameScene(std::shared_ptr<GamePhysicsEngine>& gamePhysics);
 private:
-    b2World* b2GameWorld_;
+    std::shared_ptr<GamePhysicsEngine> gamePhysics_;
 };
 
 #endif // GAMESCENE_H

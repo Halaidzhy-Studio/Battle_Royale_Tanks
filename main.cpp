@@ -3,7 +3,6 @@
 #include <QGraphicsView>
 #include <QGraphicsRectItem>
 #include "GameMenu/gamemenu.h"
-#include "mainwindow.h"
 //#include "playwidget.h"
 
 

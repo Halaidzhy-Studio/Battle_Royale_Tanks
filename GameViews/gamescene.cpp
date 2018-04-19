@@ -1,6 +1,7 @@
 #include "gamescene.h"
 
-GameScene::GameScene() : b2GameWorld_(nullptr)
+GameScene::GameScene(std::shared_ptr<GamePhysicsEngine>& gamePhysics) :
+    gamePhysics_(gamePhysics)
 {
 
 }
