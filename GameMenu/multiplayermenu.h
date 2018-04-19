@@ -40,7 +40,7 @@ private:
     // Test data
     qint16 roomsCount;
 
-    GameInstance* gameScene_;
+    GameInstance* gameInstance_;
 
     void createRoomsListElement(QListWidget*, GameRoom*);
     void formRoomsList(QListWidget*);

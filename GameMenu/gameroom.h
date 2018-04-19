@@ -3,11 +3,10 @@
 
 #include<string>
 
-struct GameRoom
+struct  GameRoom
 {
 public:
     GameRoom() = default;
-
     GameRoom(std::string roomName, short int maxPlayerCount, short int currentPlayerCount):
         roomName_(roomName), maxPlayerCount_(maxPlayerCount), currentPlayerCount_(currentPlayerCount){}
 

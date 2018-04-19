@@ -9,11 +9,13 @@
 
 MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MultiplayerMenu), gameScene_(nullptr)
+    ui(new Ui::MultiplayerMenu), gameInstance_(nullptr)
 {
     ui->setupUi(this);
 
+    // Debug
     roomsCount = 2;
+
     setStyleSheet("background-color: white;");
 
     setFixedSize(QApplication::desktop()->width()/2,
@@ -45,21 +47,19 @@ MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
 }
 
 void MultiplayerMenu::initMenu(){
-    if (gameScene_ != nullptr)
-        delete gameScene_;
+    if (gameInstance_ != nullptr)
+        delete gameInstance_;
 
-    gameScene_ = new GameInstance();
+    gameInstance_ = new GameInstance();
 
     formRoomsList(roomsListWidget_);
 }
 
 void MultiplayerMenu::getRooms(){
-    // Download rooms to QVector<GameRoom>
-    //qint16 roomsCount = 2;
 
     while (roomsCount--){
         QString str =  "Room " + QString::number(roomsCount);
-        roomsList_.push_back(new GameRoom(str,static_cast<short int>(32), static_cast<short int>(2)));
+        roomsList_.push_back(new GameRoom(str.toStdString(),static_cast<short int>(32), static_cast<short int>(2)));
     }
 }
 
@@ -70,16 +70,13 @@ void MultiplayerMenu::formRoomsList(QListWidget* roomsListWidget){
     qDebug() << roomsListWidget->count() << "\n";
 
     if (roomsListWidget->count() < roomsList_.size())
-        for (qint16 i = 0; i < roomsList_.size(); ++i){
-            createRoomsListElement(roomsListWidget, roomsList_[i]);
+        for (const auto& room: roomsList_){
+            createRoomsListElement(roomsListWidget, room);
         }
 }
 
 void MultiplayerMenu::createRoomsListElement(QListWidget *roomsListWidget, GameRoom* gameRoom){
-    RoomListElement* roomElement = new RoomListElement(roomsListWidget, gameRoom);
-
-    roomElement->setGameScene(gameScene_);
-
+    RoomListElement* roomElement = new RoomListElement(roomsListWidget, gameRoom, gameInstance_);
 
     QListWidgetItem* item = new QListWidgetItem(roomsListWidget);
     item->setSizeHint(QSize(roomsListWidget->width(), 50));
@@ -92,7 +89,6 @@ void MultiplayerMenu::createRoomsListElement(QListWidget *roomsListWidget, GameR
 }
 
 void MultiplayerMenu::onShow(){
-
     initMenu();
     show();
 }
