@@ -24,28 +24,9 @@ RoomListElement::~RoomListElement()
 void RoomListElement::connectToRoom()
 {
     // Make connection
-    qDebug() << "Connect to room " << gameRoom_->roomName();
+    //qDebug() << "Connect to room " << gameRoom_->roomName();
 
     emit doCloseMenu();
 
 }
 
-GameInstance* RoomListElement::gameScene() const
-{
-    return gameScene_;
-}
-
-void RoomListElement::setGameScene(GameInstance* gameScene)
-{
-    gameScene_ = gameScene;
-}
-
-GameRoom *RoomListElement::gameRoom() const
-{
-    return gameRoom_;
-}
-
-void RoomListElement::setGameRoom(GameRoom *gameRoom)
-{
-    gameRoom_ = gameRoom;
-}

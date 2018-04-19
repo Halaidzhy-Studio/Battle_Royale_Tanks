@@ -7,7 +7,7 @@
 #include <memory>
 
 #include "GameMenu/gameroom.h"
-#include <PlayScene/gameinstance.h>
+#include <GameObjects//gameinstance.h>
 
 class RoomListElement : public QWidget
 {
@@ -22,7 +22,6 @@ signals:
     void doCloseMenu();
 public slots:
     void connectToRoom();
-
 private:
 
     QPushButton* connectToRoomBTN_;

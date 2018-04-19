@@ -24,39 +24,28 @@ DEFINES +=  QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += "Box2D/"
 
+SOURCES += $$files($$PWD/GameMenu/*.cpp)
+SOURCES += $$files($$PWD/GameObjectsViews/*.cpp)
+SOURCES += $$files($$PWD/GameObjects/*.cpp)
+SOURCES += $$files($$PWD/GameViews/*.cpp)
+SOURCES += $$files($$PWD/PlayScene/*.cpp)
+SOURCES += $$files($$PWD/utils/*.cpp)
+
+HEADERS += $$files($$PWD/GameMenu/*.h)
+HEADERS += $$files($$PWD/GameObjectsViews/*.h)
+HEADERS += $$files($$PWD/GameObjects/*.h)
+HEADERS += $$files($$PWD/GameViews/*.h)
+HEADERS += $$files($$PWD/PlayScene/*.h)
+HEADERS += $$files($$PWD/utils/*.h)
+
 SOURCES += \
-        main.cpp \
-    GameMenu/multiplayermenu.cpp \
-    GameMenu/gamemenu.cpp \
-    GameMenu/roomlistelement.cpp \
-    GameMenu/gameroom.cpp \
-    PlayScene/gameinstance.cpp \
-    GameObjectsViews/tankview.cpp \
-    GameObjectsViews/bulletview.cpp \
-    GameObjectsViews/wallview.cpp \
-    GameObjectsViews/tankturretview.cpp \
-    GameObjects/tank.cpp \
-    GameMenu/singleplayermenu.cpp \
-    gamescene.cpp
+    main.cpp \
 
 HEADERS += \
-    GameMenu/multiplayermenu.h \
-    GameMenu/gamemenu.h \
-    GameMenu/roomlistelement.h \
     packages.h \
-    GameMenu/gameroom.h \
-    PlayScene/gameinstance.h \
-    GameObjectsViews/tankview.h \
-    GameObjectsViews/bulletview.h \
-    GameObjectsViews/wallview.h \
-    GameObjectsViews/tankturretview.h \
-    GameObjects/tank.h \
-    GameMenu/singleplayermenu.h \
-    gamescene.h
 
 FORMS += \
     playwidget.ui \
-    PlayScene/singleplayer.ui \
     GameMenu/multiplayermenu.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lBox2d

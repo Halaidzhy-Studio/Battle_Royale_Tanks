@@ -1,7 +1,8 @@
-#include "singleplayermenu.h"
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QStyle>
+#include "singleplayermenu.h"
+#include "utils/constants.h"
 
 SingleplayerMenu::SingleplayerMenu(QWidget *parent) : QWidget(parent)
 {
