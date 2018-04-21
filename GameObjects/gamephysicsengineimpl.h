@@ -10,6 +10,7 @@ public:
     GamePhysicsEngineImpl();
     // GamePhysicsEngine interface
     void updateGame() override;
+    void test();
 private:
     std::unique_ptr<b2World> b2World_;
     float timeStep_;

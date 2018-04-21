@@ -11,3 +11,7 @@ GamePhysicsEngineImpl::GamePhysicsEngineImpl(): velocityIteration_(6),
 void GamePhysicsEngineImpl::updateGame(){
     b2World_ ->Step( timeStep_, velocityIteration_, positionIterations_);
 }
+
+void GamePhysicsEngineImpl::test(){
+
+}
