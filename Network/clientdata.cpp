@@ -11,7 +11,7 @@ ClientData::ClientData(quint32 _gameId)
 void ClientData::setDataFromNetwork(QByteArray &data, quint8 type)
 {
     QDataStream in(&data, QIODevice::ReadOnly);
-    in.setVersion(QDataStream::Qt_5_10);
+    in.setVersion(QDataStream::Qt_5_9);
 
     switch (type) {
     case message::INIT:
@@ -100,7 +100,7 @@ QByteArray ClientData::createDataForNetwork(quint8 type) const
 {
     QByteArray data;
     QDataStream out(&data, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_10);
+    out.setVersion(QDataStream::Qt_5_9);
 
     switch (type) {
     case message::INIT:

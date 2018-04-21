@@ -5,8 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += network
+QT       += widgets
 
 CONFIG += c++14
 
@@ -32,7 +32,9 @@ SOURCES += $$files($$PWD/GameObjects/*.cpp)
 SOURCES += $$files($$PWD/GameViews/*.cpp)
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 SOURCES += $$files($$PWD/utils/*.cpp)
+SOURCES += $$files($$PWD/Network/*.cpp)
 
+HEADERS += $$files($$PWD/Network/*.h)
 HEADERS += $$files($$PWD/GameMenu/*.h)
 HEADERS += $$files($$PWD/GameObjectsViews/*.h)
 HEADERS += $$files($$PWD/GameObjects/*.h)
@@ -42,9 +44,6 @@ HEADERS += $$files($$PWD/utils/*.h)
 
 SOURCES += \
     main.cpp \
-
-HEADERS += \
-    packages.h \
 
 FORMS += \
     playwidget.ui \

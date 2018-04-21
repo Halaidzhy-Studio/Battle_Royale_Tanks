@@ -65,7 +65,7 @@ QByteArray Controller::joinData(const QByteArray& data, const Header &header)
 {
     QByteArray result;
     QDataStream out(&result, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_10);
+    out.setVersion(QDataStream::Qt_5_9);
     out << header.gameId;
     out << header.roomId;
     out << header.userId;
