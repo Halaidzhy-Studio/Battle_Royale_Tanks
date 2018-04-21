@@ -5,3 +5,9 @@ GameScene::GameScene(std::shared_ptr<GamePhysicsEngine>& gamePhysics) :
 {
 
 }
+
+void GameScene::advance()
+{
+    gamePhysics_->updateGame();
+    QGraphicsScene::advance();
+}

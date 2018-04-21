@@ -11,6 +11,8 @@ class GameScene : public QGraphicsScene
 public:
     GameScene() = delete;
     GameScene(std::shared_ptr<GamePhysicsEngine>& gamePhysics);
+public slots:
+    void advance();
 private:
     std::shared_ptr<GamePhysicsEngine> gamePhysics_;
 };
