@@ -49,6 +49,8 @@ FORMS += \
     playwidget.ui \
     GameMenu/multiplayermenu.ui
 
+
+
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lBox2d
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./debug/ -lBox2d
 else:unix: LIBS += -L$$PWD/./ -lBox2d
@@ -61,3 +63,16 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/./debug/lib
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/./release/Box2d.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/./debug/Box2d.lib
 else:unix: PRE_TARGETDEPS += $$PWD/./libBox2d.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libconfig/lib/.libs/release/ -lconfig++
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libconfig/lib/.libs/debug/ -lconfig++
+else:unix: LIBS += -L$$PWD/libconfig/lib/.libs/ -lconfig++
+
+INCLUDEPATH += $$PWD/libconfig/lib/.libs
+DEPENDPATH += $$PWD/libconfig/lib/.libs
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/release/libconfig++.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/debug/libconfig++.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/release/config++.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/debug/config++.lib
+else:unix: PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/libconfig++.a

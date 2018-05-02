@@ -14,7 +14,6 @@ void GameInstance::renderInterface()
 void GameInstance::startGame()
 {
     gameTimer_ = std::make_unique<QTimer>();
-
     connect(gameTimer_.get(), &QTimer::timeout, gameScene_, &GameScene::advance);
 }
 

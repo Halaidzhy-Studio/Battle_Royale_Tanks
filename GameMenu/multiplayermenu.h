@@ -6,15 +6,13 @@
 #include <QLabel>
 #include <QListWidget>
 #include <QVector>
+#include <vector>
 #include <memory>
+#include "utils/tanktype.h"
 
 //#include <PlayScene/multiplayer.h>
 #include <GameObjects//gameinstance.h>
 #include <GameMenu/gameroom.h>
-
-namespace Ui {
-class MultiplayerMenu;
-}
 
 class MultiplayerMenu : public QWidget
 {
@@ -28,25 +26,27 @@ signals:
 public slots:
     void backToMainWindow();
     void onShow();
+    void startMultiplayerGame();
+    void nextTank();
+    void previousTank();
 
 private:
 
-    Ui::MultiplayerMenu *ui;
     QPushButton* backToMainWindowBTN_;
-    QLabel* multiplayerMenuTitle_;
-    QListWidget* roomsListWidget_;
+    QPushButton* startMultiplayerGameBTN_;
+    QLabel* choseTankLabel_;
 
-    QVector<GameRoom*> roomsList_;
-    // Test data
-    qint16 roomsCount;
+    QPushButton* prevTankBTN_;
+    QPushButton* nextTankBTN_;
+
+    //std::vector<TankTypeEnum> tankTypeList_;
+    //int currentTankTypeNum_;
+    //TankTypeEnum chosenTankType_;
+    QPixmap* currentTankTypeImage_;
+
+    std::string currentTankTypeString_;
 
     GameInstance* gameInstance_;
-
-    void createRoomsListElement(QListWidget*, GameRoom*);
-    void formRoomsList(QListWidget*);
-
-    void getRooms();
-    void initMenu();
 };
 
 #endif // MULTIPLAYERMENU_H
