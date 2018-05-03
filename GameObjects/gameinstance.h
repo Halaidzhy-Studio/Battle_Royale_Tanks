@@ -9,14 +9,18 @@
 #include <GameObjectsViews/tankview.h>
 #include <GameObjectsViews/bulletview.h>
 #include "GameObjects/gamephysicsengineimpl.h"
+#include <libconfig.h++>
 
 class GameInstance: public QWidget
 {
 public:
-    GameInstance();
+    GameInstance(const std::shared_ptr<libconfig::Config> config);
+
     void renderInterface();
     void startGame();
 private:
+    std::shared_ptr<libconfig::Config> config_;
+
     // ClientData
 
     GameScene* gameScene_;
@@ -33,6 +37,7 @@ private:
     //b2World b2GameWorld_;
     //std::vector<Tank*> tanks_;
 
+    void updateTank();
 };
 
 #endif // GAMEINSTANCE_H

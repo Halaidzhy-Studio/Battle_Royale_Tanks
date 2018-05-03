@@ -4,21 +4,20 @@
 #include "multiplayermenu.h"
 #include "utils/constants.h"
 
-MultiplayerMenu::MultiplayerMenu(QWidget *parent) :
-    QWidget(parent), gameInstance_(nullptr)
+MultiplayerMenu::MultiplayerMenu(int w, int h, QWidget *parent) :
+    QWidget(parent), menuWidth_(w), menuHeight_(h), gameInstance_(nullptr)
 {
 
 
     setStyleSheet("background-color: white;");
 
-    setFixedSize(QApplication::desktop()->width()/2,
-                 QApplication::desktop()->height()*MENU_WINDOW_REDUCTION_FACTOR);
+    setFixedSize(menuWidth_, menuHeight_);
 
-    setGeometry(QStyle::alignedRect(
-                    Qt::RightToLeft,
-                    Qt::AlignCenter,
-                    size(),
-                    QApplication::desktop()->availableGeometry(this)));
+    setGeometry(QStyle::alignedRect(Qt::LeftToRight,
+                                    Qt::AlignCenter,
+                                    size(),
+                                    QApplication::desktop()->availableGeometry(this))
+                );
 
     startMultiplayerGameBTN_ = new QPushButton("Start Game", this);
     startMultiplayerGameBTN_->setGeometry(width()/2, width()/100, 200, height()/15);

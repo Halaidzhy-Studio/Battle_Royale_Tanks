@@ -19,7 +19,7 @@ class MultiplayerMenu : public QWidget
     Q_OBJECT
 
 public:
-    explicit MultiplayerMenu(QWidget *parent = 0);
+    explicit MultiplayerMenu(int width, int height, QWidget *parent = 0);
     ~MultiplayerMenu();
 signals:
     void mainWindow();
@@ -31,6 +31,8 @@ public slots:
     void previousTank();
 
 private:
+    int menuWidth_;
+    int menuHeight_;
 
     QPushButton* backToMainWindowBTN_;
     QPushButton* startMultiplayerGameBTN_;

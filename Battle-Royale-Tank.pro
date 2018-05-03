@@ -34,22 +34,29 @@ SOURCES += $$files($$PWD/PlayScene/*.cpp)
 SOURCES += $$files($$PWD/utils/*.cpp)
 SOURCES += $$files($$PWD/Network/*.cpp)
 
-HEADERS += $$files($$PWD/Network/*.h)
 HEADERS += $$files($$PWD/GameMenu/*.h)
 HEADERS += $$files($$PWD/GameObjectsViews/*.h)
 HEADERS += $$files($$PWD/GameObjects/*.h)
 HEADERS += $$files($$PWD/GameViews/*.h)
 HEADERS += $$files($$PWD/PlayScene/*.h)
 HEADERS += $$files($$PWD/utils/*.h)
+HEADERS += $$files($$PWD/Network/*.h)
+HEADERS += $$files($$PWD/utils/*.h)
 
 SOURCES += \
     main.cpp \
+    game.cpp
 
+HEADERS += \
+    packages.h \
+    game.h
 FORMS += \
     playwidget.ui \
     GameMenu/multiplayermenu.ui
 
 
+RESOURCES += \
+    config.qrc
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lBox2d
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./debug/ -lBox2d
@@ -76,3 +83,4 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libconfig/l
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/release/config++.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/debug/config++.lib
 else:unix: PRE_TARGETDEPS += $$PWD/libconfig/lib/.libs/libconfig++.a
+

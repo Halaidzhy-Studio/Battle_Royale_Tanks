@@ -2,14 +2,23 @@
 #include <QDesktopWidget>
 #include <QStyle>
 #include "gamemenu.h"
+#include "utils/logger.h"
 #include "utils/constants.h"
 
-GameMenu::GameMenu(QWidget *parent) : QWidget(parent)
+GameMenu::GameMenu(int width, int height, const std::shared_ptr<libconfig::Config> config,
+                   QWidget *parent) : QWidget(parent),
+    menuWidth_(width), menuHeight_(height), config_(config)
 {
 
-    setStyleSheet("background-color: white;");
-    setFixedSize(QApplication::desktop()->width()/2,
-                 QApplication::desktop()->height()*MENU_WINDOW_REDUCTION_FACTOR);
+    std::string backgroundColor = "white";
+    try{
+        backgroundColor = config_->lookup("windows.menu.background_color").c_str();
+    }catch(const libconfig::SettingNotFoundException& e){
+        Logger::instance().printLog("No 'windows.menu.background_color' setting in configuration file", Logger::loggerGame);
+    }
+
+    setStyleSheet(QString::fromStdString("background-color: " + backgroundColor + ";"));
+    setFixedSize(menuWidth_, menuHeight_);
 
     // Center widget on screen
     setGeometry(QStyle::alignedRect(Qt::LeftToRight,
@@ -23,7 +32,7 @@ GameMenu::GameMenu(QWidget *parent) : QWidget(parent)
     // connected to slot, which run the main window on the button in the Singleplayer Window
     connect(spWindow_, &SingleplayerMenu::mainWindow, this, &GameMenu::show);
 
-    mpWindow_ = new MultiplayerMenu();
+    mpWindow_ = new MultiplayerMenu(menuWidth_, menuHeight_);
 
     // connected to slot, which run the main window on the button in the Multiplayer Window
     connect(mpWindow_, &MultiplayerMenu::mainWindow, this, &GameMenu::show);
