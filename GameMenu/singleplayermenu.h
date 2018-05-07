@@ -3,17 +3,17 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include <GameObjects/gameinstance.h>
+#include <memory>
+#include <utils/gamedata.h>
+#include <utils/data/menu/singleplayermenuinfostruct.h>
 
 class SingleplayerMenu: public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SingleplayerMenu(QWidget* parent = nullptr);
+    explicit SingleplayerMenu(const std::shared_ptr<GameData>& gameData, QWidget* parent = nullptr);
     ~SingleplayerMenu();
-
-    void initWindow();
 signals:
     void mainWindow();
 
@@ -22,9 +22,10 @@ private slots:
     void startGame();
 
 private:
+    std::shared_ptr<GameData> gameData_;
+    SingleplayerMenuInfo singleplayernMenuInfo_;
     QPushButton* startGameBTN_;
     QPushButton* backToMainWindowBTN_;
-    GameInstance* gameInstance_;
 };
 
 #endif // SINGLEPLAYERMENU_H

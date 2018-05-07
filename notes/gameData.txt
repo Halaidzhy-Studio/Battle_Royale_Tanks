@@ -1,0 +1,32 @@
+struct TankInfo {
+    BodyInfo bodyInfo
+    TurretInfo turretInfo
+}
+
+struct BodyInfo{
+    int speed;
+    int angleSpeed;
+    ...
+    ...
+}
+
+GameData
+    + getTankInfoByType(TANKTYPE t) : TankInfo
+    + getBodyInfoByType(BODYTYPE t) : BodyInfo
+    + getTurretInfoByType(TURRETTYPE t) : TurretInfo
+    + getWindowInfo() : WindowInfo
+    + getGameplayInfo() : GameplayInfo
+
+
+ConfigGameData : public GameData
+    ...
+    ...
+    ...
+
+
+TestGameData : public GameData
+    ...
+    ...
+    ...
+    ...
+

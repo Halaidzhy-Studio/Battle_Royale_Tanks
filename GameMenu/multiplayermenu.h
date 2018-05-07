@@ -8,10 +8,9 @@
 #include <QVector>
 #include <vector>
 #include <memory>
-#include "utils/tanktype.h"
-
+#include <utils/gamedata.h>
+#include <utils/data/menu/multiplayermenuinfostruct.h>
 //#include <PlayScene/multiplayer.h>
-#include <GameObjects//gameinstance.h>
 #include <GameMenu/gameroom.h>
 
 class MultiplayerMenu : public QWidget
@@ -19,7 +18,7 @@ class MultiplayerMenu : public QWidget
     Q_OBJECT
 
 public:
-    explicit MultiplayerMenu(int width, int height, QWidget *parent = 0);
+    explicit MultiplayerMenu(const std::shared_ptr<GameData>& gameData, QWidget *parent = 0);
     ~MultiplayerMenu();
 signals:
     void mainWindow();
@@ -31,9 +30,8 @@ public slots:
     void previousTank();
 
 private:
-    int menuWidth_;
-    int menuHeight_;
-
+    std::shared_ptr<GameData> gameData_;
+    MultiplayerMenuInfo multiplayerMenuInfo_;
     QPushButton* backToMainWindowBTN_;
     QPushButton* startMultiplayerGameBTN_;
     QLabel* choseTankLabel_;
@@ -48,7 +46,6 @@ private:
 
     std::string currentTankTypeString_;
 
-    GameInstance* gameInstance_;
 };
 
 #endif // MULTIPLAYERMENU_H

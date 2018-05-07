@@ -5,15 +5,16 @@
 #include <QWidget>
 #include <QPushButton>
 #include <GameMenu/singleplayermenu.h>
-#include <libconfig.h++>
+#include <utils/data/menu/menuwindowinfostruct.h>
+#include <utils/gamedata.h>
+
 #include "multiplayermenu.h"
 
 class GameMenu : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GameMenu(int width, int height,
-                      const std::shared_ptr<libconfig::Config> config, QWidget *parent = nullptr);
+    explicit GameMenu( const std::shared_ptr<GameData>& gameData, QWidget *parent = nullptr);
 
 signals:
 
@@ -28,9 +29,8 @@ private:
     SingleplayerMenu* spWindow_;
     MultiplayerMenu* mpWindow_;
 
-    std::shared_ptr<libconfig::Config> config_;
-    int menuWidth_;
-    int menuHeight_;
+    std::shared_ptr<GameData> gameData_;
+    MenuWindowInfo menuWindowInfo_;
 };
 
 #endif // GAMEMENU_H

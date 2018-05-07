@@ -3,22 +3,17 @@
 #include <QStyle>
 #include "gamemenu.h"
 #include "utils/logger.h"
-#include "utils/constants.h"
 
-GameMenu::GameMenu(int width, int height, const std::shared_ptr<libconfig::Config> config,
-                   QWidget *parent) : QWidget(parent),
-    menuWidth_(width), menuHeight_(height), config_(config)
+GameMenu::GameMenu(const std::shared_ptr<GameData>& gameData,
+                   QWidget *parent) : QWidget(parent), gameData_(gameData)
 {
 
-    std::string backgroundColor = "white";
-    try{
-        backgroundColor = config_->lookup("windows.menu.background_color").c_str();
-    }catch(const libconfig::SettingNotFoundException& e){
-        Logger::instance().printLog("No 'windows.menu.background_color' setting in configuration file", Logger::loggerGame);
-    }
+    menuWindowInfo_ = gameData_->getMenuWindowInfo();
+
+    std::string backgroundColor = menuWindowInfo_.color;
 
     setStyleSheet(QString::fromStdString("background-color: " + backgroundColor + ";"));
-    setFixedSize(menuWidth_, menuHeight_);
+    setFixedSize(menuWindowInfo_.width, menuWindowInfo_.height);
 
     // Center widget on screen
     setGeometry(QStyle::alignedRect(Qt::LeftToRight,
@@ -27,36 +22,36 @@ GameMenu::GameMenu(int width, int height, const std::shared_ptr<libconfig::Confi
                                     QApplication::desktop()->availableGeometry(this))
                 );
 
-    spWindow_ = new SingleplayerMenu();
+    spWindow_ = new SingleplayerMenu(gameData_);
 
     // connected to slot, which run the main window on the button in the Singleplayer Window
     connect(spWindow_, &SingleplayerMenu::mainWindow, this, &GameMenu::show);
 
-    mpWindow_ = new MultiplayerMenu(menuWidth_, menuHeight_);
+    mpWindow_ = new MultiplayerMenu(gameData_);
 
     // connected to slot, which run the main window on the button in the Multiplayer Window
     connect(mpWindow_, &MultiplayerMenu::mainWindow, this, &GameMenu::show);
 
     singleplayerBTN_ = new QPushButton("Singleplayer", this);
 
-    // size.width()/2 - size().width()/6 - set Button to center of MainMenu
-    singleplayerBTN_->setGeometry(size().width()/2 - size().width()/6,
-                                 1 * size().height()/5,
-                                 size().width()/3, size().height()/8);
+    // size.width()/2 - size().width()/menuWindowInfo_.btn_w_k/2 - set Button to center of MainMenu
+    singleplayerBTN_->setGeometry(size().width()/2 - size().width()/menuWindowInfo_.btn_w_k/2,
+                                 1 * size().height()/menuWindowInfo_.btn_part_size,
+                                 size().width()/menuWindowInfo_.btn_w_k, size().height()/menuWindowInfo_.btn_h_k);
 
     multiplayerBTN_ = new QPushButton("Multiplayer", this);
 
-    // size.width()/2 - size().width()/6 - set Button to center of MainMenu
-    multiplayerBTN_->setGeometry(size().width()/2 - size().width()/6,
-                                 2 * size().height()/5,
-                                 size().width()/3, size().height()/8);
+    // size.width()/2 - size().width()/menuWindowInfo_.btn_w_k/2 - set Button to center of MainMenu
+    multiplayerBTN_->setGeometry(size().width()/2 - width()/menuWindowInfo_.btn_w_k/2,
+                                 2 * size().height()/menuWindowInfo_.btn_part_size,
+                                 size().width()/menuWindowInfo_.btn_w_k, size().height()/menuWindowInfo_.btn_h_k);
 
     exitBTN_ = new QPushButton("Exit", this);
 
-    // size.width()/2 - size().width()/6 - set Button to center of MainMenu
-    exitBTN_->setGeometry(size().width()/2 - size().width()/6,
-                                 3 * size().height()/5,
-                                 size().width()/3, size().height()/8);
+    // size.width()/2 - size().width()/menuWindowInfo_.btn_w_k/2 - set Button to center of MainMenu
+    exitBTN_->setGeometry(size().width()/2 - width()/menuWindowInfo_.btn_w_k/2,
+                                 3 * size().height()/menuWindowInfo_.btn_part_size,
+                                 size().width()/menuWindowInfo_.btn_w_k, size().height()/menuWindowInfo_.btn_h_k);
 
     // SingleplayerMenu is opened by singlePlayerBTN_
     connect(singleplayerBTN_, &QPushButton::released, this, &GameMenu::showSingleplayerMenu);
@@ -77,7 +72,6 @@ void GameMenu::showMultiplayerMenu(){
 
 void GameMenu::showSingleplayerMenu()
 {
-    spWindow_ ->initWindow();
     spWindow_->show();
     this->close();
 }
