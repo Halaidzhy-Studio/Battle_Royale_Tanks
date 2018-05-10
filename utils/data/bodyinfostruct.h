@@ -3,7 +3,7 @@
 
 #include "infostruct.h"
 
-struct TankBodyInfo : public RectInfoStruct {
+struct TankBodyInfo : public InfoStruct, public RectInfo {
     int speed;
     int turnSpeed;
     int hp;

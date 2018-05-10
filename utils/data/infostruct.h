@@ -34,12 +34,4 @@ struct InfoStruct{
     StyleInfo styleInfo;
 };
 
-struct RectInfoStruct : public InfoStruct{
-    RectInfo rectInfo;
-};
-
-struct CircleInfoStruct : public InfoStruct{
-    CircleInfo circleInfo;
-};
-
 #endif // INFOSTRUCT_H

@@ -4,7 +4,7 @@
 #include <memory>
 #include "possibilityinterfaces.h"
 #include "components/interfaces/componentsinterfaces.h"
-
+#include <utils/coordinate.h>
 
 class Object{
 public:
@@ -26,18 +26,21 @@ public:
         viewComponent_->update(this);
         physicsComponent_->update(this);
     }
+
     std::shared_ptr<ViewComponent> viewComponent() const;
     void setViewComponent(const std::shared_ptr<ViewComponent> &viewComponent);
 
     std::shared_ptr<PhysicsComponent> physicsComponent() const;
     void setPhysicsComponent(const std::shared_ptr<PhysicsComponent> &physicsComponent);
 
+    Coordinate getCoord() const;
+    void setCoord(const Coordinate &value);
+
 protected:
     std::shared_ptr<ViewComponent> viewComponent_;
     std::shared_ptr<PhysicsComponent> physicsComponent_;
-
-    int x_;
-    int y_;
+    Coordinate coord_;
+    Angle angle_;
 
 };
 

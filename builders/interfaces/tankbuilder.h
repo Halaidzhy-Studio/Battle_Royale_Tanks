@@ -14,6 +14,7 @@ public:
         bodyDirector_ = std::make_shared<BodyBuilderDirector>();
         turretDirector_ = std::make_shared<TurretBuilderDirector>();
     }
+
     virtual ~TankBuilder() = default;
     virtual std::shared_ptr<TankBody> getBody() = 0;
     virtual std::shared_ptr<TankTurret> getTurret() = 0;

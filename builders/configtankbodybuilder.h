@@ -9,6 +9,8 @@ class ConfigTankBodyBuilder : public BodyBuilder
 public:
     ConfigTankBodyBuilder();
     ConfigTankBodyBuilder(const TankBodyInfo& tankBodyInfo) : tankBodyInfo_(tankBodyInfo) {}
+
+
 private:
     TankBodyInfo tankBodyInfo_;
 

@@ -27,10 +27,16 @@ DEFINES +=  QT_DEPRECATED_WARNINGS
 INCLUDEPATH += "Box2D/"
 
 SOURCES += $$files($$PWD/GameMenu/*.cpp) \
-    engineqt.cpp
+    engineqt.cpp \
+    components/body/handleinputcomponentimplbody.cpp \
+    components/body/viewcomponentbodyimpl.cpp \
+    utils/coordinate.cpp
 HEADERS += $$files($$PWD/GameMenu/*.h) \
     engine.h \
-    engineqt.h
+    engineqt.h \
+    components/body/handleinputcomponentimplbody.h \
+    components/body/viewcomponentbodyimpl.h \
+    utils/coordinate.h
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 HEADERS += $$files($$PWD/PlayScene/*.h)
 

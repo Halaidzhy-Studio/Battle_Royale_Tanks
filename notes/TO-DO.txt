@@ -6,7 +6,7 @@ LEGEND:
 TO-DO
 ============================================
 ~ class GameData
-- class ConfigGameData : public GameData
+~ class ConfigGameData : public GameData
 
 --------------------------------------------
 
@@ -20,9 +20,9 @@ TO-DO
 ~ class TankBuildDirector
 ~ class TankBuilder
 ~ class ConfigTankBuilder : public TankBuilder
---- class Body/Turret/Bullet BuilDirector
---- class Body/Turret/Bullet Builder
---- class ConfigBody/ConfigTurret/ConfigBullet Build : public Body/Turret/Bullet Builder
+~~- class Body/Turret/Bullet BuilDirector
+~~- class Body/Turret/Bullet Builder
+~~- class ConfigBody/ConfigTurret/ConfigBullet Build : public Body/Turret/Bullet Builder
 
 --------------------------------------------
 
@@ -33,3 +33,11 @@ TO-DO
 --------------------------------------------
 
 - class Command
+
+--------------------------------------------
+
+- class PhysicsMediator
+- class ViewMediator
+- class HandleMediator
+
+---------------------------------------------

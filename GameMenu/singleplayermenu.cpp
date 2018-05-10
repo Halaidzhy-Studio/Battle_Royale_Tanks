@@ -2,7 +2,7 @@
 #include <QApplication>
 #include <QStyle>
 #include "singleplayermenu.h"
-
+#include <game.h>
 
 SingleplayerMenu::SingleplayerMenu(const std::shared_ptr<GameData>& gameData, QWidget *parent) : QWidget(parent),
     gameData_(gameData)

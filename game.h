@@ -11,6 +11,7 @@ class Game
 public:
     Game(const std::shared_ptr<GameData>& gameData) : gameData_(gameData) {}
     void startGame();
+
 private:
     std::shared_ptr<GameData> gameData_;
     std::unique_ptr<GameMenu> gameMenu_;

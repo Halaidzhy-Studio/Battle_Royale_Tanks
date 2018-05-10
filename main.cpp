@@ -21,8 +21,8 @@ using namespace libconfig;
 int main(int argc, char *argv[])
 {
 
-    std::shared_ptr<Engine> engineQt = std::make_shared<EngineQT>(argc, argv);
 
+    std::shared_ptr<Engine> engineQt = std::make_shared<EngineQT>(argc, argv);
     std::shared_ptr<ConfigGameData> gameConfig(new ConfigGameData());
     gameConfig->upload("/home/sinimawath/QtProjects/Battle-Royale-Tank/Resources/config.cfg");
     std::shared_ptr<GameData> gameData = std::dynamic_pointer_cast<GameData>(gameConfig);
@@ -30,4 +30,5 @@ int main(int argc, char *argv[])
     engineQt->setGameData(gameData);
 
     return engineQt->startGame();
+
 }

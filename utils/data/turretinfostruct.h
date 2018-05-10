@@ -2,7 +2,7 @@
 #define TURRETINFOSTRUCT_H
 #include "infostruct.h"
 
-struct TankTurretInfo : CircleInfoStruct
+struct TankTurretInfo : public InfoStruct, public RectInfo
 {
     int turnSpeed;
     int rechargeSpeed;

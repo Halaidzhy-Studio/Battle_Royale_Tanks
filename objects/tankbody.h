@@ -33,6 +33,8 @@ public:
     void moveTo(int x, int y) override;
 
 protected:
+    // 1) handleinput move
+    // 2) physic get move
 
     TankBodyInfo bodyInfo;
     /*

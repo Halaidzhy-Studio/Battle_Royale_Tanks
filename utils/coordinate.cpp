@@ -1,0 +1,177 @@
+#include "coordinate.h"
+#include <utils/logger.h>
+
+int Coordinate::qtTophysicsTransformationValue;
+int Coordinate::qtToserverTransformationValue;
+int Coordinate::serverTophysicsTransformationValue;
+
+Coordinate::Coordinate()
+{
+
+}
+
+Coordinate &Coordinate::toQt()
+{
+
+    switch (type_) {
+    case CoordTypes::PHYSICSENGINE:
+
+        x = x / qtTophysicsTransformationValue;
+        y = y / qtTophysicsTransformationValue;
+
+        break;
+    case CoordTypes::SERVER:
+
+        x = x / qtToserverTransformationValue;
+        y = y / qtToserverTransformationValue;
+
+        break;
+    default:
+        break;
+    }
+
+    type_ = CoordTypes::QT;
+    return *this;
+}
+
+Coordinate &Coordinate::toServer()
+{
+
+    switch (type_) {
+    case CoordTypes::PHYSICSENGINE:
+
+        x = x / serverTophysicsTransformationValue;
+        y = y / serverTophysicsTransformationValue;
+
+        break;
+    case CoordTypes::QT:
+
+        x = x * qtToserverTransformationValue;
+        y = y * qtToserverTransformationValue;
+
+        break;
+    default:
+        break;
+    }
+
+    type_ = CoordTypes::SERVER;
+    return *this;
+}
+
+Coordinate &Coordinate::toPhysicsengine()
+{
+
+    switch (type_) {
+    case CoordTypes::SERVER:
+
+        x = x * serverTophysicsTransformationValue;
+        y = y * serverTophysicsTransformationValue;
+
+        break;
+    case CoordTypes::QT:
+
+        x = x * qtTophysicsTransformationValue;
+        y = y * qtTophysicsTransformationValue;
+
+        break;
+    default:
+        break;
+    }
+
+    type_ = CoordTypes::PHYSICSENGINE;
+    return *this;
+}
+
+int Coordinate::x()
+{
+    return x_;
+}
+
+void Coordinate::setX(int x, const Coordinate::CoordTypes &type)
+{
+    if (type == type_){
+        x_ = x;
+    }else {
+
+        switch (type) {
+        case CoordTypes::QT:
+            if ( type_ == CoordTypes::SERVER){
+                x_ = x * qtToserverTransformationValue;
+            } else if ( type_ == CoordTypes::PHYSICSENGINE){
+                x_ = x * qtTophysicsTransformationValue;
+            }
+            break;
+        case CoordTypes::PHYSICSENGINE:
+            if ( type_ == CoordTypes::QT ){
+                x_ = x / qtTophysicsTransformationValue;
+            } else if ( type == CoordTypes::SERVER ){
+                x_ = x / serverTophysicsTransformationValue;
+            }
+            break;
+        case CoordTypes::SERVER:
+            if ( type_ == CoordTypes::QT){
+                x_ = x / qtToserverTransformationValue;
+            } else if ( type == CoordTypes::PHYSICSENGINE ){
+                x_ = x * serverTophysicsTransformationValue;
+            }
+        default:
+            Logger::instance().printLog("Cannot convert 'x' coordinate " + __FUNCTION__, Logger::loggerGame);
+            break;
+        }
+    }
+}
+
+int Coordinate::y()
+{
+    return y_;
+}
+
+void Coordinate::setY(int y, const Coordinate::CoordTypes &type)
+{
+    if (type == type_){
+        y_ = y;
+    }else {
+
+        switch (type) {
+        case CoordTypes::QT:
+            if ( type_ == CoordTypes::SERVER){
+                y_ = y * qtToserverTransformationValue;
+            } else if ( type_ == CoordTypes::PHYSICSENGINE){
+                y_ = y * qtTophysicsTransformationValue;
+            }
+            break;
+        case CoordTypes::PHYSICSENGINE:
+            if ( type_ == CoordTypes::QT ){
+                y_ = y / qtTophysicsTransformationValue;
+            } else if ( type == CoordTypes::SERVER ){
+                y_ = y / serverTophysicsTransformationValue;
+            }
+            break;
+        case CoordTypes::SERVER:
+            if ( type_ == CoordTypes::QT){
+                y_ = y / qtToserverTransformationValue;
+            } else if ( type == CoordTypes::PHYSICSENGINE ){
+                y_ = y * serverTophysicsTransformationValue;
+            }
+        default:
+            Logger::instance().printLog("Cannot convert 'y' coordinate " + __FUNCTION__, Logger::loggerGame);
+            break;
+        }
+    }
+}
+
+void Coordinate::setQtTophysicsTransformationValue(int value)
+{
+    qtTophysicsTransformationValue = value;
+}
+
+void Coordinate::setQtToserverTransformationValue(int value)
+{
+    qtToserverTransformationValue = value;
+}
+
+void Coordinate::setServerTophysicsTransformationValue(int value)
+{
+    serverTophysicsTransformationValue = value;
+}
+
