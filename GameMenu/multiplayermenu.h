@@ -46,10 +46,6 @@ private:
 
     QPushButton* prevTankBTN_;
     QPushButton* nextTankBTN_;
-
-    //std::vector<TankTypeEnum> tankTypeList_;
-    //int currentTankTypeNum_;
-    //TankTypeEnum chosenTankType_;
     QPixmap* currentTankTypeImage_;
 
     std::string currentTankTypeString_;
