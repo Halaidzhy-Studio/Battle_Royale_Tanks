@@ -11,7 +11,9 @@ using namespace libconfig;
 class ConfigGameData : public GameData, public std::enable_shared_from_this<ConfigGameData>
 {
 public:
-    ConfigGameData() : configIsUpload(false) { config_ = std::make_shared<Config>(); }
+    ConfigGameData(const std::shared_ptr<Logger>& logger) :
+        configIsUpload_(false), logger_(logger)
+    { config_ = std::make_shared<Config>(); }
     ConfigGameData(const ConfigGameData&) = delete;
     ConfigGameData&operator= (const ConfigGameData&) = delete;
     ConfigGameData(ConfigGameData&& other) : config_(std::move(other.config_)) { }
@@ -19,8 +21,35 @@ public:
     void upload(std::string configName);
 private:
     std::shared_ptr<Config> config_;
-    bool configIsUpload;
+    bool configIsUpload_;
+
+    // Метод для хранения класса наследника
+    std::unique_ptr<ConfigGameData> data_;
+    std::shared_ptr<Logger> logger_;
     // GameData interface
+
+protected:
+    // Перенес реалзацию в класс. Так как иначе в наследниках undefined reference к методу lookup
+    void lookup(const std::string & setting, std::string& var){
+        try{
+            var = config_->lookup(setting).c_str();
+        } catch(const SettingNotFoundException& ex){
+            std::string totalMsg = "No '" + setting + "' in config file";
+            logger_->printLog(totalMsg, "[CONFIG]");
+        }
+    }
+
+    template<class T>
+    void lookup(const std::string &setting, T& var)
+    {
+        try{
+            var = config_->lookup(setting);
+        } catch(const SettingNotFoundException& ex){
+            std::string totalMsg = "No '" + setting + "' in config file";
+            logger_->printLog(totalMsg, "[CONFIG]");
+        }
+    }
+
 public:
     TankInfo getTankInfoByType(TankTypes type) override;
     TankBodyInfo getBodyInfoByType(BodyTypes type) override;
@@ -33,14 +62,18 @@ public:
     GameInfo getGameInfo() const override;
 
     std::shared_ptr<GameData> createGameData() override;
+
 protected:
-    ConfigGameData(std::string der, const std::shared_ptr<Config>& config ) : config_(config) { Logger::instance().printLog(der, Logger::loggerQt);  }
 
-    template<class T>
-    void lookup(const std::string &setting, T& var);
-    void lookup(const std::string &setting, std::string &var);
+    // Вызывает из наседников
+    ConfigGameData(std::string der, const std::shared_ptr<Config>& config,
+                   const std::shared_ptr<Logger>& logger,
+                   bool configIsUpload) : config_(config),
+                   configIsUpload_(configIsUpload), logger_(logger){
+       logger_->printLog(der, QtLogger::loggerQt);
+    }
 
-private:
-    std::unique_ptr<ConfigGameData> data_;
 };
+
+
 #endif // CONFIGGAMEDATA_H

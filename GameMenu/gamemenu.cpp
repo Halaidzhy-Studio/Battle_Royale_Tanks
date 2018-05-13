@@ -5,7 +5,10 @@
 #include "utils/logger.h"
 
 GameMenu::GameMenu(const std::shared_ptr<GameData>& gameData,
-                   QWidget *parent) : QWidget(parent), gameData_(gameData)
+                   const std::shared_ptr<Game>& game,
+                   const std::shared_ptr<Logger>& logger,
+                   QWidget *parent) : QWidget(parent), gameData_(gameData),
+                   game_(game), logger_(logger)
 {
 
     menuWindowInfo_ = gameData_->getMenuWindowInfo();
@@ -22,12 +25,12 @@ GameMenu::GameMenu(const std::shared_ptr<GameData>& gameData,
                                     QApplication::desktop()->availableGeometry(this))
                 );
 
-    spWindow_ = new SingleplayerMenu(gameData_);
+    spWindow_ = new SingleplayerMenu(gameData_, game_);
 
     // connected to slot, which run the main window on the button in the Singleplayer Window
     connect(spWindow_, &SingleplayerMenu::mainWindow, this, &GameMenu::show);
 
-    mpWindow_ = new MultiplayerMenu(gameData_);
+    mpWindow_ = new MultiplayerMenu(gameData_, game_);
 
     // connected to slot, which run the main window on the button in the Multiplayer Window
     connect(mpWindow_, &MultiplayerMenu::mainWindow, this, &GameMenu::show);

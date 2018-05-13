@@ -4,8 +4,10 @@
 #include "singleplayermenu.h"
 #include <game.h>
 
-SingleplayerMenu::SingleplayerMenu(const std::shared_ptr<GameData>& gameData, QWidget *parent) : QWidget(parent),
-    gameData_(gameData)
+SingleplayerMenu::SingleplayerMenu(const std::shared_ptr<GameData>& gameData,
+                                   const std::shared_ptr<Game>& game,
+                                   QWidget *parent) : QWidget(parent),
+    gameData_(gameData), game_(game)
 {
 
     singleplayernMenuInfo_ = gameData_->getSingleplayerMenuInfo();

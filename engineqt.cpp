@@ -5,15 +5,14 @@ void EngineQT::setGameData(const std::shared_ptr<GameData> &gameData)
     gameData_ = gameData;
 }
 
-void EngineQT::setLogger(const std::shared_ptr<LoggerInterface> &)
+void EngineQT::setLogger(const std::shared_ptr<Logger> &logger)
 {
-    // Now logger is signleton
+    logger_ = logger;
 }
 
 int EngineQT::startGame()
 {
-    game_ = std::make_shared<Game>(gameData_);
-    game_->startGame();
-
+    game_ = std::make_shared<Game>(gameData_, logger_);
+    game_->startMenu();
     return this->exec();
 }

@@ -20,5 +20,6 @@ std::shared_ptr<TankBody> BodyBuilderDirector::getBody()
         body->setPhysicsComponent(builder_->getPhysicsComponent());
         body->setViewComponent(builder_->getViewComponent());
 
+        
     }
 }

@@ -5,10 +5,6 @@ float Coordinate::qtTophysicsTransformationValue;
 float Coordinate::qtToserverTransformationValue;
 float Coordinate::serverTophysicsTransformationValue;
 
-Coordinate::Coordinate()
-{
-
-}
 
 Coordinate &Coordinate::toQt()
 {
@@ -115,7 +111,7 @@ void Coordinate::setX(int x, const Coordinate::CoordTypes &type)
                 x_ = x * serverTophysicsTransformationValue;
             }
         default:
-            Logger::instance().printLog("Cannot convert 'x' coordinate " + std::string(__FUNCTION__), Logger::loggerGame);
+            logger_->printLog("Cannot convert 'x' coordinate " + std::string(__FUNCTION__), QtLogger::loggerGame);
             break;
         }
     }
@@ -154,7 +150,7 @@ void Coordinate::setY(int y, const Coordinate::CoordTypes &type)
                 y_ = y * serverTophysicsTransformationValue;
             }
         default:
-            Logger::instance().printLog("Cannot convert 'y' coordinate " + std::string(__FUNCTION__), Logger::loggerGame);
+            logger_->printLog("Cannot convert 'y' coordinate " + std::string(__FUNCTION__), QtLogger::loggerGame);
             break;
         }
     }

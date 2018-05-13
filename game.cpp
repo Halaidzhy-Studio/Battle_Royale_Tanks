@@ -2,13 +2,40 @@
 #include "utils/logger.h"
 #include "utils/data/menu/menuwindowinfostruct.h"
 
-void Game::startGame()
+Game::Game(const std::shared_ptr<GameData> &gameData,
+           const std::shared_ptr<Logger>& logger) : gameData_(gameData), logger_(logger)
 {
-    gameMenu_ = std::make_unique<GameMenu>(gameData_);
+    gameWidget_ = std::make_unique<GameWidget>(gameData_, logger_);
+    gameInfo_ = gameData_->getGameInfo();
+}
+
+void Game::startMenu()
+{
+    gameMenu_ = std::make_unique<GameMenu>(gameData_, shared_from_this(), logger_);
     gameMenu_->show();
 }
 
-void Game::onStart()
+void Game::startGame()
 {
-    Logger::instance().printLog("Game is start", "[ GAME ]");
+    gameWidget_->initInterface();
+
+    gameTimer_ = std::make_unique<QTimer>();
+    connect(gameTimer_.get(), &QTimer::timeout, this, &Game::update);
+
+    gameTimer_->start(gameInfo_.gameTick);
+    logger_->printLog("Game is started", "[ GAME ]");
+
 }
+
+void Game::endGame()
+{   
+    logger_->printLog("Game is ended", "[ GAME ]");
+    emit backToMenuSignal();
+}
+
+void Game::update()
+{
+    for (auto& ob: objectsVector_)
+        ob.update();
+}
+

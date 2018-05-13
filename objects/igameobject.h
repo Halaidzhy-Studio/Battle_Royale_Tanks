@@ -33,14 +33,9 @@ public:
     std::shared_ptr<PhysicsComponent> physicsComponent() const;
     void setPhysicsComponent(const std::shared_ptr<PhysicsComponent> &physicsComponent);
 
-    Coordinate getCoord() const;
-    void setCoord(const Coordinate &value);
-
 protected:
     std::shared_ptr<ViewComponent> viewComponent_;
     std::shared_ptr<PhysicsComponent> physicsComponent_;
-    Coordinate coord_;
-    Angle angle_;
 
 };
 

@@ -6,33 +6,29 @@
 #include <fstream>
 #include "loggerinterface.h"
 
-class Logger: public LoggerInterface{
+class QtLogger: public Logger{
 public:
     static const std::string loggerGame;
     static const std::string loggerNet;
     static const std::string loggerQt;
 
     static std::string loggerDist;
+    QtLogger();
+    QtLogger(const QtLogger&) = delete;
+    QtLogger(const QtLogger&&) = delete;
+    QtLogger& operator=(const QtLogger&) = delete;
+    QtLogger& operator=(QtLogger&&) = delete;
 
-    static Logger &instance();
-
-    Logger(const Logger&) = delete;
-    Logger(const Logger&&) = delete;
-    Logger& operator=(const Logger&) = delete;
-    Logger& operator=(Logger&&) = delete;
-
-    virtual ~Logger();
+    virtual ~QtLogger();
 
     static void setLoggerDist(const std::string& dist);
     void printLog(const std::string& data, const std::string& loggerType) override;
 
 private:
 
-    static std::unique_ptr<Logger> instance_;
+    static std::unique_ptr<QtLogger> instance_;
     std::string loggerType_;
     std::ofstream outFile_;
-
-    Logger();
 
 };
 #endif // LOGGER_H

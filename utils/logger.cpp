@@ -2,27 +2,19 @@
 #include <memory>
 #include <QDebug>
 
-const std::string Logger::loggerGame = "[GAME]";
-const std::string Logger::loggerNet = "[NET]";
-const std::string Logger::loggerQt = "[QT]";
+const std::string QtLogger::loggerGame = "[GAME]";
+const std::string QtLogger::loggerNet = "[NET]";
+const std::string QtLogger::loggerQt = "[QT]";
 
-std::unique_ptr<Logger> Logger::instance_{};
-std::string Logger::loggerDist = "QDEBUG";
+std::unique_ptr<QtLogger> QtLogger::instance_{};
+std::string QtLogger::loggerDist = "QDEBUG";
 
-Logger &Logger::instance()
-{
-    if (!instance_){
-        instance_.reset( new Logger() );
-    }
-    return *instance_.get();
-}
-
-void Logger::setLoggerDist(const std::string &dist)
+void QtLogger::setLoggerDist(const std::string &dist)
 {
     loggerDist = dist;
 }
 
-void Logger::printLog(const std::string& data, const std::string& loggerType)
+void QtLogger::printLog(const std::string& data, const std::string& loggerType)
 {
     if (loggerDist != "QDEBUG"){
         outFile_.write(loggerType.c_str(), loggerType.size());
@@ -34,7 +26,7 @@ void Logger::printLog(const std::string& data, const std::string& loggerType)
     }
 }
 
-Logger::Logger()
+QtLogger::QtLogger()
 {
     if (loggerDist != "QDEBUG"){
         outFile_.open(loggerDist, std::ios_base::app | std::ios_base::out);
@@ -44,7 +36,7 @@ Logger::Logger()
     }
 }
 
-Logger::~Logger()
+QtLogger::~QtLogger()
 {
     outFile_.close();
 }

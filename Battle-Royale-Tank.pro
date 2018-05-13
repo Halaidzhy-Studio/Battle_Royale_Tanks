@@ -26,29 +26,37 @@ DEFINES +=  QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += "Box2D/"
 
-SOURCES += $$files($$PWD/GameMenu/*.cpp) \
-    engineqt.cpp \
-    components/body/handleinputcomponentimplbody.cpp \
-    components/body/viewcomponentbodyimpl.cpp \
-    utils/coordinate.cpp
-HEADERS += $$files($$PWD/GameMenu/*.h) \
+SOURCES += \
+    main.cpp \
+    game.cpp \
+    engineqt.cpp\
+    gamewidget.cpp \
+
+HEADERS += \
+    game.h \
     engine.h \
     engineqt.h \
-    components/body/handleinputcomponentimplbody.h \
-    components/body/viewcomponentbodyimpl.h \
-    utils/coordinate.h
+    gamewidget.h \
+
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 HEADERS += $$files($$PWD/PlayScene/*.h)
 
+SOURCES += $$files($$PWD/GameMenu/*.cpp)
+HEADERS += $$files($$PWD/GameMenu/*.h)
 SOURCES += $$files($$PWD/utils/*.cpp)
 SOURCES += $$files($$PWD/utils/data/*.cpp)
+SOURCES += $$files($$PWD/utils/gamedata/*.cpp)
+
 HEADERS += $$files($$PWD/utils/*.h)
 HEADERS += $$files($$PWD/utils/data/*.h)
 HEADERS += $$files($$PWD/utils/data/menu/*.h)
+HEADERS += $$files($$PWD/utils/gamedata/*.h)
 
 SOURCES += $$files($$PWD/components/*.cpp)
+SOURCES += $$files($$PWD/components/body/*.cpp)
 HEADERS += $$files($$PWD/components/*.h)
 HEADERS += $$files($$PWD/components/interfaces/*.h)
+HEADERS += $$files($$PWD/components/body/*.h)
 
 SOURCES += $$files($$PWD/objects/*.cpp)
 SOURCES += $$files($$PWD/builders/*.cpp)
@@ -58,13 +66,6 @@ HEADERS += $$files($$PWD/objects/*.h)
 HEADERS += $$files($$PWD/builders/*.h)
 HEADERS += $$files($$PWD/builders/directors/*.h)
 HEADERS += $$files($$PWD/builders/interfaces/*.h)
-
-SOURCES += \
-    main.cpp \
-    game.cpp
-
-HEADERS += \
-    game.h
 
 FORMS += \
     playwidget.ui \

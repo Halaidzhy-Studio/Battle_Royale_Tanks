@@ -9,7 +9,7 @@
 #include <utils/data/menu/menuwindowinfostruct.h>
 #include <utils/data/gameinfostruct.h>
 #include <utils/gameobjectstypes.h>
-
+#include <memory>
 class GameData
 {
 public:
@@ -24,10 +24,6 @@ public:
     virtual GameWindowInfo getGameWindowInfo() = 0;
     virtual GameInfo getGameInfo() const = 0;
     virtual std::shared_ptr<GameData> createGameData() = 0;
-protected:
-    template<class T>
-    void lookup(const std::string& setting, T& var);
-
 };
 
 

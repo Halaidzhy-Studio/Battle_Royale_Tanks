@@ -5,16 +5,18 @@
 #include <QGraphicsRectItem>
 #include <utils/data/bodyinfostruct.h>
 #include <objects/igameobject.h>
+#include <QPainter>
+#include "bodyinfocomponent.h"
 
 class ViewComponentBodyImpl : public ViewComponent, QGraphicsRectItem
 {
 public:
     ViewComponentBodyImpl();
-    ViewComponentBodyImpl(const StyleInfo& styleInfo, const RectInfo& rectInfo) :
-        styleInfo_(styleInfo), rectInfo_(rectInfo) {  }
+    ViewComponentBodyImpl(const StyleInfo& styleInfo, const RectInfo& rectInfo,
+                          const std::shared_ptr<BodyInfoComponent>&  bodyInfo) :
+        styleInfo_(styleInfo), rectInfo_(rectInfo), bodyInfo_(bodyInfo) {  }
 
     ~ViewComponentBodyImpl() {}
-
     // QGraphicsItem interface
 public:
     QRectF boundingRect() const override;
@@ -26,6 +28,7 @@ public:
 private:
     StyleInfo styleInfo_;
     RectInfo rectInfo_;
+    std::shared_ptr<BodyInfoComponent> bodyInfo_;
 };
 
 #endif // VIEWCOMPONENTBODYIMPL_H

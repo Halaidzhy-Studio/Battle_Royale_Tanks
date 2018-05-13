@@ -17,7 +17,7 @@ public:
 
     void update() override {
         GameObject::update();
-        handleInputComponent_->update(this);
+        handleInputComponent_->update(nullptr);
     }
 
     std::shared_ptr<HandleInputComponent> handleInputComponent() const;

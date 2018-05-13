@@ -10,13 +10,15 @@ MenuWindowInfo ConfigMenuWindowData::getMenuWindowInfo()
     info.btn_h_k = 8;
     info.color = "white";
 
-    lookup("windows.menu.width", info.width);
-    lookup("windows.menu.height", info.height);
-    lookup("windows.menu.btn_part_size", info.btn_part_size);
-    lookup("windows.menu.menu_main.btn_w_k", info.btn_w_k);
-    lookup("windows.menu.menu_main.btn_h_k", info.btn_h_k);
-    lookup("windows.menu.background_color", info.color);
-
+    if (configIsUpload_){
+        logger_->printLog("ConfigMenuWindowData is downloading config...", "[CONFIG]");
+        lookup("windows.menu.width", info.width);
+        lookup("windows.menu.height", info.height);
+        lookup("windows.menu.btn_part_size", info.btn_part_size);
+        lookup("windows.menu.menu_main.btn_w_k", info.btn_w_k);
+        lookup("windows.menu.menu_main.btn_h_k", info.btn_h_k);
+        lookup("windows.menu.background_color", info.color);
+    }
     return info;
 
 }

@@ -2,22 +2,21 @@
 
 ViewComponentBodyImpl::ViewComponentBodyImpl()
 {
-
 }
-
 
 QRectF ViewComponentBodyImpl::boundingRect() const
 {
-    return QRectF(-rectInfo.w/2, -rectInfo.h/2, rectInfo.w, rectInfo.h);
+    return QRectF(-rectInfo_.w/2, -rectInfo_.h/2, rectInfo_.w, rectInfo_.h);
 }
 
 void ViewComponentBodyImpl::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-
+    painter->setPen(Qt::black);
+    painter->drawRect(boundingRect());
 }
 
 void ViewComponentBodyImpl::update(GameObject *gameObject)
 {
-    this->setPos(gameObject->getCoord().toQt().x(), gameObject->getCoord().toQt().y());
-    this->setRotation(gameObject->getAngle().toQT());
+    this->setPos(bodyInfo_->coord().toQt().x(), bodyInfo_->coord().toQt().y());
+    this->setRotation(bodyInfo_->angle());
 }

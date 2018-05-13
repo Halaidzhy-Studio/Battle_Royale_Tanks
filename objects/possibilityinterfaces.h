@@ -23,7 +23,7 @@ public:
 };
 
 
-class Controlable : public virtual Moveable{
+class Controlable : public virtual Moveable, public virtual Turnable, public virtual Shootable{
 
 };
 

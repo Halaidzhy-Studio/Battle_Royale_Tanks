@@ -3,8 +3,10 @@
 #include <QDebug>
 #include "multiplayermenu.h"
 
-MultiplayerMenu::MultiplayerMenu(const std::shared_ptr<GameData>& gameData, QWidget *parent) :
-    QWidget(parent), gameData_(gameData)
+MultiplayerMenu::MultiplayerMenu(const std::shared_ptr<GameData>& gameData,
+                                 const std::shared_ptr<Game>& game,
+                                 QWidget *parent) :
+    QWidget(parent), gameData_(gameData), game_(game)
 {
 
     multiplayerMenuInfo_ = gameData_->getMultiplayerMenuInfo();
@@ -64,14 +66,10 @@ void MultiplayerMenu::startMultiplayerGame()
 
 void MultiplayerMenu::nextTank()
 {
-   // currentTankTypeNum_ = (currentTankTypeNum_ + 1) % tankTypeList_.size();
-   // chosenTankType_ = tankTypeList_[currentTankTypeNum_];
 }
 
 void MultiplayerMenu::previousTank()
 {
-   // currentTankTypeNum_ = (currentTankTypeNum_ - 1 + tankTypeList_.size()) % tankTypeList_.size();
-   // chosenTankType_ = tankTypeList_[currentTankTypeNum_];
 }
 
 void MultiplayerMenu::backToMainWindow(){

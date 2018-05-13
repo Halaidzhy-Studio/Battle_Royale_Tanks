@@ -3,18 +3,25 @@
 
 #include "configgamedata.h"
 #include <utils/data/menu/menuwindowinfostruct.h>
+
 using namespace libconfig;
+
 class ConfigMenuWindowData : public ConfigGameData
 {
 public:
-    ConfigMenuWindowData(const std::shared_ptr<Config>& config) : ConfigGameData(std::move("Is ConfigMenuWindowData created"),
-                                                                                 config),
-        config_(config) { }
+    ConfigMenuWindowData(const std::shared_ptr<Config>& config,
+                         const std::shared_ptr<Logger>& logger,
+                         bool configIsUpload) :
+                         ConfigGameData(std::move("Is ConfigMenuWindowData created"),
+                         config, logger, configIsUpload), configIsUpload_(configIsUpload),
+                         logger_(logger), config_(config) { }
     // GameData interface
 public:
-    MenuWindowInfo getMenuWindowInfo();
+    MenuWindowInfo getMenuWindowInfo() override;
 private:
+    bool configIsUpload_;
     std::shared_ptr<Config> config_;
+    std::shared_ptr<Logger> logger_;
 };
 
 #endif // CONFIGMENUWINDOWDATA_H

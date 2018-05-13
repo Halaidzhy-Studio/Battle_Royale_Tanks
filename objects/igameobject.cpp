@@ -19,13 +19,3 @@ void GameObject::setPhysicsComponent(const std::shared_ptr<PhysicsComponent> &ph
 {
     physicsComponent_ = physicsComponent;
 }
-
-Coordinate GameObject::getCoord() const
-{
-    return coord_;
-}
-
-void GameObject::setCoord(const Coordinate &value)
-{
-    coord_ = value;
-}

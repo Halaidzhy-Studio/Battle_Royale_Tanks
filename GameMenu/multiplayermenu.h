@@ -8,17 +8,24 @@
 #include <QVector>
 #include <vector>
 #include <memory>
-#include <utils/gamedata.h>
+#include <utils/gamedata/gamedata.h>
 #include <utils/data/menu/multiplayermenuinfostruct.h>
 //#include <PlayScene/multiplayer.h>
 #include <GameMenu/gameroom.h>
+#include "game.h"
+
+//потому что вызыватся из GameMenu, который в свою очередь первый раз вызывает из Game.
+class Game;
+class SingleplayerMenu;
 
 class MultiplayerMenu : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MultiplayerMenu(const std::shared_ptr<GameData>& gameData, QWidget *parent = 0);
+    explicit MultiplayerMenu(const std::shared_ptr<GameData>& gameData,
+                             const std::shared_ptr<Game>& game,
+                             QWidget *parent = 0);
     ~MultiplayerMenu();
 signals:
     void mainWindow();
@@ -31,6 +38,7 @@ public slots:
 
 private:
     std::shared_ptr<GameData> gameData_;
+    std::shared_ptr<Game> game_;
     MultiplayerMenuInfo multiplayerMenuInfo_;
     QPushButton* backToMainWindowBTN_;
     QPushButton* startMultiplayerGameBTN_;

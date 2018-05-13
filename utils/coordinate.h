@@ -1,6 +1,8 @@
 #ifndef COORDINATE_H
 #define COORDINATE_H
 
+#include <utils/loggerinterface.h>
+#include <memory>
 
 class Coordinate
 {
@@ -10,8 +12,9 @@ public:
     };
 
     Coordinate();
-    Coordinate(const int& x, const int& y, const CoordTypes& type):
-        x_(x), y_(y), type_(type) {}
+    Coordinate(const int& x, const int& y, const CoordTypes& type,
+               const std::shared_ptr<Logger>& logger):
+        x_(x), y_(y), type_(type), logger_(logger) {}
 
     Coordinate& toQt();
     Coordinate& toServer();
@@ -34,6 +37,8 @@ private:
     int y_;
 
     CoordTypes type_;
+
+    std::shared_ptr<Logger> logger_;
 
     // Обратное преобразование - это деление координаты на эти коэффициенты
     // Число на которое нужно уможить, чтобы получить из QT координаты координату в Physics формате

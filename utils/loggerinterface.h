@@ -3,7 +3,7 @@
 
 #include<string>
 
-class LoggerInterface
+class Logger
 {
 
 public:

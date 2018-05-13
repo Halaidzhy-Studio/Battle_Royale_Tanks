@@ -9,27 +9,3 @@ void TankBody::setHandleInputComponent(const std::shared_ptr<HandleInputComponen
 {
     handleInputComponent_ = handleInputComponent;
 }
-
-void TankBody::turnR()
-{
-}
-
-void TankBody::turnL()
-{
-}
-
-void TankBody::turnTo(int angle)
-{
-}
-
-void TankBody::moveF()
-{
-}
-
-void TankBody::moveB()
-{
-}
-
-void TankBody::moveTo(int x, int y)
-{
-}

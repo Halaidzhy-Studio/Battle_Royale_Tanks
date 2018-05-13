@@ -1,4 +1,4 @@
-#ifndef GAMEMENU_H
+﻿#ifndef GAMEMENU_H
 #define GAMEMENU_H
 
 #include <QObject>
@@ -6,15 +6,26 @@
 #include <QPushButton>
 #include <GameMenu/singleplayermenu.h>
 #include <utils/data/menu/menuwindowinfostruct.h>
-#include <utils/gamedata.h>
-
+#include <utils/gamedata/gamedata.h>
+#include "game.h"
 #include "multiplayermenu.h"
+#include <utils/loggerinterface.h>
+
+// потому что вызыватся из Game
+class Game;
+
+class MultiplayerMenu;
+class SingleplayerMenu;
 
 class GameMenu : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GameMenu( const std::shared_ptr<GameData>& gameData, QWidget *parent = nullptr);
+    GameMenu() {}
+    explicit GameMenu( const std::shared_ptr<GameData>& gameData,
+                       const std::shared_ptr<Game>& game,
+                       const std::shared_ptr<Logger>& logger,
+                       QWidget *parent = nullptr);
 
 signals:
 
@@ -30,6 +41,9 @@ private:
     MultiplayerMenu* mpWindow_;
 
     std::shared_ptr<GameData> gameData_;
+    std::shared_ptr<Game> game_;
+    std::shared_ptr<Logger> logger_;
+
     MenuWindowInfo menuWindowInfo_;
 };
 
