@@ -8,7 +8,7 @@
 
 using namespace libconfig;
 
-class ConfigGameData : public GameData
+class ConfigGameData : public GameData, public std::enable_shared_from_this<ConfigGameData>
 {
 public:
     ConfigGameData() : configIsUpload(false) { config_ = std::make_shared<Config>(); }
@@ -31,6 +31,8 @@ public:
     MultiplayerMenuInfo getMultiplayerMenuInfo() override;
     GameWindowInfo getGameWindowInfo() override;
     GameInfo getGameInfo() const override;
+
+    std::shared_ptr<GameData> createGameData() override;
 protected:
     ConfigGameData(std::string der, const std::shared_ptr<Config>& config ) : config_(config) { Logger::instance().printLog(der, Logger::loggerQt);  }
 

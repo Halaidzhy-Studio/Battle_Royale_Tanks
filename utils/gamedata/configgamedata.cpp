@@ -74,11 +74,6 @@ SingleplayerMenuInfo ConfigGameData::getSingleplayerMenuInfo()
     info.btn_w_k = 5;
     info.btn_padding = 100;
 
-    /*
-    info.color = lookup<std::string>("windows.menu.background_color");
-    info.width = lookup<decltype(info.width)>("windows.menu.width");
-    */
-
     if (configIsUpload){
         lookup("windows.menu.background_color", info.color);
         lookup("windows.menu.width", info.width);
@@ -120,4 +115,9 @@ GameWindowInfo ConfigGameData::getGameWindowInfo()
 
 GameInfo ConfigGameData::getGameInfo() const
 {
+}
+
+std::shared_ptr<GameData> ConfigGameData::createGameData()
+{
+    return shared_from_this();
 }
