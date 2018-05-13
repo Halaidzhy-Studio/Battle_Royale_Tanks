@@ -87,43 +87,6 @@ SingleplayerMenuInfo ConfigGameData::getSingleplayerMenuInfo()
         lookup("windows.menu.menu_singleplayer.btn_w_k", info.btn_w_k);
         lookup("windows.menu.menu_singleplayer.btn_padding", info.btn_padding);
     }
-    /*
-    try{
-        config_->lookup("windows.menu.width");
-    } catch (const SettingNotFoundException& ex){
-        Logger::instance().printLog("No 'windows.menu.width' in config file " , "[CONFIG]");
-    }
-
-    try{
-        config_->lookup("windows.menu.height");
-    } catch (const SettingNotFoundException& ex){
-        Logger::instance().printLog("No 'windows.menu.height' in config file " , "[CONFIG]");
-    }
-
-    try{
-        config_->lookup("windows.menu.background_color");
-    } catch (const SettingNotFoundException& ex){
-        Logger::instance().printLog("No 'windows.menu.background_color' in config file " , "[CONFIG]");
-    }
-
-    try{
-        config_->lookup("windows.menu.menu_singleplayer.btn_h_k");
-    } catch (const SettingNotFoundException& ex){
-        Logger::instance().printLog("No 'windows.menu.menu_singleplayer.btn_h_k' in config file " , "[CONFIG]");
-    }
-
-    try{
-        config_->lookup("windows.menu.menu_singleplayer.btn_w_k");
-    } catch (const SettingNotFoundException& ex){
-        Logger::instance().printLog("No 'windows.menu.menu_singleplayer.btn_w_k' in config file " , "[CONFIG]");
-    }
-
-    try{
-        config_->lookup("windows.menu.menu_singleplayer.btn_padding");
-    } catch (const SettingNotFoundException& ex){
-        Logger::instance().printLog("No 'windows.menu.menu_singleplayer.btn_padding' in config file " , "[CONFIG]");
-    }*/
-
     return info;
 
 }
@@ -158,33 +121,3 @@ GameWindowInfo ConfigGameData::getGameWindowInfo()
 GameInfo ConfigGameData::getGameInfo() const
 {
 }
-
-/*
-template<>
-std::string ConfigGameData::lookup<std::string>(const std::string & setting){
-    std::string var;
-    try{
-        var = config_->lookup(setting).c_str();
-    } catch(const SettingNotFoundException& ex){
-        std::string totalMsg = "No '" + setting + "' in config file";
-        Logger::instance().printLog(totalMsg, Logger::loggerGame);
-    }
-
-    return var;
-}
-
-template<class T>
-T ConfigGameData::lookup(const std::string &setting)
-{
-    T var;
-    try{
-        var = config_->lookup(setting);
-    } catch(const SettingNotFoundException& ex){
-        std::string totalMsg = "No '" + setting + "' in config file";
-        Logger::instance().printLog(totalMsg, Logger::loggerGame);
-    }
-
-    return var;
-}
-*/
-
