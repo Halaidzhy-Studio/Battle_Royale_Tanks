@@ -7,7 +7,7 @@ class Coordinate
 public:
     enum class CoordTypes{
         QT, SERVER, PHYSICSENGINE
-    }
+    };
 
     Coordinate();
     Coordinate(const int& x, const int& y, const CoordTypes& type):

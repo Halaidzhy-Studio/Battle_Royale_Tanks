@@ -1,9 +1,9 @@
 #include "coordinate.h"
 #include <utils/logger.h>
 
-int Coordinate::qtTophysicsTransformationValue;
-int Coordinate::qtToserverTransformationValue;
-int Coordinate::serverTophysicsTransformationValue;
+float Coordinate::qtTophysicsTransformationValue;
+float Coordinate::qtToserverTransformationValue;
+float Coordinate::serverTophysicsTransformationValue;
 
 Coordinate::Coordinate()
 {
@@ -16,14 +16,14 @@ Coordinate &Coordinate::toQt()
     switch (type_) {
     case CoordTypes::PHYSICSENGINE:
 
-        x = x / qtTophysicsTransformationValue;
-        y = y / qtTophysicsTransformationValue;
+        x_ = x_ / qtTophysicsTransformationValue;
+        y_ = y_ / qtTophysicsTransformationValue;
 
         break;
     case CoordTypes::SERVER:
 
-        x = x / qtToserverTransformationValue;
-        y = y / qtToserverTransformationValue;
+        x_ = x_ / qtToserverTransformationValue;
+        y_ = y_ / qtToserverTransformationValue;
 
         break;
     default:
@@ -40,14 +40,14 @@ Coordinate &Coordinate::toServer()
     switch (type_) {
     case CoordTypes::PHYSICSENGINE:
 
-        x = x / serverTophysicsTransformationValue;
-        y = y / serverTophysicsTransformationValue;
+        x_ = x_ / serverTophysicsTransformationValue;
+        y_ = y_ / serverTophysicsTransformationValue;
 
         break;
     case CoordTypes::QT:
 
-        x = x * qtToserverTransformationValue;
-        y = y * qtToserverTransformationValue;
+        x_ = x_ * qtToserverTransformationValue;
+        y_ = y_ * qtToserverTransformationValue;
 
         break;
     default:
@@ -64,14 +64,14 @@ Coordinate &Coordinate::toPhysicsengine()
     switch (type_) {
     case CoordTypes::SERVER:
 
-        x = x * serverTophysicsTransformationValue;
-        y = y * serverTophysicsTransformationValue;
+        x_ = x_ * serverTophysicsTransformationValue;
+        y_ = y_ * serverTophysicsTransformationValue;
 
         break;
     case CoordTypes::QT:
 
-        x = x * qtTophysicsTransformationValue;
-        y = y * qtTophysicsTransformationValue;
+        x_ = x_ * qtTophysicsTransformationValue;
+        y_ = y_ * qtTophysicsTransformationValue;
 
         break;
     default:
@@ -115,7 +115,7 @@ void Coordinate::setX(int x, const Coordinate::CoordTypes &type)
                 x_ = x * serverTophysicsTransformationValue;
             }
         default:
-            Logger::instance().printLog("Cannot convert 'x' coordinate " + __FUNCTION__, Logger::loggerGame);
+            Logger::instance().printLog("Cannot convert 'x' coordinate " + std::string(__FUNCTION__), Logger::loggerGame);
             break;
         }
     }
@@ -154,23 +154,23 @@ void Coordinate::setY(int y, const Coordinate::CoordTypes &type)
                 y_ = y * serverTophysicsTransformationValue;
             }
         default:
-            Logger::instance().printLog("Cannot convert 'y' coordinate " + __FUNCTION__, Logger::loggerGame);
+            Logger::instance().printLog("Cannot convert 'y' coordinate " + std::string(__FUNCTION__), Logger::loggerGame);
             break;
         }
     }
 }
 
-void Coordinate::setQtTophysicsTransformationValue(int value)
+void Coordinate::setQtTophysicsTransformationValue(float value)
 {
     qtTophysicsTransformationValue = value;
 }
 
-void Coordinate::setQtToserverTransformationValue(int value)
+void Coordinate::setQtToserverTransformationValue(float value)
 {
     qtToserverTransformationValue = value;
 }
 
-void Coordinate::setServerTophysicsTransformationValue(int value)
+void Coordinate::setServerTophysicsTransformationValue(float value)
 {
     serverTophysicsTransformationValue = value;
 }
