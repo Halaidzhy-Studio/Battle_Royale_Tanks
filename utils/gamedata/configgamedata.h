@@ -16,7 +16,10 @@ public:
     { config_ = std::make_shared<Config>(); }
     ConfigGameData(const ConfigGameData&) = delete;
     ConfigGameData&operator= (const ConfigGameData&) = delete;
-    ConfigGameData(ConfigGameData&& other) : config_(std::move(other.config_)) { }
+    ConfigGameData(ConfigGameData&& other) : config_(std::move(other.config_)),
+        logger_(std::move(other.logger_)), configIsUpload_(other.configIsUpload_),
+        data_(std::move(other.data_)){ }
+
     ~ConfigGameData() {}
     void upload(std::string configName);
 private:
