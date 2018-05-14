@@ -1,15 +1,15 @@
 #ifndef CONFIGMULTIPLAYERMENUDATA_H
 #define CONFIGMULTIPLAYERMENUDATA_H
 
-#include "configgamedata.h"
+#include "configextractorlibconfig.h"
 
-class ConfigMultiplayerMenuData : public ConfigGameData
+class ConfigMultiplayerMenuData : public ConfigExtractorLibconfig
 {
 public:
     ConfigMultiplayerMenuData(const std::shared_ptr<Config>& config,
                               const std::shared_ptr<Logger>& logger,
                               bool configIsUpload) :
-                              ConfigGameData(std::move("Is ConfigMenuWindowData created"),
+                              ConfigExtractorLibconfig(std::move("Is ConfigMenuWindowData created"),
                               config, logger, configIsUpload), configIsUpload_(configIsUpload),
                               logger_(logger), config_(config) { }
 

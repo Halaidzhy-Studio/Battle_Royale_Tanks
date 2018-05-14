@@ -1,10 +1,9 @@
-#include "configgamedata.h"
-
+#include "configextractorlibconfig.h"
 #include "configmenuwindowdata.h"
 #include "configsingleplayermenudata.h"
 #include "configmultiplayermenudata.h"
 
-void ConfigGameData::upload(std::string configName)
+void ConfigExtractorLibconfig::upload(const std::string& configName)
 {
     try{
         config_->readFile(configName.c_str());
@@ -20,29 +19,29 @@ void ConfigGameData::upload(std::string configName)
     }
 }
 
-TankInfo ConfigGameData::getTankInfoByType(TankTypes type)
+TankInfo ConfigExtractorLibconfig::getTankInfoByType(TankTypes type)
 {
 }
 
-TankBodyInfo ConfigGameData::getBodyInfoByType(BodyTypes type)
+TankBodyInfo ConfigExtractorLibconfig::getBodyInfoByType(BodyTypes type)
 {
 }
 
-TankTurretInfo ConfigGameData::getTurretInfoByType(TurretTypes type)
+TankTurretInfo ConfigExtractorLibconfig::getTurretInfoByType(TurretTypes type)
 {
 }
 
-BulletInfo ConfigGameData::getBulletInfoByType(BulletTypes type)
+BulletInfo ConfigExtractorLibconfig::getBulletInfoByType(BulletTypes type)
 {
 }
 
-MenuWindowInfo ConfigGameData::getMenuWindowInfo()
+MenuWindowInfo ConfigExtractorLibconfig::getMenuWindowInfo()
 {
     data_.reset(new ConfigMenuWindowData(config_, logger_, configIsUpload_));
     return data_->getMenuWindowInfo();
 }
 
-SingleplayerMenuInfo ConfigGameData::getSingleplayerMenuInfo()
+SingleplayerMenuInfo ConfigExtractorLibconfig::getSingleplayerMenuInfo()
 {
 
     data_.reset(new ConfigSingleplayerMenuData(config_, logger_, configIsUpload_));
@@ -51,22 +50,17 @@ SingleplayerMenuInfo ConfigGameData::getSingleplayerMenuInfo()
 }
 
 
-MultiplayerMenuInfo ConfigGameData::getMultiplayerMenuInfo()
+MultiplayerMenuInfo ConfigExtractorLibconfig::getMultiplayerMenuInfo()
 {
     data_.reset(new ConfigMultiplayerMenuData(config_, logger_, configIsUpload_));
     return data_->getMultiplayerMenuInfo();
 }
 
 
-GameWindowInfo ConfigGameData::getGameWindowInfo()
+GameWindowInfo ConfigExtractorLibconfig::getGameWindowInfo()
 {
 }
 
-GameInfo ConfigGameData::getGameInfo() const
+GameInfo ConfigExtractorLibconfig::getGameInfo() const
 {
-}
-
-std::shared_ptr<GameData> ConfigGameData::createGameData()
-{
-    return shared_from_this();
 }
