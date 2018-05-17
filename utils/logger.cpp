@@ -6,7 +6,6 @@ const std::string QtLogger::loggerGame = "[GAME]";
 const std::string QtLogger::loggerNet = "[NET]";
 const std::string QtLogger::loggerQt = "[QT]";
 
-std::unique_ptr<QtLogger> QtLogger::instance_{};
 std::string QtLogger::loggerDist = "QDEBUG";
 
 void QtLogger::setLoggerDist(const std::string &dist)

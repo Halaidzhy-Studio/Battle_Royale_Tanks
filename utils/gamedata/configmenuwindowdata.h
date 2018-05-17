@@ -12,9 +12,13 @@ public:
     ConfigMenuWindowData(const std::shared_ptr<Config>& config,
                          const std::shared_ptr<Logger>& logger,
                          bool configIsUpload) :
-                         ConfigExtractorLibconfig(std::move("Is ConfigMenuWindowData created"),
+                         ConfigExtractorLibconfig(
                          config, logger, configIsUpload), configIsUpload_(configIsUpload),
-                         logger_(logger), config_(config) { }
+                         logger_(logger), config_(config) {
+
+        std::string total = "ConMenuWindowData is created";
+        logger_->printLog(total, "[CONFIG]");
+    }
     // GameData interface
 public:
     MenuWindowInfo getMenuWindowInfo() override;

@@ -5,7 +5,6 @@
 
 class Logger
 {
-
 public:
     virtual void printLog(const std::string&, const std::string&) = 0;
 };

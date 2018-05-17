@@ -4,24 +4,26 @@
 #include "configextractorlibconfig.h"
 #include <utils/data/menu/singleplayermenuinfostruct.h>
 
-using namespace libconfig;
-
 class ConfigSingleplayerMenuData : public ConfigExtractorLibconfig
 {
 public:
-    ConfigSingleplayerMenuData(const std::shared_ptr<Config>& config,
+    ConfigSingleplayerMenuData(const std::shared_ptr<libconfig::Config>& config,
                                const std::shared_ptr<Logger>& logger,
                                bool configIsUpload ) :
-        ConfigExtractorLibconfig(std::move(" Is ConfigSignlePLayerMenuData created "),
+        ConfigExtractorLibconfig(
         config, logger, configIsUpload), config_(config), logger_(logger),
-        configIsUpload_(configIsUpload){}
+        configIsUpload_(configIsUpload){
+
+        std::string total = "ConfigSingleplayerMenuData is created";
+        logger_->printLog(total, "[CONFIG]");
+    }
 
     // GameData interface
 public:
     SingleplayerMenuInfo getSingleplayerMenuInfo() override;
 
 private:
-    std::shared_ptr<Config> config_;
+    std::shared_ptr<libconfig::Config> config_;
     std::shared_ptr<Logger> logger_;
     bool configIsUpload_;
 };

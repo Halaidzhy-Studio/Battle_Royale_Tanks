@@ -6,14 +6,13 @@
 #include <utils/logger.h>
 #include <libconfig.h++>
 #include "configextractor.h"
-using namespace libconfig;
 
 class ConfigExtractorLibconfig : public ConfigExtractor, public std::enable_shared_from_this<ConfigExtractorLibconfig>
 {
 public:
     ConfigExtractorLibconfig(const std::shared_ptr<Logger>& logger) :
         configIsUpload_(false), logger_(logger)
-    { config_ = std::make_shared<Config>(); }
+    { config_ = std::make_shared<libconfig::Config>(); }
     ConfigExtractorLibconfig(const ConfigExtractorLibconfig&) = delete;
     ConfigExtractorLibconfig&operator= (const ConfigExtractorLibconfig&) = delete;
     ConfigExtractorLibconfig(ConfigExtractorLibconfig&& other) : config_(std::move(other.config_)),
@@ -23,7 +22,7 @@ public:
     ~ConfigExtractorLibconfig() {}
     void upload(const std::string& configName) override;
 private:
-    std::shared_ptr<Config> config_;
+    std::shared_ptr<libconfig::Config> config_;
     bool configIsUpload_;
 
     // Метод для хранения класса наследника
@@ -36,7 +35,7 @@ protected:
     void lookup(const std::string & setting, std::string& var){
         try{
             var = config_->lookup(setting).c_str();
-        } catch(const SettingNotFoundException& ex){
+        } catch(const libconfig::SettingNotFoundException& ex){
             std::string totalMsg = "No '" + setting + "' in config file";
             logger_->printLog(totalMsg, "[CONFIG]");
         }
@@ -47,7 +46,7 @@ protected:
     {
         try{
             var = config_->lookup(setting);
-        } catch(const SettingNotFoundException& ex){
+        } catch(const libconfig::SettingNotFoundException& ex){
             std::string totalMsg = "No '" + setting + "' in config file";
             logger_->printLog(totalMsg, "[CONFIG]");
         }
@@ -68,11 +67,10 @@ public:
 protected:
 
     // Вызывает из наседников
-    ConfigExtractorLibconfig(std::string der, const std::shared_ptr<Config>& config,
+    ConfigExtractorLibconfig(const std::shared_ptr<libconfig::Config>& config,
                    const std::shared_ptr<Logger>& logger,
                    bool configIsUpload) : config_(config),
                    configIsUpload_(configIsUpload), logger_(logger){
-       logger_->printLog(der, QtLogger::loggerQt);
     }
 
 };

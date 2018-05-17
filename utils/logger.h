@@ -25,8 +25,6 @@ public:
     void printLog(const std::string& data, const std::string& loggerType) override;
 
 private:
-
-    static std::unique_ptr<QtLogger> instance_;
     std::string loggerType_;
     std::ofstream outFile_;
 
