@@ -29,6 +29,7 @@ private:
     GameWindowInfo gameWindowInfo_;
     std::shared_ptr<GameData> gameData_;
     std::shared_ptr<Logger> logger_;
+    std::shared_ptr<GameView> viewGame_;
 };
 
 #endif // GAMEWIDGET_H

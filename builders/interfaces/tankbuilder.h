@@ -6,13 +6,16 @@
 #include <builders/directors/bodybuilderdirector.h>
 #include <builders/directors/turretbuilddirector.h>
 
+#include <QGraphicsScene>
+#include <Box2D.h>
+
 class TankBuilder
 {
 
 public:
     TankBuilder() {
-        bodyDirector_ = std::make_shared<BodyBuilderDirector>();
-        turretDirector_ = std::make_shared<TurretBuilderDirector>();
+        bodyDirector_ = std::make_shared<BodyBuilderDirector>(scene, world);
+        turretDirector_ = std::make_shared<TurretBuilderDirector>(scene, world);
     }
 
     virtual ~TankBuilder() = default;

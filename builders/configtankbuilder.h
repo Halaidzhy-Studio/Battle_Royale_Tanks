@@ -15,7 +15,10 @@ public:
     ConfigTankBuilder(ConfigTankBuilder&&) = delete;
     ConfigTankBuilder&operator=(const ConfigTankBuilder&) = delete;
     ConfigTankBuilder&operator=(ConfigTankBuilder&&) = delete;
-    ConfigTankBuilder(const TankInfo& tankInfo) : tankInfo_(tankInfo) {}
+    ConfigTankBuilder(const TankInfo& tankInfo,
+                      const std::shared_ptr<QGraphicsScene>& scene,
+                      const std::shared_ptr<b2World>& world) :
+        tankInfo_(tankInfo), scene_(scene), world_(world) {}
 
     // TankBuilder interface
 public:
@@ -24,6 +27,9 @@ public:
 
 private:
     TankInfo tankInfo_;
+
+    std::shared_ptr<QGraphicsScene> scene_;
+    std::shared_ptr<b2World> world_;
 };
 
 #endif // CONFIGTANKBUILDER_H

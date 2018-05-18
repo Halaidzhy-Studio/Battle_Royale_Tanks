@@ -31,12 +31,14 @@ SOURCES += \
     game.cpp \
     engineqt.cpp\
     gamewidget.cpp \
+    gameview.cpp
 
 HEADERS += \
     game.h \
     engine.h \
     engineqt.h \
     gamewidget.h \
+    gameview.h
 
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 HEADERS += $$files($$PWD/PlayScene/*.h)

@@ -18,7 +18,6 @@ void Game::startMenu()
 void Game::startGame()
 {
     gameWidget_->initInterface();
-
     gameTimer_ = std::make_unique<QTimer>();
     connect(gameTimer_.get(), &QTimer::timeout, this, &Game::update);
 
