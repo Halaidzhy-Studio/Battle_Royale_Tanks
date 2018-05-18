@@ -4,9 +4,12 @@
 #include "gamedata.h"
 #include "memory"
 #include <utils/logger.h>
-#include <libconfig.h++>
 #include "configextractor.h"
+#include <libconfig.h++>
 
+namespace libconfig {
+    class Config;
+}
 class ConfigExtractorLibconfig : public ConfigExtractor, public std::enable_shared_from_this<ConfigExtractorLibconfig>
 {
 public:

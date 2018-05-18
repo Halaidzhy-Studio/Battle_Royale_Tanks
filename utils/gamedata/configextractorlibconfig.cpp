@@ -1,3 +1,4 @@
+#include <libconfig.h++>
 #include "configextractorlibconfig.h"
 #include "configmenuwindowdata.h"
 #include "configsingleplayermenudata.h"
