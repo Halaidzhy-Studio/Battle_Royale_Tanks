@@ -22,8 +22,12 @@ public:
     std::shared_ptr<HandleInputComponent> handleInputComponent() const;
     void setHandleInputComponent(const std::shared_ptr<HandleInputComponent> &handleInputComponent);
 
+    std::shared_ptr<NetworkComponent> networkComponent() const;
+    void setNetworkComponent(const std::shared_ptr<NetworkComponent> &networkComponent);
+
 protected:
     std::shared_ptr<HandleInputComponent> handleInputComponent_;
+    std::shared_ptr<NetworkComponent> networkComponent_;
 };
 
 

@@ -1,9 +1,5 @@
 #include "viewcomponentbodyimpl.h"
 
-ViewComponentBodyImpl::ViewComponentBodyImpl()
-{
-}
-
 QRectF ViewComponentBodyImpl::boundingRect() const
 {
     return QRectF(-rectInfo_.w/2, -rectInfo_.h/2, rectInfo_.w, rectInfo_.h);
@@ -29,4 +25,9 @@ void ViewComponentBodyImpl::setStyleInfo(const StyleInfo &styleInfo)
 void ViewComponentBodyImpl::setRectInfo(const RectInfo &rectInfo)
 {
     rectInfo_ = rectInfo;
+}
+
+void ViewComponentBodyImpl::setBodyInfo(const std::shared_ptr<BodyInfoComponent> &bodyInfo)
+{
+    bodyInfo_ = bodyInfo;
 }

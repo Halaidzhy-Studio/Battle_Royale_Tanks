@@ -9,6 +9,7 @@
 #include <utils/data/menu/menuwindowinfostruct.h>
 #include <utils/data/gameinfostruct.h>
 #include <utils/gameobjectstypes.h>
+#include <utils/data/network/serverinfo.h>
 #include <memory>
 #include <map>
 #include "configextractor.h"
@@ -43,6 +44,8 @@ public:
     GameWindowInfo getGameWindowInfo() const;
     GameInfo getGameInfo() const;
 
+    ServerInfo getServerInfo() const;
+
     static std::shared_ptr<GameData> createGameData(const std::shared_ptr<ConfigExtractor>& extractor,
                                              const std::string& configPath);
 
@@ -57,6 +60,7 @@ private:
     MenuWindowInfo menuWindowInfo_;
     GameWindowInfo gameWindowInfo_;
     GameInfo gameInfo_;
+    ServerInfo serverInfo_;
 
 };
 

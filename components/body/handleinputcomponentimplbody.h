@@ -4,39 +4,20 @@
 #include <components/interfaces/componentsinterfaces.h>
 #include <QGraphicsItem>
 #include "viewcomponentbodyimpl.h"
-#include <objects/command.h>
+#include <objects/commands/command.h>
 #include "bodyinfocomponent.h"
 #include <QKeyEvent>
-
-class MoveForwardCommand : public Command{
-public:
-    MoveForwardCommand() = default;
-    ~MoveForwardCommand() = default;
-    MoveForwardCommand(const std::shared_ptr<Moveable>& object) : object_(object) { }
-
-    void execute(){
-        object_->moveF();
-    }
-
-    void setObject(const std::shared_ptr<Moveable> &object) {
-        object_ = object;
-    }
-
-private:
-    std::shared_ptr<Moveable> object_;
-};
 
 class HandleInputComponentImplBody : public HandleInputComponent, public ViewComponentBodyImpl
 {
 public:
+    HandleInputComponentImplBody() = default;
     HandleInputComponentImplBody(const std::shared_ptr<BodyInfoComponent> bodyInfoComponent_);
     void update(Controlable *gameObject) override;
     void setObject(Controlable *gameObject) override;
-    void initKeyBoardCommand() override;
+    void initCommand() override;
     // QGraphicsItem interface
 protected:
-    void keyPressEvent(QKeyEvent *event) override;
-    void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
 
@@ -57,6 +38,11 @@ private:
     int keys_;
     std::shared_ptr<BodyInfoComponent> bodyInfoComponent_;
 
+
+    // QGraphicsItem interface
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
 };
 
 #endif // HANDLEINPUTCOMPONENTIMPLBODY_H

@@ -65,3 +65,8 @@ GameWindowInfo ConfigExtractorLibconfig::getGameWindowInfo()
 GameInfo ConfigExtractorLibconfig::getGameInfo() const
 {
 }
+
+
+ServerInfo ConfigExtractorLibconfig::getServerInfo() const
+{
+}

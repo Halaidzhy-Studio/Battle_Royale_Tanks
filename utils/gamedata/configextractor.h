@@ -8,6 +8,7 @@
 #include <utils/data/menu/menuwindowinfostruct.h>
 #include <utils/data/gameinfostruct.h>
 #include <utils/gameobjectstypes.h>
+#include <utils/data/network/serverinfo.h>
 
 class ConfigExtractor{
 public:
@@ -24,5 +25,6 @@ public:
     virtual MenuWindowInfo getMenuWindowInfo() = 0;
     virtual GameWindowInfo getGameWindowInfo() = 0;
     virtual GameInfo getGameInfo() const = 0;
+    virtual ServerInfo getServerInfo() const = 0;
 };
 #endif // CONFIGEXTRACTOR_H

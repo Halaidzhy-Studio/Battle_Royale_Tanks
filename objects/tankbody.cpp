@@ -9,3 +9,13 @@ void TankBody::setHandleInputComponent(const std::shared_ptr<HandleInputComponen
 {
     handleInputComponent_ = handleInputComponent;
 }
+
+std::shared_ptr<NetworkComponent> TankBody::networkComponent() const
+{
+    return networkComponent_;
+}
+
+void TankBody::setNetworkComponent(const std::shared_ptr<NetworkComponent> &networkComponent)
+{
+    networkComponent_ = networkComponent;
+}

@@ -7,9 +7,7 @@
 #include "configextractor.h"
 #include <libconfig.h++>
 
-namespace libconfig {
-    class Config;
-}
+// TODO PIMPL
 class ConfigExtractorLibconfig : public ConfigExtractor, public std::enable_shared_from_this<ConfigExtractorLibconfig>
 {
 public:
@@ -28,8 +26,9 @@ private:
     std::shared_ptr<libconfig::Config> config_;
     bool configIsUpload_;
 
-    // Метод для хранения класса наследника
+    // Переменная для хранения класса наследника
     std::unique_ptr<ConfigExtractorLibconfig> data_;
+
     std::shared_ptr<Logger> logger_;
     // GameData interface
 
@@ -65,7 +64,7 @@ public:
     MultiplayerMenuInfo getMultiplayerMenuInfo() override;
     GameWindowInfo getGameWindowInfo() override;
     GameInfo getGameInfo() const override;
-
+    ServerInfo getServerInfo() const override;
 
 protected:
 

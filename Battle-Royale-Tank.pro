@@ -31,14 +31,16 @@ SOURCES += \
     game.cpp \
     engineqt.cpp\
     gamewidget.cpp \
-    gameview.cpp
+    gameview.cpp \
+    physicsengine.cpp \
 
 HEADERS += \
     game.h \
     engine.h \
     engineqt.h \
     gamewidget.h \
-    gameview.h
+    gameview.h \
+    physicsengine.h \
 
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 HEADERS += $$files($$PWD/PlayScene/*.h)
@@ -56,18 +58,22 @@ HEADERS += $$files($$PWD/utils/gamedata/*.h)
 
 SOURCES += $$files($$PWD/components/*.cpp)
 SOURCES += $$files($$PWD/components/body/*.cpp)
+HEADERS += $$files($$PWD/components/body/*.h)
 HEADERS += $$files($$PWD/components/*.h)
 HEADERS += $$files($$PWD/components/interfaces/*.h)
-HEADERS += $$files($$PWD/components/body/*.h)
 
-SOURCES += $$files($$PWD/objects/*.cpp)
 SOURCES += $$files($$PWD/builders/*.cpp)
 SOURCES += $$files($$PWD/builders/directors/*.cpp)
-
-HEADERS += $$files($$PWD/objects/*.h)
 HEADERS += $$files($$PWD/builders/*.h)
 HEADERS += $$files($$PWD/builders/directors/*.h)
 HEADERS += $$files($$PWD/builders/interfaces/*.h)
+
+SOURCES += $$files($$PWD/objects/commands/*.cpp)
+HEADERS += $$files($$PWD/objects/commands/*.h)
+
+SOURCES += $$files($$PWD/objects/*.cpp)
+HEADERS += $$files($$PWD/objects/*.h)
+
 
 FORMS += \
     playwidget.ui \

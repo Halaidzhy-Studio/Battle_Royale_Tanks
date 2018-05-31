@@ -1,4 +1,5 @@
 #include "handleinputcomponentimplbody.h"
+#include <objects/commands/moveforwardcommand.h>
 
 HandleInputComponentImplBody::HandleInputComponentImplBody(const std::shared_ptr<BodyInfoComponent> bodyInfoComponent)
     : bodyInfoComponent_(bodyInfoComponent)
@@ -19,9 +20,9 @@ void HandleInputComponentImplBody::setObject(Controlable *gameObject)
     gameObject_ = gameObject;
 }
 
-void HandleInputComponentImplBody::initKeyBoardCommand()
+void HandleInputComponentImplBody::initCommand()
 {
-    keyW_ = std::make_shared<MoveForwardCommand>(bodyInfoComponent_);
+    keyW_ = std::make_shared<MoveForwardCommand>(std::static_pointer_cast<Moveable>(bodyInfoComponent_));
 }
 
 void HandleInputComponentImplBody::keyPressEvent(QKeyEvent *event)

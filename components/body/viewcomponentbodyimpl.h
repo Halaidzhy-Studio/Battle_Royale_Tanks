@@ -8,9 +8,10 @@
 #include <QPainter>
 #include "bodyinfocomponent.h"
 
-class ViewComponentBodyImpl : public ViewComponent, QGraphicsRectItem
+class ViewComponentBodyImpl : public ViewComponent, public QGraphicsRectItem
 {
 public:
+
     ViewComponentBodyImpl() = default;
     ViewComponentBodyImpl(const StyleInfo& styleInfo, const RectInfo& rectInfo,
                           const std::shared_ptr<BodyInfoComponent>&  bodyInfo) :
@@ -27,6 +28,8 @@ public:
 
     void setStyleInfo(const StyleInfo &styleInfo);
     void setRectInfo(const RectInfo &rectInfo);
+    void setBodyInfo(const std::shared_ptr<BodyInfoComponent> &bodyInfo);
+
 private:
     StyleInfo styleInfo_;
     RectInfo rectInfo_;

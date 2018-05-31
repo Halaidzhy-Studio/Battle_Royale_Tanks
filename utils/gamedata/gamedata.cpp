@@ -25,6 +25,11 @@ GameInfo GameData::getGameInfo() const
     return gameInfo_;
 }
 
+ServerInfo GameData::getServerInfo() const
+{
+    return serverInfo_;
+}
+
 std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<ConfigExtractor> &extractor, const std::string &configPath)
 {
     std::shared_ptr<GameData> gameData(new GameData());
@@ -33,6 +38,7 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<ConfigE
     gameData->menuWindowInfo_ = extractor->getMenuWindowInfo();
     gameData->singleplayerMenuInfo_ = extractor->getSingleplayerMenuInfo();
     gameData->multiplayerMenuInfo_ = extractor->getMultiplayerMenuInfo();
+    gameData->serverInfo_ = extractor->getServerInfo();
 
     return gameData;
 }

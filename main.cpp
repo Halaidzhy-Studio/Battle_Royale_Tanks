@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
 
     engineQt->setGameData(gameData);
     engineQt->setLogger(logger);
-
     return engineQt->startGame();
 
 }

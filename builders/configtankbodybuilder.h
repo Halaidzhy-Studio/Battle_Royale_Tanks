@@ -8,36 +8,42 @@
 #include "components/body/bodyinfocomponent.h"
 
 #include "interfaces/bodybuilder.h"
-
-#include <QGraphicsScene>
-#include <Box2D.h>
+#include "physicsengine.h"
+#include "gameview.h"
 
 class ConfigTankBodyBuilder : public BodyBuilder
 {
 public:
     ConfigTankBodyBuilder() = default;
     ConfigTankBodyBuilder(const TankBodyInfo& tankBodyInfo,
-                          const std::shared_ptr<QGraphicsScene>& scene,
-                          const std::shared_ptr<b2World>& world) :
-        tankBodyInfo_(tankBodyInfo), scene_(scene), world_(world) {
+                          const std::shared_ptr<GameView>& gameView,
+                          const std::shared_ptr<PhysicsEngine>& physicsEngine) :
+        tankBodyInfo_(tankBodyInfo), gameView_(gameView), physicsEngine_(physicsEngine) {
 
         bodyInfoComponent_ = std::make_shared<BodyInfoComponent>(tankBodyInfo_);
+/*
         handleInputComponentImpl_ = std::make_shared<HandleInputComponentImplBody>(bodyInfoComponent_);
+
+        // handleInputComponent наследуется от ViewComponent -> имеет свойства QGraphicsItem
+        gameView_->addObject(handleInputComponentImpl_.get());
 
         // Костыль, потому что в QT Graphics Framework используется один класс для отрисовки
         // и перхвата нажатых клавиш. QGraphicsItem, где ViewCompoponent  - QGraphicsItem
-        viewComponentImlp_ = std::dynamic_pointer_cast<ViewComponentBodyImpl>(handleInputComponentImpl_);
-        viewComponentImlp_->setStyleInfo(tankBodyInfo_);
-        viewComponentImlp_->setRectInfo(tankBodyInfo_);
+        //viewComponentImlp_ = std::dynamic_pointer_cast<ViewComponentBodyImpl>(handleInputComponentImpl_);
 
-        physicsComponentImpl_ = std::make_shared<PhysicsComponent>(tankBodyInfo_);
+        //viewComponentImlp_->setStyleInfo(tankBodyInfo_);
+        //viewComponentImlp_->setRectInfo(tankBodyInfo_);
+        //viewComponentImlp_->setBodyInfo(bodyInfoComponent_);
+
+        physicsComponentImpl_ = std::make_shared<PhysicsComponentBodyImpl>(tankBodyInfo_.physicsInfo, physicsEngine);
+        */
     }
 
 
 private:
     TankBodyInfo tankBodyInfo_;
-    std::shared_ptr<QGraphicsScene> scene_;
-    std::shared_ptr<b2World> world_;
+    std::shared_ptr<GameView> gameView_;
+    std::shared_ptr<PhysicsEngine> physicsEngine_;
 
     std::shared_ptr<HandleInputComponentImplBody> handleInputComponentImpl_;
     std::shared_ptr<ViewComponentBodyImpl> viewComponentImlp_;
@@ -49,6 +55,7 @@ public:
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;
     std::shared_ptr<PhysicsComponent> getPhysicsComponent() override;
     std::shared_ptr<ViewComponent> getViewComponent() override;
+    std::shared_ptr<NetworkComponent> getNetworkComponent(const int id) override;
 };
 
 #endif // CONFIGTANKBODYBUILDER_H

@@ -21,6 +21,7 @@ public:
     ~Game() = default;
     Game(const std::shared_ptr<GameData>& gameData,
          const std::shared_ptr<Logger>& logger);
+
     void startMenu();
     void startGame();
     void endGame();
@@ -38,7 +39,6 @@ private:
     std::vector<Object> objectsVector_;
 
     std::unique_ptr<GameWidget> gameWidget_;
-
     GameInfo gameInfo_;
 
 };

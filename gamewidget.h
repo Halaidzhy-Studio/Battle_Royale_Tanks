@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <utils/gamedata/gamedata.h>
 #include <utils/loggerinterface.h>
+#include "gameview.h"
 
 class GameWidget : public QWidget
 {

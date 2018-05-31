@@ -10,5 +10,7 @@ public:
     virtual std::shared_ptr<HandleInputComponent> getHandleInputComponent() = 0;
     virtual std::shared_ptr<PhysicsComponent> getPhysicsComponent() = 0;
     virtual std::shared_ptr<ViewComponent> getViewComponent() = 0;
+    virtual std::shared_ptr<NetworkComponent> getNetworkComponent(const int id) = 0;
+
 };
 #endif // TANKBODYBUILDER_H

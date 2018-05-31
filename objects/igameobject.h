@@ -24,7 +24,7 @@ public:
 
     void update() override {
         viewComponent_->update(this);
-        physicsComponent_->update(this);
+        physicsComponent_->update();
     }
 
     std::shared_ptr<ViewComponent> viewComponent() const;
