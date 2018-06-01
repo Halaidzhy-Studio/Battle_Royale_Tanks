@@ -8,15 +8,14 @@
 #include <QPushButton>
 #include <utils/gamedata/gamedata.h>
 #include <utils/loggerinterface.h>
-#include "gameview.h"
 
-class GameWidget : public QWidget
+class PlaygroundWidget : public QWidget
 {
     Q_OBJECT
 public:
-    GameWidget(const std::shared_ptr<GameData>& gameData,
+    PlaygroundWidget(const std::shared_ptr<GameData>& gameData,
                const std::shared_ptr<Logger>& logger, QWidget* parent = 0);
-    ~GameWidget();
+    ~PlaygroundWidget();
 
     void initInterface();
 signals:
@@ -24,13 +23,11 @@ signals:
 private slots:
    void backToMenu();
 private:
-    QGraphicsView* qGraphicsView_;
     QPushButton* backToMenuBTN_;
-
     GameWindowInfo gameWindowInfo_;
+
     std::shared_ptr<GameData> gameData_;
     std::shared_ptr<Logger> logger_;
-    std::shared_ptr<GameView> viewGame_;
 };
 
 #endif // GAMEWIDGET_H

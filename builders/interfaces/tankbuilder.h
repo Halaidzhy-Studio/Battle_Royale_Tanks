@@ -14,8 +14,6 @@ class TankBuilder
 
 public:
     TankBuilder() {
-        bodyDirector_ = std::make_shared<BodyBuilderDirector>(scene, world);
-        turretDirector_ = std::make_shared<TurretBuilderDirector>(scene, world);
     }
 
     virtual ~TankBuilder() = default;

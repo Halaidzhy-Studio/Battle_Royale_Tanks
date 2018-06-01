@@ -19,3 +19,8 @@ std::shared_ptr<TankBody> BodyBuilderDirector::getBody(const int id)
         return body;
     }
 }
+
+std::shared_ptr<TankBody> BodyBuilderDirector::getBody()
+{
+
+}

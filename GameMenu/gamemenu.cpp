@@ -5,14 +5,23 @@
 #include "utils/logger.h"
 
 GameMenu::GameMenu(const std::shared_ptr<GameData>& gameData,
-                   const std::shared_ptr<Game>& game,
                    const std::shared_ptr<Logger>& logger,
                    QWidget *parent) : QWidget(parent), gameData_(gameData),
-                   game_(game), logger_(logger)
+                   logger_(logger)
 {
-
     menuWindowInfo_ = gameData_->getMenuWindowInfo();
+    spWindow_ = new SingleplayerMenu(gameData_);
+    mpWindow_ = new MultiplayerMenu(gameData_);
+    initInterface();
+}
 
+void GameMenu::showMultiplayerMenu(){
+    mpWindow_->show();
+    this->close();
+}
+
+void GameMenu::initInterface()
+{
     std::string backgroundColor = menuWindowInfo_.color;
 
     setStyleSheet(QString::fromStdString("background-color: " + backgroundColor + ";"));
@@ -25,12 +34,8 @@ GameMenu::GameMenu(const std::shared_ptr<GameData>& gameData,
                                     QApplication::desktop()->availableGeometry(this))
                 );
 
-    spWindow_ = new SingleplayerMenu(gameData_, game_);
-
     // connected to slot, which run the main window on the button in the Singleplayer Window
     connect(spWindow_, &SingleplayerMenu::mainWindow, this, &GameMenu::show);
-
-    mpWindow_ = new MultiplayerMenu(gameData_, game_);
 
     // connected to slot, which run the main window on the button in the Multiplayer Window
     connect(mpWindow_, &MultiplayerMenu::mainWindow, this, &GameMenu::show);
@@ -65,12 +70,6 @@ GameMenu::GameMenu(const std::shared_ptr<GameData>& gameData,
     // Window is closed by exitBTN_
     connect(exitBTN_, &QPushButton::released, this, &QApplication::quit);
 
-
-}
-
-void GameMenu::showMultiplayerMenu(){
-    mpWindow_->show();
-    this->close();
 }
 
 void GameMenu::showSingleplayerMenu()

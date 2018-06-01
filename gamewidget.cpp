@@ -1,18 +1,18 @@
 #include "gamewidget.h"
 
-GameWidget::GameWidget(const std::shared_ptr<GameData>& gameData,
+PlaygroundWidget::PlaygroundWidget(const std::shared_ptr<GameData>& gameData,
                        const std::shared_ptr<Logger>& logger,
                        QWidget *parent) : QWidget(parent), gameData_(gameData), logger_(logger)
 {
     gameWindowInfo_ = gameData_->getGameWindowInfo();
 }
 
-GameWidget::~GameWidget()
+PlaygroundWidget::~PlaygroundWidget()
 {
 
 }
 
-void GameWidget::initInterface()
+void PlaygroundWidget::initInterface()
 {
     backToMenuBTN_ = new QPushButton("Back", this);
     backToMenuBTN_->setGeometry(width() - width()/gameWindowInfo_.btn_padding - gameWindowInfo_.back_btn_width,
@@ -20,7 +20,7 @@ void GameWidget::initInterface()
                                 gameWindowInfo_.back_btn_width,
                                 gameWindowInfo_.back_btn_height);
 
-    connect(backToMenuBTN_, &QPushButton::released,this, &GameWidget::backToMenu);
+    connect(backToMenuBTN_, &QPushButton::released,this, &PlaygroundWidget::backToMenu);
 
     if (gameWindowInfo_.isFullScrean){
         showFullScreen();
@@ -30,7 +30,7 @@ void GameWidget::initInterface()
     }
 }
 
-void GameWidget::backToMenu()
+void PlaygroundWidget::backToMenu()
 {
     this->close();
     emit backToMenuSignal();

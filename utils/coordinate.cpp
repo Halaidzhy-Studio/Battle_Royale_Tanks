@@ -6,6 +6,10 @@ float Coordinate::qtToserverTransformationValue;
 float Coordinate::serverTophysicsTransformationValue;
 
 
+Coordinate::Coordinate() : x_(0), y_(0), type_(CoordTypes::QT)
+{
+}
+
 Coordinate &Coordinate::toQt()
 {
 

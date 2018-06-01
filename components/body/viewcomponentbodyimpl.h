@@ -6,6 +6,7 @@
 #include <utils/data/bodyinfostruct.h>
 #include <objects/igameobject.h>
 #include <QPainter>
+#include <Graphics/graphics.h>
 #include "bodyinfocomponent.h"
 
 class ViewComponentBodyImpl : public ViewComponent, public QGraphicsRectItem

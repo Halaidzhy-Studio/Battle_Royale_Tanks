@@ -1,7 +1,7 @@
 #include "physicscomponentbodyimpl.h"
 
 PhysicsComponentBodyImpl::PhysicsComponentBodyImpl(const PhysicsInfo &info,
-                                                   const std::shared_ptr<PhysicsEngine> &physicsEngine,
+                                                   const std::shared_ptr<Physics> &physicsEngine,
                                                    const std::shared_ptr<BodyInfoComponent> &bodyInfoComponent)
     : info_(info), physicEngine_(physicsEngine), bodyInfoComponent_(bodyInfoComponent){
 
@@ -36,18 +36,19 @@ PhysicsComponentBodyImpl::PhysicsComponentBodyImpl(const PhysicsInfo &info,
     fixDef.restitution = info_.restitution;
     fixDef.friction = info_.friction;
 
+    /*
     body_ = physicsEngine->CreateBody(&bodyDef);
     body_->CreateFixture(&fixDef);
     body_->SetLinearDamping(info_.linearDumping);
-
+    */
     dynamicBodyInfo_ = bodyInfoComponent_->bodyInfoDynamicPtr();
 }
 
 void PhysicsComponentBodyImpl::update()
 {
-    physicEngine_->updateFriciton(body_);
-    physicEngine_->updateDrive(body_, dynamicBodyInfo_->speed);
-    physicEngine_->updateTurn(body_, dynamicBodyInfo_->turnSpeed);
+    updateFriciton(body_);
+    updateDrive(body_, dynamicBodyInfo_->speed);
+    updateTurn(body_, dynamicBodyInfo_->turnSpeed);
 
     coord_.setX(body_->GetPosition().x, Coordinate::CoordTypes::PHYSICSENGINE);
     coord_.setY(body_->GetPosition().y, Coordinate::CoordTypes::PHYSICSENGINE);
@@ -55,24 +56,24 @@ void PhysicsComponentBodyImpl::update()
     bodyInfoComponent_->moveTo(coord_.x(), coord_.y());
 }
 
-void PhysicsEngine::updateTurn(b2Body *body, int angleSpeed)
+void PhysicsComponentBodyImpl::updateTurn(b2Body *body, int angleSpeed)
 {
     body->SetAngularVelocity(angleSpeed);
 }
 
-void PhysicsEngine::updateDrive(b2Body *body, int speed)
+void PhysicsComponentBodyImpl::updateDrive(b2Body *body, int speed)
 {
     b2Vec2 vec(body->GetPosition().x, body->GetPosition().y + speed);
     body->SetTransform( vec , body->GetAngle());
 }
 
-void PhysicsEngine::updateFriciton(b2Body *body)
+void PhysicsComponentBodyImpl::updateFriciton(b2Body *body)
 {
     b2Vec2 impulse = body->GetMass() * -getLateralVelocity(body);
     body->ApplyLinearImpulse(impulse , body->GetWorldCenter(), true);
 }
 
-b2Vec2 PhysicsEngine::getLateralVelocity(b2Body* body)
+b2Vec2 PhysicsComponentBodyImpl::getLateralVelocity(b2Body* body)
 {
     b2Vec2 currentRightNormal = body->GetWorldVector( b2Vec2(1,0) );
     return b2Dot( currentRightNormal, body->GetLinearVelocity() ) * currentRightNormal;

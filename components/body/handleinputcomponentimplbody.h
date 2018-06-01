@@ -3,12 +3,11 @@
 
 #include <components/interfaces/componentsinterfaces.h>
 #include <QGraphicsItem>
-#include "viewcomponentbodyimpl.h"
 #include <objects/commands/command.h>
 #include "bodyinfocomponent.h"
 #include <QKeyEvent>
 
-class HandleInputComponentImplBody : public HandleInputComponent, public ViewComponentBodyImpl
+class HandleInputComponentImplBody : public HandleInputComponent
 {
 public:
     HandleInputComponentImplBody() = default;
@@ -37,12 +36,6 @@ private:
 
     int keys_;
     std::shared_ptr<BodyInfoComponent> bodyInfoComponent_;
-
-
-    // QGraphicsItem interface
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-    void keyReleaseEvent(QKeyEvent *event) override;
 };
 
 #endif // HANDLEINPUTCOMPONENTIMPLBODY_H

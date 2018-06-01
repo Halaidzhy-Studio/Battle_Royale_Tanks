@@ -12,11 +12,6 @@
 #include <utils/data/menu/multiplayermenuinfostruct.h>
 //#include <PlayScene/multiplayer.h>
 #include <GameMenu/gameroom.h>
-#include "game.h"
-
-//потому что вызыватся из GameMenu, который в свою очередь первый раз вызывает из Game.
-class Game;
-class SingleplayerMenu;
 
 class MultiplayerMenu : public QWidget
 {
@@ -24,7 +19,6 @@ class MultiplayerMenu : public QWidget
 
 public:
     explicit MultiplayerMenu(const std::shared_ptr<GameData>& gameData,
-                             const std::shared_ptr<Game>& game,
                              QWidget *parent = 0);
     ~MultiplayerMenu();
 signals:
@@ -38,7 +32,7 @@ public slots:
 
 private:
     std::shared_ptr<GameData> gameData_;
-    std::shared_ptr<Game> game_;
+
     MultiplayerMenuInfo multiplayerMenuInfo_;
     QPushButton* backToMainWindowBTN_;
     QPushButton* startMultiplayerGameBTN_;

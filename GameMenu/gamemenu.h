@@ -7,15 +7,8 @@
 #include <GameMenu/singleplayermenu.h>
 #include <utils/data/menu/menuwindowinfostruct.h>
 #include <utils/gamedata/gamedata.h>
-#include "game.h"
 #include "multiplayermenu.h"
 #include <utils/loggerinterface.h>
-
-// потому что вызыватся из Game
-class Game;
-
-class MultiplayerMenu;
-class SingleplayerMenu;
 
 class GameMenu : public QWidget
 {
@@ -23,7 +16,6 @@ class GameMenu : public QWidget
 public:
     GameMenu() {}
     explicit GameMenu( const std::shared_ptr<GameData>& gameData,
-                       const std::shared_ptr<Game>& game,
                        const std::shared_ptr<Logger>& logger,
                        QWidget *parent = nullptr);
 
@@ -41,10 +33,12 @@ private:
     MultiplayerMenu* mpWindow_;
 
     std::shared_ptr<GameData> gameData_;
-    std::shared_ptr<Game> game_;
+
     std::shared_ptr<Logger> logger_;
 
     MenuWindowInfo menuWindowInfo_;
+
+    void initInterface();
 };
 
 #endif // GAMEMENU_H

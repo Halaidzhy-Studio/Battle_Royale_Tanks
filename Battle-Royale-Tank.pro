@@ -28,19 +28,23 @@ INCLUDEPATH += "Box2D/"
 
 SOURCES += \
     main.cpp \
-    game.cpp \
     engineqt.cpp\
     gamewidget.cpp \
-    gameview.cpp \
-    physicsengine.cpp \
+    Graphics/graphicsitem.cpp \
+    Graphics/texture.cpp \
+    Graphics/qtgraphicsitemadapter.cpp \
+    Graphics/graphics.cpp \
+    Physics/physics.cpp \
 
 HEADERS += \
-    game.h \
     engine.h \
     engineqt.h \
     gamewidget.h \
-    gameview.h \
-    physicsengine.h \
+    Graphics/graphicsitem.h \
+    Graphics/texture.h \
+    Graphics/qtgraphicsitemadapter.h \
+    Graphics/graphics.h \
+    Physics/physics.h \
 
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 HEADERS += $$files($$PWD/PlayScene/*.h)

@@ -6,18 +6,15 @@
 #include "components/body/viewcomponentbodyimpl.h"
 #include "components/body/physicscomponentbodyimpl.h"
 #include "components/body/bodyinfocomponent.h"
-
 #include "interfaces/bodybuilder.h"
-#include "physicsengine.h"
-#include "gameview.h"
 
 class ConfigTankBodyBuilder : public BodyBuilder
 {
 public:
     ConfigTankBodyBuilder() = default;
     ConfigTankBodyBuilder(const TankBodyInfo& tankBodyInfo,
-                          const std::shared_ptr<GameView>& gameView,
-                          const std::shared_ptr<PhysicsEngine>& physicsEngine) :
+                          const std::shared_ptr<Graphics>& gameView,
+                          const std::shared_ptr<Physics>& physicsEngine) :
         tankBodyInfo_(tankBodyInfo), gameView_(gameView), physicsEngine_(physicsEngine) {
 
         bodyInfoComponent_ = std::make_shared<BodyInfoComponent>(tankBodyInfo_);
@@ -42,8 +39,8 @@ public:
 
 private:
     TankBodyInfo tankBodyInfo_;
-    std::shared_ptr<GameView> gameView_;
-    std::shared_ptr<PhysicsEngine> physicsEngine_;
+    std::shared_ptr<Graphics> gameView_;
+    std::shared_ptr<Physics> physicsEngine_;
 
     std::shared_ptr<HandleInputComponentImplBody> handleInputComponentImpl_;
     std::shared_ptr<ViewComponentBodyImpl> viewComponentImlp_;

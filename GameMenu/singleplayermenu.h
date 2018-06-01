@@ -6,17 +6,14 @@
 #include <memory>
 #include <utils/gamedata/gamedata.h>
 #include <utils/data/menu/singleplayermenuinfostruct.h>
-#include "game.h"
-// потому что вызыватся из GameMenu, который в свою очередь первый раз вызывает из Game.
-class Game;
+#include <objects/playinstance.h>
 
 class SingleplayerMenu: public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SingleplayerMenu(const std::shared_ptr<GameData>& gameData,
-                              const std::shared_ptr<Game>& game,
+    SingleplayerMenu(const std::shared_ptr<GameData>& gameData,
                               QWidget* parent = nullptr);
     ~SingleplayerMenu();
 signals:
@@ -28,10 +25,15 @@ private slots:
 
 private:
     std::shared_ptr<GameData> gameData_;
-    std::shared_ptr<Game> game_;
+    std::unique_ptr<PlayInstance> playInstance_;
     SingleplayerMenuInfo singleplayernMenuInfo_;
     QPushButton* startGameBTN_;
     QPushButton* backToMainWindowBTN_;
+
+    // Выбранный тип танка.
+    TankTypes tankType_;
+
+    void initInterface();
 };
 
 #endif // SINGLEPLAYERMENU_H

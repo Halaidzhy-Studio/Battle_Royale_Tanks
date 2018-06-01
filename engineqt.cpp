@@ -1,5 +1,9 @@
 #include "engineqt.h"
 
+EngineQT::EngineQT(int &argc, char **argv) : QApplication(argc, argv)
+{
+}
+
 void EngineQT::setGameData(const std::shared_ptr<GameData> &gameData)
 {
     gameData_ = gameData;
@@ -12,7 +16,7 @@ void EngineQT::setLogger(const std::shared_ptr<Logger> &logger)
 
 int EngineQT::startGame()
 {
-    game_ = std::make_shared<Game>(gameData_, logger_);
-    game_->startMenu();
+    gameMenu_ = std::make_unique<GameMenu>(gameData_, logger_);
+    gameMenu_->show();
     return this->exec();
 }
