@@ -3,7 +3,7 @@
 QtGraphicsItemAdapter::QtGraphicsItemAdapter(const std::shared_ptr<Graphics> & graphics) :
     graphics_(graphics)
 {
-
+    graphics_->addItem(this);
 }
 
 QRectF QtGraphicsItemAdapter::boundingRect() const
@@ -38,10 +38,19 @@ void QtGraphicsItemAdapter::setTexture(Texture)
 
 void QtGraphicsItemAdapter::setRect(int xp, int yp, int x, int y)
 {
-    rectF_.setX(xp);
+    rectF_.setX(x);
     rectF_.setY(yp);
     rectF_.setWidth(x);
     rectF_.setHeight(y);
+}
+
+void QtGraphicsItemAdapter::setRect(int w, int h)
+{
+    // -w/2, -h/2 центр координат предмета, совпадает с центром предмета
+    rectF_.setX(-w/2);
+    rectF_.setY(-h/2);
+    rectF_.setWidth(w);
+    rectF_.setHeight(h);
 }
 
 void QtGraphicsItemAdapter::setControlable()

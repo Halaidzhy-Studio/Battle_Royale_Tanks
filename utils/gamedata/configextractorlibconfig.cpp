@@ -5,6 +5,7 @@
 #include "configmultiplayermenudata.h"
 #include "configgameinfodata.h"
 #include "configgamewindowdata.h"
+#include "configtankbodydata.h"
 
 void ConfigExtractorLibconfig::upload(const std::string& configName)
 {
@@ -28,6 +29,8 @@ TankInfo ConfigExtractorLibconfig::getTankInfoByType(TankTypes type)
 
 TankBodyInfo ConfigExtractorLibconfig::getBodyInfoByType(BodyTypes type)
 {
+    data_.reset(new ConfigTankBodyData(config_, logger_, configIsUpload_));
+    return data_->getBodyInfoByType(type);
 }
 
 TankTurretInfo ConfigExtractorLibconfig::getTurretInfoByType(TurretTypes type)

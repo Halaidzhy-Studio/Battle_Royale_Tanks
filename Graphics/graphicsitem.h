@@ -14,6 +14,7 @@ public:
     virtual void setControlable() = 0;
     virtual void setTexture(Texture) = 0;
     virtual void setRect(int, int, int, int) = 0;
+    virtual void setRect(int, int) = 0;
 };
 
 #endif // GRAPHICSITEM_H

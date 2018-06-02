@@ -10,8 +10,8 @@ class TankBuilderDirector
 {
 public:
     TankBuilderDirector() = default;
-    TankBuilderDirector(const std::shared_ptr<QGraphicsScene>& scene,
-                        const std::shared_ptr<b2World>& world) : scene_(scene), world_(world) {}
+    TankBuilderDirector(const std::shared_ptr<Graphics>& scene,
+                        const std::shared_ptr<Physics>& world) : scene_(scene), world_(world) {}
 
     std::shared_ptr<TankComplexObject> getTank();
     void setBuilder(const std::shared_ptr<TankBuilder> &builder);

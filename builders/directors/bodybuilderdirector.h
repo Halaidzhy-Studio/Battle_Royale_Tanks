@@ -8,17 +8,11 @@
 
 class BodyBuilderDirector{
 public:
-    BodyBuilderDirector(const std::shared_ptr<Graphics>& scene,
-                        const std::shared_ptr<Physics>& world) : scene_(scene), world_(world)
-    {
-    }
+    BodyBuilderDirector() = default;
+    ~BodyBuilderDirector() = default;
     void setBuilder(const std::shared_ptr<BodyBuilder> &builder);
     std::shared_ptr<TankBody> getBody();
-
 private:
     std::shared_ptr<BodyBuilder> builder_;
-
-    std::shared_ptr<Graphics> scene_;
-    std::shared_ptr<Physics> world_;
 };
 #endif // BODYBUILDERDIRECTOR_H

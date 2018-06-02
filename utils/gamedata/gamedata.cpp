@@ -40,7 +40,7 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<ConfigE
     gameData->multiplayerMenuInfo_ = extractor->getMultiplayerMenuInfo();
     gameData->gameWindowInfo_ = extractor->getGameWindowInfo();
     gameData->gameInfo_ = extractor->getGameInfo();
-
+    gameData->tankBodyInfoByType_[BodyTypes::DEFAULT] = extractor->getBodyInfoByType(BodyTypes::DEFAULT);
     return gameData;
 }
 

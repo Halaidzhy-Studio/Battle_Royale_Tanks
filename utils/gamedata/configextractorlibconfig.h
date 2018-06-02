@@ -14,8 +14,10 @@ public:
     ConfigExtractorLibconfig(const std::shared_ptr<Logger>& logger) :
         configIsUpload_(false), logger_(logger)
     { config_ = std::make_shared<libconfig::Config>(); }
+
     ConfigExtractorLibconfig(const ConfigExtractorLibconfig&) = delete;
     ConfigExtractorLibconfig&operator= (const ConfigExtractorLibconfig&) = delete;
+
     ConfigExtractorLibconfig(ConfigExtractorLibconfig&& other) : config_(std::move(other.config_)),
         logger_(std::move(other.logger_)), configIsUpload_(other.configIsUpload_),
         data_(std::move(other.data_)){ }
@@ -37,9 +39,9 @@ public:
 private:
     // Переменная для хранения класса наследника
     std::unique_ptr<ConfigExtractorLibconfig> data_;
+    std::shared_ptr<libconfig::Config> config_;
 
 protected:
-    std::shared_ptr<libconfig::Config> config_;
     bool configIsUpload_;
     std::shared_ptr<Logger> logger_;
 
