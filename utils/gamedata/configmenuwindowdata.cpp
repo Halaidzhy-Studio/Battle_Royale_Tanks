@@ -1,5 +1,15 @@
 #include "configmenuwindowdata.h"
 
+ConfigMenuWindowData::ConfigMenuWindowData(const std::shared_ptr<Config>& config,
+                     const std::shared_ptr<Logger>& logger,
+                     bool configIsUpload) :
+                     ConfigExtractorLibconfig(
+                     config, logger, configIsUpload){
+
+    std::string total = "ConMenuWindowData is created";
+    logger_->printLog(total, "[CONFIG]");
+}
+
 MenuWindowInfo ConfigMenuWindowData::getMenuWindowInfo()
 {
     MenuWindowInfo info;

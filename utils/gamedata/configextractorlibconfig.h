@@ -22,19 +22,35 @@ public:
 
     ~ConfigExtractorLibconfig() {}
     void upload(const std::string& configName) override;
-private:
-    std::shared_ptr<libconfig::Config> config_;
-    bool configIsUpload_;
 
+    TankInfo getTankInfoByType(TankTypes type) override;
+    TankBodyInfo getBodyInfoByType(BodyTypes type) override;
+    TankTurretInfo getTurretInfoByType(TurretTypes type) override;
+    BulletInfo getBulletInfoByType(BulletTypes type) override;
+    MenuWindowInfo getMenuWindowInfo() override;
+    SingleplayerMenuInfo getSingleplayerMenuInfo() override;
+    MultiplayerMenuInfo getMultiplayerMenuInfo() override;
+    GameWindowInfo getGameWindowInfo() override;
+    GameInfo getGameInfo() override;
+    ServerInfo getServerInfo() override;
+
+private:
     // Переменная для хранения класса наследника
     std::unique_ptr<ConfigExtractorLibconfig> data_;
 
-    std::shared_ptr<Logger> logger_;
-    // GameData interface
-
 protected:
+    std::shared_ptr<libconfig::Config> config_;
+    bool configIsUpload_;
+    std::shared_ptr<Logger> logger_;
+
+    // Вызывает из наседников
+    ConfigExtractorLibconfig(const std::shared_ptr<libconfig::Config>& config,
+                   const std::shared_ptr<Logger>& logger,
+                   bool configIsUpload) : config_(config),
+                   configIsUpload_(configIsUpload), logger_(logger){}
+
     // Перенес реализацию в класс. Так как иначе в наследниках undefined reference к методу lookup
-    void lookup(const std::string & setting, std::string& var){
+    void lookup(const std::string & setting, std::string& var) const{
         try{
             var = config_->lookup(setting).c_str();
         } catch(const libconfig::SettingNotFoundException& ex){
@@ -44,7 +60,7 @@ protected:
     }
 
     template<class T>
-    void lookup(const std::string &setting, T& var)
+    void lookup(const std::string &setting, T& var) const
     {
         try{
             var = config_->lookup(setting);
@@ -52,27 +68,6 @@ protected:
             std::string totalMsg = "No '" + setting + "' in config file";
             logger_->printLog(totalMsg, "[CONFIG]");
         }
-    }
-
-public:
-    TankInfo getTankInfoByType(TankTypes type) override;
-    TankBodyInfo getBodyInfoByType(BodyTypes type) override;
-    TankTurretInfo getTurretInfoByType(TurretTypes type) override;
-    BulletInfo getBulletInfoByType(BulletTypes type) override;
-    MenuWindowInfo getMenuWindowInfo() override;
-    SingleplayerMenuInfo getSingleplayerMenuInfo() override;
-    MultiplayerMenuInfo getMultiplayerMenuInfo() override;
-    GameWindowInfo getGameWindowInfo() override;
-    GameInfo getGameInfo() const override;
-    ServerInfo getServerInfo() const override;
-
-protected:
-
-    // Вызывает из наседников
-    ConfigExtractorLibconfig(const std::shared_ptr<libconfig::Config>& config,
-                   const std::shared_ptr<Logger>& logger,
-                   bool configIsUpload) : config_(config),
-                   configIsUpload_(configIsUpload), logger_(logger){
     }
 
 };

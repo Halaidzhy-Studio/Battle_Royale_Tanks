@@ -14,6 +14,7 @@ class SingleplayerMenu: public QWidget
 
 public:
     SingleplayerMenu(const std::shared_ptr<GameData>& gameData,
+                     const std::shared_ptr<Logger>& logger,
                               QWidget* parent = nullptr);
     ~SingleplayerMenu();
 signals:
@@ -25,6 +26,7 @@ private slots:
 
 private:
     std::shared_ptr<GameData> gameData_;
+    std::shared_ptr<Logger> logger_;
     std::unique_ptr<PlayInstance> playInstance_;
     SingleplayerMenuInfo singleplayernMenuInfo_;
     QPushButton* startGameBTN_;
@@ -34,6 +36,7 @@ private:
     TankTypes tankType_;
 
     void initInterface();
+    void stopGame();
 };
 
 #endif // SINGLEPLAYERMENU_H

@@ -13,7 +13,6 @@ public:
     {
     }
     void setBuilder(const std::shared_ptr<BodyBuilder> &builder);
-    std::shared_ptr<TankBody> getBody(const int id);
     std::shared_ptr<TankBody> getBody();
 
 private:

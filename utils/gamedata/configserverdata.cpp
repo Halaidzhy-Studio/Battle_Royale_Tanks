@@ -1,6 +1,6 @@
 #include "configserverdata.h"
 
-ServerInfo ConfigServerData::getServerInfo() const
+ServerInfo ConfigServerData::getServerInfo()
 {
 
 }

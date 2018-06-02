@@ -39,7 +39,7 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<ConfigE
     gameData->singleplayerMenuInfo_ = extractor->getSingleplayerMenuInfo();
     gameData->multiplayerMenuInfo_ = extractor->getMultiplayerMenuInfo();
     gameData->gameWindowInfo_ = extractor->getGameWindowInfo();
-    gameData->serverInfo_ = extractor->getServerInfo();
+    gameData->gameInfo_ = extractor->getGameInfo();
 
     return gameData;
 }

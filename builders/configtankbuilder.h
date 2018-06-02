@@ -6,6 +6,8 @@
 #include "interfaces/bodybuilder.h"
 #include "interfaces/turretbuilder.h"
 #include <objects/tankcomplexobject.h>
+#include<Graphics/graphics.h>
+#include<Physics/physics.h>
 
 class ConfigTankBuilder : public TankBuilder
 {
@@ -17,8 +19,8 @@ public:
     ConfigTankBuilder&operator=(ConfigTankBuilder&&) = delete;
     
     ConfigTankBuilder(const TankInfo& tankInfo,
-                      const std::shared_ptr<QGraphicsScene>& scene,
-                      const std::shared_ptr<b2World>& world) :
+                      const std::shared_ptr<Graphics>& scene,
+                      const std::shared_ptr<Physics>& world) :
         tankInfo_(tankInfo), scene_(scene), world_(world) {}
 
     // TankBuilder interface

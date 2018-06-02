@@ -29,7 +29,6 @@ INCLUDEPATH += "Box2D/"
 SOURCES += \
     main.cpp \
     engineqt.cpp\
-    gamewidget.cpp \
     Graphics/graphicsitem.cpp \
     Graphics/texture.cpp \
     Graphics/qtgraphicsitemadapter.cpp \
@@ -39,7 +38,6 @@ SOURCES += \
 HEADERS += \
     engine.h \
     engineqt.h \
-    gamewidget.h \
     Graphics/graphicsitem.h \
     Graphics/texture.h \
     Graphics/qtgraphicsitemadapter.h \

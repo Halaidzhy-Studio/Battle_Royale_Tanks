@@ -1,8 +1,15 @@
 #include "graphics.h"
 #include <QGraphicsItem>
 
-Graphics::Graphics() : graphicsScene_(std::make_unique<QGraphicsScene>())
+Graphics::Graphics() : graphicsScene_(new QGraphicsScene()),
+                       graphicsView_(new QGraphicsView())
 {
+    graphicsView_->setScene(graphicsScene_);
+}
+
+Graphics::~Graphics()
+{
+    // Так как временем удаления управляет родительский widget
 }
 
 void Graphics::setSceneRect(int xp, int yp, int x, int y)
@@ -20,4 +27,15 @@ void Graphics::setControlable(QGraphicsItem *item)
 {
     item->setFocus();
     item->setFlag(QGraphicsItem::ItemIsFocusable);
+}
+
+void Graphics::setViewParent(QWidget *parent)
+{
+    graphicsView_->setParent(parent);
+    graphicsView_->setFixedSize(parent->size());
+}
+
+void Graphics::addWidget(QWidget *widget)
+{
+    graphicsScene_->addWidget(widget);
 }

@@ -4,13 +4,18 @@
 #include "singleplayermenu.h"
 
 SingleplayerMenu::SingleplayerMenu(const std::shared_ptr<GameData>& gameData,
+                                   const std::shared_ptr<Logger>& logger,
                                    QWidget *parent) : QWidget(parent),
-    gameData_(gameData)
+    gameData_(gameData), logger_(logger)
 {
 
     singleplayernMenuInfo_ = gameData_->getSingleplayerMenuInfo();
+
+    // Пока что есть только один тип танков.
     tankType_ = TankTypes::DEFAULT;
-    playInstance_ = std::make_unique<PlayInstance>(gameData_, nullptr);
+    playInstance_ = std::make_unique<PlayInstance>(gameData_, logger_);
+
+    connect(playInstance_.get(), &PlayInstance::stopSignal, this, &SingleplayerMenu::stopGame);
     initInterface();
 }
 
@@ -27,6 +32,7 @@ void SingleplayerMenu::backToMainWindow()
 
 void SingleplayerMenu::startGame()
 {
+    close();
     playInstance_->setPlayerTankType(tankType_);
     playInstance_->start();
 }
@@ -62,4 +68,13 @@ void SingleplayerMenu::initInterface()
 
     connect(backToMainWindowBTN_, &QPushButton::released, this,
             &SingleplayerMenu::backToMainWindow);
+}
+
+void SingleplayerMenu::stopGame()
+{
+    // Удаляем предыдущую сессию.
+    playInstance_.reset(new PlayInstance(gameData_, logger_));
+    connect(playInstance_.get(), &PlayInstance::stopSignal, this, &SingleplayerMenu::stopGame);
+
+    show();
 }

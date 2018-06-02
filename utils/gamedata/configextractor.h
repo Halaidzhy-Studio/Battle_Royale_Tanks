@@ -24,7 +24,7 @@ public:
     virtual MultiplayerMenuInfo getMultiplayerMenuInfo () = 0;
     virtual MenuWindowInfo getMenuWindowInfo() = 0;
     virtual GameWindowInfo getGameWindowInfo() = 0;
-    virtual GameInfo getGameInfo() const = 0;
-    virtual ServerInfo getServerInfo() const = 0;
+    virtual GameInfo getGameInfo() = 0;
+    virtual ServerInfo getServerInfo() = 0;
 };
 #endif // CONFIGEXTRACTOR_H

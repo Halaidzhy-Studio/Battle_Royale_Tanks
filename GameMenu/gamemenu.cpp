@@ -10,7 +10,7 @@ GameMenu::GameMenu(const std::shared_ptr<GameData>& gameData,
                    logger_(logger)
 {
     menuWindowInfo_ = gameData_->getMenuWindowInfo();
-    spWindow_ = new SingleplayerMenu(gameData_);
+    spWindow_ = new SingleplayerMenu(gameData_, logger_);
     mpWindow_ = new MultiplayerMenu(gameData_);
     initInterface();
 }

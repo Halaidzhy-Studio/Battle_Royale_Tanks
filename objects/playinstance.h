@@ -13,8 +13,10 @@
 
 class PlayInstance: public QObject
 {
+    Q_OBJECT
 public:
-    PlayInstance();
+    PlayInstance() = delete;
+    ~PlayInstance() = default;
     PlayInstance(const std::shared_ptr<GameData>&, const std::shared_ptr<Logger>&);
 
     void start();
@@ -24,6 +26,9 @@ public:
     TankTypes playerTankType() const;
     void setPlayerTankType(const TankTypes &playerTankType);
 
+signals:
+    void stopSignal();
+
 private:
     std::shared_ptr<GameData> gameData_;
     std::shared_ptr<Logger> logger_;
@@ -31,8 +36,8 @@ private:
     std::unique_ptr<TankBuilderDirector> tankDirector_;
     std::vector<std::shared_ptr<TankComplexObject>> tanksList_;
     std::unique_ptr<QTimer> timer_;
-    PlayInstanceWidget* playInstanceWidget_;
-    QGraphicsView* camera_;
+    std::unique_ptr<PlayInstanceWidget> playInstanceWidget_;
+    std::shared_ptr<Graphics> graphics_;
     TankTypes playerTankType_;
     GameInfo gameInfo_;
 

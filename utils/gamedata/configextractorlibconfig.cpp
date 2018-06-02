@@ -3,6 +3,8 @@
 #include "configmenuwindowdata.h"
 #include "configsingleplayermenudata.h"
 #include "configmultiplayermenudata.h"
+#include "configgameinfodata.h"
+#include "configgamewindowdata.h"
 
 void ConfigExtractorLibconfig::upload(const std::string& configName)
 {
@@ -60,13 +62,17 @@ MultiplayerMenuInfo ConfigExtractorLibconfig::getMultiplayerMenuInfo()
 
 GameWindowInfo ConfigExtractorLibconfig::getGameWindowInfo()
 {
+    data_.reset(new ConfigGameWindowData(config_, logger_, configIsUpload_));
+    return data_->getGameWindowInfo();
 }
 
-GameInfo ConfigExtractorLibconfig::getGameInfo() const
+GameInfo ConfigExtractorLibconfig::getGameInfo()
 {
+    data_.reset(new ConfigGameInfoData(config_, logger_, configIsUpload_));
+    return data_->getGameInfo();
 }
 
 
-ServerInfo ConfigExtractorLibconfig::getServerInfo() const
+ServerInfo ConfigExtractorLibconfig::getServerInfo()
 {
 }
