@@ -2,19 +2,22 @@
 #define HANDLEINPUTCOMPONENTIMPLBODY_H
 
 #include <components/interfaces/componentsinterfaces.h>
-#include <QGraphicsItem>
 #include <objects/commands/command.h>
-#include "bodyinfocomponent.h"
-#include <QKeyEvent>
+#include <components/body/bodyinfocomponent.h>
+#include <Graphics/graphicsitem.h>
 
 class HandleInputComponentImplBody : public HandleInputComponent
 {
 public:
     HandleInputComponentImplBody() = default;
-    HandleInputComponentImplBody(const std::shared_ptr<BodyInfoComponent> bodyInfoComponent_);
+    HandleInputComponentImplBody(GraphicsItem* item,
+                                 const std::shared_ptr<BodyInfoComponent> bodyInfoComponent_,
+                                 const std::shared_ptr<Logger>& logger_);
+
     void update(Controlable *gameObject) override;
     void setObject(Controlable *gameObject) override;
     void initCommand() override;
+
     // QGraphicsItem interface
 protected:
 
@@ -32,10 +35,10 @@ private:
     std::shared_ptr<Command> keyA_;
     std::shared_ptr<Command> keyS_;
 
-    Controlable* gameObject_;
-
     int keys_;
+    GraphicsItem* item_;
     std::shared_ptr<BodyInfoComponent> bodyInfoComponent_;
+    std::shared_ptr<Logger> logger_;
 };
 
 #endif // HANDLEINPUTCOMPONENTIMPLBODY_H

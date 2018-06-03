@@ -1,19 +1,21 @@
 #ifndef PLAYERSINGLEPLAYERBODYBUILDER_H
 #define PLAYERSINGLEPLAYERBODYBUILDER_H
 
-#include <builders/interfaces/singleplayerbodybuilderimpl.h>
+#include <builders/interfaces/body/singleplayerbodybuilderimpl.h>
 #include <utils/data/bodyinfostruct.h>
 #include <components/body/bodyinfocomponent.h>
 #include <components/body/viewcomponentbodyimpl.h>
 #include <Graphics/graphics.h>
 
-class PlayerSingleplayerBodyBuilder : public SingleplayerBodyBuilderImpl
+class PlayerOfflineBodyBuilder : public OfflineBodyBuilderImpl
 {
 public:
-    PlayerSingleplayerBodyBuilder();
-    PlayerSingleplayerBodyBuilder(TankBodyInfo tankBodyInfo,
-                                  const std::shared_ptr<Graphics>& graphics);
-    ~PlayerSingleplayerBodyBuilder() = default;
+    PlayerOfflineBodyBuilder();
+    PlayerOfflineBodyBuilder(TankBodyInfo tankBodyInfo,
+                             const std::shared_ptr<Graphics>& graphics,
+                             const std::shared_ptr<Logger>& logger);
+
+    ~PlayerOfflineBodyBuilder() = default;
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;
     std::shared_ptr<PhysicsComponent> getPhysicsComponent() override;
     std::shared_ptr<ViewComponent> getViewComponent() override;
@@ -21,6 +23,9 @@ public:
 private:
     std::shared_ptr<BodyInfoComponent> bodyInfoComponent_;
     std::shared_ptr<Graphics> graphics_;
+    std::shared_ptr<Logger> logger_;
+
+    GraphicsItem* graphicsItem;
     TankBodyInfo tankBodyInfo_;
 };
 

@@ -4,6 +4,7 @@
 Graphics::Graphics() : graphicsScene_(new QGraphicsScene()),
                        graphicsView_(new QGraphicsView())
 {
+    graphicsScene_->setSceneRect(-150, -150, 300, 300);
     graphicsView_->setScene(graphicsScene_);
 }
 

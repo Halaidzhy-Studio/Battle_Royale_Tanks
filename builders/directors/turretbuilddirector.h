@@ -1,7 +1,7 @@
 #ifndef TURRETBUILDDIRECTOR_H
 #define TURRETBUILDDIRECTOR_H
 
-#include <builders/interfaces/turretbuilder.h>
+#include <builders/interfaces/turret/turretbuilder.h>
 #include <objects/tankturret.h>
 #include <memory>
 

@@ -19,18 +19,14 @@ class BodyInfoComponent : public Moveable, public Turnable
 public:
     BodyInfoComponent() = delete;
     ~BodyInfoComponent() = default;
-    BodyInfoComponent(const TankBodyInfo& bodyInfo) : bodyInfoConst_(bodyInfo), bodyInfoDynamic_(bodyInfo) {
-        // Изначально танк не двигается
-        bodyInfoDynamic_.speed = 0;
-        bodyInfoDynamic_.turnSpeed = 0;
-    }
+    BodyInfoComponent(const TankBodyInfo& bodyInfo,
+                      const std::shared_ptr<Logger>& logger);
 
     TankBodyInfo bodyInfoConst() const;
 
     TankBodyInfo bodyInfoDynamic() const;
     TankBodyInfo* bodyInfoDynamicPtr();
     void setBodyInfoDynamic(const TankBodyInfo &bodyInfoDynamic);
-
 
     // Turnable interface
     void turnR() override;
@@ -50,6 +46,8 @@ public:
     int angle() const;
     void setAngle(int angle);
 
+    // Чтобы удобно выводить в лог
+    operator std::string();
 private:
     // Изначальные характеристики объекта
     const TankBodyInfo bodyInfoConst_;
@@ -58,6 +56,8 @@ private:
     TankBodyInfo bodyInfoDynamic_;
     Coordinate coord_;
     int angle_;
+
+    std::shared_ptr<Logger> logger_;
 
     std::shared_ptr<HandleInputComponentImplBody> handleInputComponentImpl_;
     std::shared_ptr<ViewComponentBodyImpl> viewComponentImlp_;

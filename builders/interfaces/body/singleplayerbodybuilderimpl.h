@@ -4,9 +4,9 @@
 #include <components/interfaces/componentsinterfaces.h>
 #include <memory>
 
-class SingleplayerBodyBuilderImpl{
+class OfflineBodyBuilderImpl{
 public:
-    virtual ~SingleplayerBodyBuilderImpl() = default;
+    virtual ~OfflineBodyBuilderImpl() = default;
     virtual std::shared_ptr<HandleInputComponent> getHandleInputComponent() = 0;
     virtual std::shared_ptr<PhysicsComponent> getPhysicsComponent() = 0;
     virtual std::shared_ptr<ViewComponent> getViewComponent() = 0;

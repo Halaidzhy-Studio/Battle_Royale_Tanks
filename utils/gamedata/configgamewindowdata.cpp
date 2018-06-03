@@ -23,6 +23,8 @@ GameWindowInfo ConfigGameWindowData::getGameWindowInfo()
         config_->lookup("windows.game_window.back_btn_width", info.back_btn_width);
         config_->lookup("windows.game_window.btn_padding", info.btn_padding);
         config_->lookup("windows.game_window.is_full_screen", info.is_full_screen);
+        config_->lookup("windows.game_window.width", info.width);
+        config_->lookup("windows.game_window.height", info.height);
     }
 
     return info;

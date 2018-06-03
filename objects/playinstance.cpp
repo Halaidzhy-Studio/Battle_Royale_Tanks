@@ -1,11 +1,14 @@
 #include "playinstance.h"
-
+#include <builders/impl/body/playersingleplayerbodybuilder.h>
+#include <builders/impl/body/singleplayerbodybuilder.h>
+#include <Graphics/qtgraphicsitemadapter.h>
 PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
                            const std::shared_ptr<Logger>& logger) :
     gameData_(gameData), logger_(logger), graphics_(std::make_shared<Graphics>())
 {
 
     tankDirector_ = std::make_unique<TankBuilderDirector>();
+    testBodyDirector_ = std::make_shared<BodyBuilderDirector>();
 
     // need to set PlayerBuilder for bodyDirector
     gameInfo_ = gameData->getGameInfo();
@@ -17,6 +20,9 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
 void PlayInstance::start()
 {
     //tanksList_.push_back(tankDirector_->getTank());
+    initPlayer();
+    //graphics_->addItem(rect);
+
     connect(timer_.get(), &QTimer::timeout,this, &PlayInstance::update);
     playInstanceWidget_->show();
     timer_->start(1000/gameInfo_.tick);
@@ -32,6 +38,7 @@ void PlayInstance::stop()
 void PlayInstance::update()
 {
     logger_->printLog("PlayInstance is updated", "[GAME]");
+    testBody_->update();
     std::for_each(tanksList_.cbegin(), tanksList_.cend(), [](auto& el) {
         el->update();
     });
@@ -45,4 +52,16 @@ TankTypes PlayInstance::playerTankType() const
 void PlayInstance::setPlayerTankType(const TankTypes &playerTankType)
 {
     playerTankType_ = playerTankType;
+}
+
+void PlayInstance::initPlayer()
+{
+    // Test need to delete
+    TankBodyInfo bodyInfo = gameData_->getBodyInfoByType(BodyTypes::DEFAULT);
+
+    std::shared_ptr<BodyBuilder> builder =
+            std::make_shared<OfflineBodyBuilder>(std::make_shared<PlayerOfflineBodyBuilder>(bodyInfo, graphics_, logger_));
+
+    testBodyDirector_->setBuilder(builder);
+    testBody_ = testBodyDirector_->getBody();
 }

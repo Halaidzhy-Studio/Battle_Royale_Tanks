@@ -19,7 +19,7 @@ public:
                           const std::shared_ptr<BodyInfoComponent>&  bodyInfo) :
         styleInfo_(styleInfo), rectInfo_(rectInfo), bodyInfo_(bodyInfo) {  }
 
-    ViewComponentBodyImpl(const std::shared_ptr<GraphicsItem>& graphicsItem,
+    ViewComponentBodyImpl(GraphicsItem* graphicsItem,
                           const std::shared_ptr<BodyInfoComponent>&  bodyInfo):
         graphicsItem_(graphicsItem), bodyInfo_(bodyInfo) {}
 
@@ -30,7 +30,7 @@ public:
 private:
     StyleInfo styleInfo_;
     RectInfo rectInfo_;
-    std::shared_ptr<GraphicsItem> graphicsItem_;
+    GraphicsItem* graphicsItem_;
     std::shared_ptr<BodyInfoComponent> bodyInfo_;
 };
 

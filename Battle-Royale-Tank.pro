@@ -29,7 +29,6 @@ INCLUDEPATH += "Box2D/"
 SOURCES += \
     main.cpp \
     engineqt.cpp\
-    Graphics/graphicsitem.cpp \
     Graphics/texture.cpp \
     Graphics/qtgraphicsitemadapter.cpp \
     Graphics/graphics.cpp \
@@ -43,6 +42,10 @@ HEADERS += \
     Graphics/qtgraphicsitemadapter.h \
     Graphics/graphics.h \
     Physics/physics.h \
+    objects/commands/movebackwardcommand.h \
+    objects/commands/turnrightcommand.h \
+    objects/commands/turnleftcommand.h \
+    objects/commands/turntocommand.h
 
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 HEADERS += $$files($$PWD/PlayScene/*.h)
@@ -66,9 +69,19 @@ HEADERS += $$files($$PWD/components/interfaces/*.h)
 
 SOURCES += $$files($$PWD/builders/*.cpp)
 SOURCES += $$files($$PWD/builders/directors/*.cpp)
+SOURCES += $$files($$PWD/builders/impl/body/*.cpp)
+SOURCES += $$files($$PWD/builders/impl/turret/*.cpp)
+SOURCES += $$files($$PWD/builders/impl/tank/*.cpp)
+
 HEADERS += $$files($$PWD/builders/*.h)
 HEADERS += $$files($$PWD/builders/directors/*.h)
-HEADERS += $$files($$PWD/builders/interfaces/*.h)
+HEADERS += $$files($$PWD/builders/interfaces/body/*.h)
+HEADERS += $$files($$PWD/builders/interfaces/turret/*.h)
+HEADERS += $$files($$PWD/builders/interfaces/tank/*.h)
+HEADERS += $$files($$PWD/builders/impl/body/*.h)
+HEADERS += $$files($$PWD/builders/impl/turret/*.h)
+HEADERS += $$files($$PWD/builders/impl/tank/*.h)
+
 
 SOURCES += $$files($$PWD/objects/commands/*.cpp)
 HEADERS += $$files($$PWD/objects/commands/*.h)

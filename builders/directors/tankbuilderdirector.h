@@ -2,7 +2,7 @@
 #ifndef TANKBUILDERDIRECTOR_H
 #define TANKBUILDERDIRECTOR_H
 
-#include <builders/interfaces/tankbuilder.h>
+#include <builders/interfaces/tank/tankbuilder.h>
 #include <QGraphicsItem>
 #include <Box2D.h>
 

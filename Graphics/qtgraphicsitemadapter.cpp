@@ -1,7 +1,7 @@
 #include "qtgraphicsitemadapter.h"
 
 QtGraphicsItemAdapter::QtGraphicsItemAdapter(const std::shared_ptr<Graphics> & graphics) :
-    graphics_(graphics)
+    graphics_(graphics), keys_(0)
 {
     graphics_->addItem(this);
 }
@@ -13,6 +13,7 @@ QRectF QtGraphicsItemAdapter::boundingRect() const
 
 void QtGraphicsItemAdapter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    // Test need to delete later
     painter->setPen(Qt::black);
     painter->drawRect(rectF_);
 }
@@ -47,13 +48,40 @@ void QtGraphicsItemAdapter::setRect(int xp, int yp, int x, int y)
 void QtGraphicsItemAdapter::setRect(int w, int h)
 {
     // -w/2, -h/2 центр координат предмета, совпадает с центром предмета
-    rectF_.setX(-w/2);
-    rectF_.setY(-h/2);
-    rectF_.setWidth(w);
-    rectF_.setHeight(h);
+    rectF_ = QRectF(-w/2, -h/2, w, h);
 }
 
 void QtGraphicsItemAdapter::setControlable()
 {
     graphics_->setControlable(this);
+}
+
+
+void QtGraphicsItemAdapter::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_W: keys_ |= KEY_W; break;
+    case Qt::Key_S: keys_ |= KEY_S; break;
+    case Qt::Key_D: keys_ |= KEY_D; break;
+    case Qt::Key_A: keys_ |= KEY_A; break;
+    default:
+        break;
+    }
+}
+
+void QtGraphicsItemAdapter::keyReleaseEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_W: keys_ &= ~KEY_W; break;
+    case Qt::Key_S: keys_ &= ~KEY_S; break;
+    case Qt::Key_D: keys_ &= ~KEY_D; break;
+    case Qt::Key_A: keys_ &= ~KEY_A; break;
+    default:
+        break;
+    }
+}
+
+int QtGraphicsItemAdapter::getActiveKeys()
+{
+    return keys_;
 }

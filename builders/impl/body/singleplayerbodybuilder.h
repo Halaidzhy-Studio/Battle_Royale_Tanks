@@ -1,14 +1,14 @@
 #ifndef SINGLEPLAYERBODYBUILDER_H
 #define SINGLEPLAYERBODYBUILDER_H
 
-#include <builders/interfaces/bodybuilder.h>
-#include <builders/interfaces/singleplayerbodybuilderimpl.h>
+#include <builders/interfaces/body/bodybuilder.h>
+#include <builders/interfaces/body/singleplayerbodybuilderimpl.h>
 
-class SingleplayerBodyBuilder : public BodyBuilder
+class OfflineBodyBuilder : public BodyBuilder
 {
 public:
-    SingleplayerBodyBuilder();
-    SingleplayerBodyBuilder(const std::shared_ptr<SingleplayerBodyBuilderImpl> bodyBuilderImpl):
+    OfflineBodyBuilder();
+    OfflineBodyBuilder(const std::shared_ptr<OfflineBodyBuilderImpl> bodyBuilderImpl):
         bodyBuilderImpl_(bodyBuilderImpl) {}
 
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;
@@ -16,7 +16,7 @@ public:
     std::shared_ptr<ViewComponent> getViewComponent() override;
 
 private:
-    std::shared_ptr<SingleplayerBodyBuilderImpl> bodyBuilderImpl_;
+    std::shared_ptr<OfflineBodyBuilderImpl> bodyBuilderImpl_;
 };
 
 #endif // SINGLEPLAYERBODYBUILDER_H

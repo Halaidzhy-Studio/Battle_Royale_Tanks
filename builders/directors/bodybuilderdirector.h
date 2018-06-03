@@ -1,6 +1,6 @@
 #ifndef BODYBUILDERDIRECTOR_H
 #define BODYBUILDERDIRECTOR_H
-#include <builders/interfaces/bodybuilder.h>
+#include <builders/interfaces/body/bodybuilder.h>
 #include <components/interfaces/componentsinterfaces.h>
 #include <objects/tankbody.h>
 #include <Graphics/graphics.h>
