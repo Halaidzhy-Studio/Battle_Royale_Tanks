@@ -20,7 +20,6 @@ public:
     BodyInfoComponent() = delete;
     ~BodyInfoComponent() = default;
     BodyInfoComponent(const TankBodyInfo& bodyInfo) : bodyInfoConst_(bodyInfo), bodyInfoDynamic_(bodyInfo) {
-
         // Изначально танк не двигается
         bodyInfoDynamic_.speed = 0;
         bodyInfoDynamic_.turnSpeed = 0;

@@ -5,7 +5,7 @@
 
 class BodyBuilder{
 public:
-    ~BodyBuilder() = default;
+    virtual ~BodyBuilder() = default;
 
     virtual std::shared_ptr<HandleInputComponent> getHandleInputComponent() {}
     virtual std::shared_ptr<PhysicsComponent> getPhysicsComponent() {}

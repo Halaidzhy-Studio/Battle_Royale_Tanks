@@ -1,19 +1,15 @@
 #ifndef CONFIGSERVERDATA_H
 #define CONFIGSERVERDATA_H
 
-#include "configextractorlibconfig.h".h"
+#include "configextractor.h"
 
-class ConfigServerData : public ConfigExtractorLibconfig
+class ConfigServerData : public ConfigExtractor
 {
 public:
-    ConfigServerData(const std::shared_ptr<libconfig::Config>& config,
-                              const std::shared_ptr<Logger>& logger,
-                              bool configIsUpload) :
-                              ConfigExtractorLibconfig(
-                              config, logger, configIsUpload){
-        std::string total = "ConfigMultiplayerMenuData is created";
-        logger_->printLog(total, "[CONFIG]");
-    }
+    ConfigServerData() = delete;
+    ConfigServerData(const std::shared_ptr<Config>& config,
+                     const std::shared_ptr<Logger>& logger);
+    ~ConfigServerData() = default;
     ServerInfo getServerInfo() override;
 };
 

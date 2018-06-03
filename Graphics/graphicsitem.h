@@ -8,7 +8,7 @@ class GraphicsItem
 {
 public:
     virtual ~GraphicsItem() = default;
-    virtual void setPos(Coordinate&) = 0;
+    virtual void setPos(Coordinate) = 0;
     virtual void setRotation(int) = 0;
     virtual void isControlable(bool) = 0;
     virtual void setControlable() = 0;

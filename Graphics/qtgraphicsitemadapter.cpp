@@ -17,7 +17,7 @@ void QtGraphicsItemAdapter::paint(QPainter *painter, const QStyleOptionGraphicsI
     painter->drawRect(rectF_);
 }
 
-void QtGraphicsItemAdapter::setPos(Coordinate& coord)
+void QtGraphicsItemAdapter::setPos(Coordinate coord)
 {
     QGraphicsItem::setPos(coord.toQt().x(), coord.toQt().y());
 }

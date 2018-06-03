@@ -1,29 +1,22 @@
 #include "configgameinfodata.h"
 
-ConfigGameInfoData::ConfigGameInfoData(const std::shared_ptr<libconfig::Config> &config,
-                                       const std::shared_ptr<Logger> &logger,
-                                       bool configIsUpload) :
-    ConfigExtractorLibconfig(config, logger, configIsUpload)
+ConfigGameInfoData::ConfigGameInfoData(const std::shared_ptr<Config> &config,
+                                       const std::shared_ptr<Logger> &logger) :
+    ConfigExtractor(config, logger)
 {
     logger_->printLog("ConfigGameInfoData is created", "[CONFIG]");
 }
 
-ConfigGameInfoData::~ConfigGameInfoData()
-{
-}
-
-
 GameInfo ConfigGameInfoData::getGameInfo()
 {
-    GameInfo gameInfo;
-    gameInfo.title = "Battle-royal-tanks";
-    gameInfo.tick = 60;
+    GameInfo info;
+    info.title = "Battle-royal-tanks";
+    info.tick = 60;
 
-    if (configIsUpload_){
-        logger_->printLog("ConfigGameInfoData is downloading...", "[CONFIG]");
-        lookup("game.title", gameInfo.title);
-        lookup("game.tick", gameInfo.tick);
+    if (config_->isConfigUpload()){
+        logger_->printLog("ConfigGameInfoData is created", "[CONFIG]");
+        config_->lookup("game.title", info.title);
+        config_->lookup("game.tick", info.tick);
     }
-
-    return gameInfo;
+    return info;
 }

@@ -1,6 +1,14 @@
 #include "configmultiplayermenudata.h"
 
 
+ConfigMultiplayerMenuData::ConfigMultiplayerMenuData(const std::shared_ptr<Config> &config,
+                                                     const std::shared_ptr<Logger> &logger):
+    ConfigExtractor(config, logger)
+{
+    std::string total = "ConfigMultiplayerMenuData is created";
+    logger_->printLog(total, "[CONFIG]");
+}
+
 MultiplayerMenuInfo ConfigMultiplayerMenuData::getMultiplayerMenuInfo()
 {
     MultiplayerMenuInfo info;
@@ -19,25 +27,22 @@ MultiplayerMenuInfo ConfigMultiplayerMenuData::getMultiplayerMenuInfo()
     info.nextt_btn_h_k = 15;
     info.color = "white";
 
-    if (configIsUpload_){
+    if (config_->isConfigUpload()){
         logger_->printLog("ConfigMultiplayerMenuData is downloading config...", "[CONFIG]");
-        lookup("windows.menu.width", info.width);
-        lookup("windows.menu.height", info.height);
-        lookup("windows.menu.menu_multiplayer.btn_padding", info.btn_padding );
-        lookup("windows.menu.menu_multiplayer.back_btn_w", info.back_btn_w );
-        lookup("windows.menu.menu_multiplayer.back_btn_h_k", info.back_btn_h_k );
-        lookup("windows.menu.menu_multiplayer.start_btn_w", info.start_btn_w );
-        lookup("windows.menu.menu_multiplayer.start_btn_h_k", info.start_btn_h_k);
-        lookup("windows.menu.menu_multiplayer.txt_label_w", info.txt_label_w);
-        lookup("windows.menu.menu_multiplayer.txt_label_h_k", info.txt_label_h_k);
-        lookup("windows.menu.menu_multiplayer.prevt_btn_w", info.prevt_btn_w);
-        lookup("windows.menu.menu_multiplayer.prevt_btn_h_k", info.prevt_btn_h_k);
-        lookup("windows.menu.menu_multiplayer.nextt_btn_w", info.nextt_btn_w);
-        lookup("windows.menu.menu_multiplayer.nextt_btn_h_k", info.nextt_btn_h_k);
-        lookup("windows.menu.background_color", info.color);
-
-
+        config_->lookup("windows.menu.width", info.width);
+        config_->lookup("windows.menu.height", info.height);
+        config_->lookup("windows.menu.menu_multiplayer.btn_padding", info.btn_padding );
+        config_->lookup("windows.menu.menu_multiplayer.back_btn_w", info.back_btn_w );
+        config_->lookup("windows.menu.menu_multiplayer.back_btn_h_k", info.back_btn_h_k );
+        config_->lookup("windows.menu.menu_multiplayer.start_btn_w", info.start_btn_w );
+        config_->lookup("windows.menu.menu_multiplayer.start_btn_h_k", info.start_btn_h_k);
+        config_->lookup("windows.menu.menu_multiplayer.txt_label_w", info.txt_label_w);
+        config_->lookup("windows.menu.menu_multiplayer.txt_label_h_k", info.txt_label_h_k);
+        config_->lookup("windows.menu.menu_multiplayer.prevt_btn_w", info.prevt_btn_w);
+        config_->lookup("windows.menu.menu_multiplayer.prevt_btn_h_k", info.prevt_btn_h_k);
+        config_->lookup("windows.menu.menu_multiplayer.nextt_btn_w", info.nextt_btn_w);
+        config_->lookup("windows.menu.menu_multiplayer.nextt_btn_h_k", info.nextt_btn_h_k);
+        config_->lookup("windows.menu.background_color", info.color);
     }
-
     return info;
 }

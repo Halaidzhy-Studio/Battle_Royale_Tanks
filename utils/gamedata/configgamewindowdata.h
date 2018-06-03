@@ -1,15 +1,15 @@
 #ifndef CONFIGGAMEWINDOWDATA_H
 #define CONFIGGAMEWINDOWDATA_H
 
-#include "configextractorlibconfig.h"
+#include "configextractor.h"
 
-class ConfigGameWindowData : public ConfigExtractorLibconfig
+class ConfigGameWindowData : public ConfigExtractor
 {
 public:
-    ConfigGameWindowData(const std::shared_ptr<libconfig::Config>& config,
-                         const std::shared_ptr<Logger>& logger,
-                         bool configIsUpload);
-    ~ConfigGameWindowData();
+    ConfigGameWindowData() = delete;
+    ConfigGameWindowData(const std::shared_ptr<Config>& config,
+                         const std::shared_ptr<Logger>& loggers);
+    ~ConfigGameWindowData() = default;
 
     GameWindowInfo getGameWindowInfo() override;
 };

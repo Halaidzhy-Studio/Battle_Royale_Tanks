@@ -34,9 +34,6 @@ SOURCES += \
     Graphics/qtgraphicsitemadapter.cpp \
     Graphics/graphics.cpp \
     Physics/physics.cpp \
-    builders/singleplayerbodybuilder.cpp \
-    builders/directors/playersingleplayerbodybuilder.cpp \
-    utils/gamedata/configtankbodydata.cpp
 
 HEADERS += \
     engine.h \
@@ -46,10 +43,6 @@ HEADERS += \
     Graphics/qtgraphicsitemadapter.h \
     Graphics/graphics.h \
     Physics/physics.h \
-    builders/singleplayerbodybuilder.h \
-    builders/interfaces/singleplayerbodybuilderimpl.h \
-    builders/directors/playersingleplayerbodybuilder.h \
-    utils/gamedata/configtankbodydata.h
 
 SOURCES += $$files($$PWD/PlayScene/*.cpp)
 HEADERS += $$files($$PWD/PlayScene/*.h)

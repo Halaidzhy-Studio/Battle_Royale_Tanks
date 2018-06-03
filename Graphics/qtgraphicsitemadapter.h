@@ -21,11 +21,12 @@ private:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     // GraphicsItem interface
-    void setPos(Coordinate&) override;
+    void setPos(Coordinate) override;
     void setRotation(int) override;
     void isControlable(bool) override;
     void setTexture(Texture) override;
     void setRect(int, int, int, int) override;
+    void setRect(int, int) override;
     void setControlable() override;
 };
 

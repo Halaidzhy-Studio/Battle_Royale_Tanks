@@ -1,7 +1,7 @@
 #ifndef GAMEDATA_H
 #define GAMEDATA_H
 
-#include<string>
+#include <string>
 #include <utils/data/windows/gamewindowinfostruct.h>
 #include <utils/data/bodyinfostruct.h>
 #include <utils/data/tankinfostruct.h>
@@ -12,8 +12,7 @@
 #include <utils/data/network/serverinfo.h>
 #include <memory>
 #include <map>
-#include "configextractor.h"
-#include "QDebug"
+#include <utils/gamedata/extractor.h>
 
 class GameData
 {
@@ -23,16 +22,7 @@ public:
     GameData(const GameData&) = delete;
     GameData&operator=(const GameData&) = delete;
 
-    GameData(GameData&& other) noexcept :
-        tankInfoByType_(std::move(other.tankInfoByType_)),
-        tankBodyInfoByType_(std::move(other.tankBodyInfoByType_)),
-        tankTurretInfoByType_(std::move(other.tankTurretInfoByType_)),
-        bulletInfoByType_(std::move(other.bulletInfoByType_)),
-        singleplayerMenuInfo_(std::move(other.singleplayerMenuInfo_)),
-        multiplayerMenuInfo_(std::move(other.multiplayerMenuInfo_)),
-        menuWindowInfo_(std::move(other.menuWindowInfo_)),
-        gameWindowInfo_(std::move(other.gameWindowInfo_)),
-        gameInfo_(std::move(other.gameInfo_)) { }
+    GameData(GameData&& other) noexcept;
 
     TankInfo getTankInfoByType(TankTypes type);
     TankBodyInfo getBodyInfoByType(BodyTypes type);
@@ -46,8 +36,7 @@ public:
 
     ServerInfo getServerInfo() const;
 
-    static std::shared_ptr<GameData> createGameData(const std::shared_ptr<ConfigExtractor>& extractor,
-                                             const std::string& configPath);
+    static std::shared_ptr<GameData> createGameData(const std::shared_ptr<Extractor>& extractor);
 
 private:
     std::map<TankTypes, TankInfo> tankInfoByType_;

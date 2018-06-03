@@ -16,10 +16,10 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
 
 void PlayInstance::start()
 {
-    tanksList_.push_back(tankDirector_->getTank());
+    //tanksList_.push_back(tankDirector_->getTank());
     connect(timer_.get(), &QTimer::timeout,this, &PlayInstance::update);
-    timer_->start(1000/gameInfo_.tick);
     playInstanceWidget_->show();
+    timer_->start(1000/gameInfo_.tick);
 }
 
 void PlayInstance::stop()

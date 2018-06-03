@@ -23,7 +23,6 @@ public:
                           const std::shared_ptr<BodyInfoComponent>&  bodyInfo):
         graphicsItem_(graphicsItem), bodyInfo_(bodyInfo) {}
 
-
     ~ViewComponentBodyImpl() {}
 
     void update(GameObject *gameObject) override;

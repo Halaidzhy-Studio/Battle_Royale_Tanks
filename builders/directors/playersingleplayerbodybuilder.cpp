@@ -9,7 +9,7 @@ PlayerSingleplayerBodyBuilder::PlayerSingleplayerBodyBuilder(TankBodyInfo tankBo
                                                              const std::shared_ptr<Graphics> &graphics) :
     tankBodyInfo_(tankBodyInfo), graphics_(graphics)
 {
-    bodyInfoComponent_ = std::make_shared<BodyInfoComponent>();
+    bodyInfoComponent_ = std::make_shared<BodyInfoComponent>(tankBodyInfo_);
 }
 
 
@@ -26,5 +26,6 @@ std::shared_ptr<ViewComponent> PlayerSingleplayerBodyBuilder::getViewComponent()
     std::shared_ptr<GraphicsItem> graphicsItem = std::make_shared<QtGraphicsItemAdapter>(graphics_);
     graphicsItem->setControlable();
     graphicsItem->setRect(0, 0, tankBodyInfo_.w, tankBodyInfo_.h);
-    std::shared_ptr<ViewComponent> viewComponent = std::make_shared<ViewComponentBodyImpl>(graphicsItem);
+    std::shared_ptr<ViewComponent> viewComponent =
+            std::make_shared<ViewComponentBodyImpl>(graphicsItem, bodyInfoComponent_);
 }

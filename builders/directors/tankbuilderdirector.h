@@ -18,8 +18,8 @@ public:
 
 private:
     std::shared_ptr<TankBuilder> builder_;
-    std::shared_ptr<QGraphicsScene> scene_;
-    std::shared_ptr<b2World> world_;
+    std::shared_ptr<Graphics> scene_;
+    std::shared_ptr<Physics> world_;
 };
 
 #endif // TANKBUILDERDIRECTOR_H
