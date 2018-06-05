@@ -10,14 +10,13 @@ Graphics::Graphics() : graphicsScene_(new QGraphicsScene()),
 
 Graphics::~Graphics()
 {
-    // Так как временем удаления управляет родительский widget
+    // Так как временем жизни объектов управляет родительский widget
 }
 
 void Graphics::setSceneRect(int xp, int yp, int x, int y)
 {
     graphicsScene_->setSceneRect(xp, yp, x, y);
 }
-
 
 void Graphics::addItem(QGraphicsItem *item)
 {

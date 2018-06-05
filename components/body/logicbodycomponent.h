@@ -4,22 +4,18 @@
 #include <utils/data/bodyinfostruct.h>
 #include <utils/coordinate.h>
 #include <objects/possibilityinterfaces.h>
-
-#include <components/body/handleinputcomponentimplbody.h>
-#include <components/body/physicscomponentbodyimpl.h>
-#include <components/body/viewcomponentbodyimpl.h>
 #include <memory>
 
 class HandleInputComponentImplBody;
 class ViewComponentBodyImpl;
 class PhysicsComponentBodyImpl;
 
-class BodyInfoComponent : public Moveable, public Turnable
+class LogicBodyComponent : public Moveable, public Turnable
 {
 public:
-    BodyInfoComponent() = delete;
-    ~BodyInfoComponent() = default;
-    BodyInfoComponent(const TankBodyInfo& bodyInfo,
+    LogicBodyComponent() = delete;
+    ~LogicBodyComponent() = default;
+    LogicBodyComponent(const TankBodyInfo& bodyInfo,
                       const std::shared_ptr<Logger>& logger);
 
     TankBodyInfo bodyInfoConst() const;
@@ -58,11 +54,6 @@ private:
     int angle_;
 
     std::shared_ptr<Logger> logger_;
-
-    std::shared_ptr<HandleInputComponentImplBody> handleInputComponentImpl_;
-    std::shared_ptr<ViewComponentBodyImpl> viewComponentImlp_;
-    std::shared_ptr<PhysicsComponentBodyImpl> physicsComponentImpl_;
-
 };
 
 #endif // BODYINFOCOMPONENT_H

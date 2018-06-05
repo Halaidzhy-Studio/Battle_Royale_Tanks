@@ -2,7 +2,7 @@
 
 PhysicsComponentBodyImpl::PhysicsComponentBodyImpl(const PhysicsInfo &info,
                                                    const std::shared_ptr<Physics> &physicsEngine,
-                                                   const std::shared_ptr<BodyInfoComponent> &bodyInfoComponent)
+                                                   const std::shared_ptr<LogicBodyComponent> &bodyInfoComponent)
     : info_(info), physicEngine_(physicsEngine), bodyInfoComponent_(bodyInfoComponent){
 
     TankBodyInfo bodyInfo = bodyInfoComponent_->bodyInfoConst();

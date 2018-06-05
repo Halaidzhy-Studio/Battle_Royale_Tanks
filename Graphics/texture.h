@@ -1,11 +1,12 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include <string>
 
-class Texture
+struct Texture
 {
 public:
-    Texture();
+    std::string pathTo;
 };
 
 #endif // TEXTURE_H

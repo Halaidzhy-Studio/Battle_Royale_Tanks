@@ -35,7 +35,7 @@ TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
         }else {
             config_->lookup(listNameInConfig_, indexOfType, "width", info.w);
             config_->lookup(listNameInConfig_, indexOfType, "height", info.h);
-            config_->lookup(listNameInConfig_, indexOfType, "texture", info.styleInfo.pathToTexture);
+            config_->lookup(listNameInConfig_, indexOfType, "texture_body", info.styleInfo.pathToTexture);
             config_->lookup(listNameInConfig_, indexOfType, "speed", info.speed);
             config_->lookup(listNameInConfig_, indexOfType, "speed_angle", info.turnSpeed);
             config_->lookup(listNameInConfig_, indexOfType, "hp", info.hp);

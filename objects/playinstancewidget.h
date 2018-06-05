@@ -25,6 +25,7 @@ private:
     GameWindowInfo gameWindowInfo_;
     QPushButton* exitBTN_;
 
+
     void initInterface();
     void exit();
 };

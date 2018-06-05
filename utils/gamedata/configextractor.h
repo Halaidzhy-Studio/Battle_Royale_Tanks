@@ -30,6 +30,7 @@ public:
     GameWindowInfo getGameWindowInfo() override;
     GameInfo getGameInfo() override;
     ServerInfo getServerInfo() override;
+    CircleInfo getCircleInfo() override;
 
 private:
     // Переменная для хранения класса наследника

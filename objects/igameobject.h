@@ -24,7 +24,7 @@ public:
 
     void update() override {
         if (viewComponent_)
-            viewComponent_->update(this);
+            viewComponent_->update();
 
         if (physicsComponent_)
             physicsComponent_->update();

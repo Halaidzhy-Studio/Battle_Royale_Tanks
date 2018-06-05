@@ -22,10 +22,9 @@ public:
     virtual void shoot() = 0;
 };
 
-
-class Controlable : public virtual Moveable, public virtual Turnable, public virtual Shootable{
-
+class Modifiable{
+public:
+    virtual void decrease() = 0;
 };
-
 
 #endif // POSSIBILITYINTERFACES_H

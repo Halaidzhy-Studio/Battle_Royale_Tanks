@@ -25,6 +25,11 @@ GameInfo GameData::getGameInfo() const
     return gameInfo_;
 }
 
+CircleInfo GameData::getCircleInfo() const
+{
+    return circleInfo_;
+}
+
 ServerInfo GameData::getServerInfo() const
 {
     return serverInfo_;
@@ -59,22 +64,22 @@ GameData::GameData(GameData &&other) noexcept :
 
 }
 
-TankInfo GameData::getTankInfoByType(TankTypes type)
+TankInfo GameData::getTankInfoByType(TankTypes type) const
 {
-    return tankInfoByType_[type];
+    return tankInfoByType_.at(type);
 }
 
-TankBodyInfo GameData::getBodyInfoByType(BodyTypes type)
+TankBodyInfo GameData::getBodyInfoByType(BodyTypes type) const
 {
-    return tankBodyInfoByType_[type];
+    return tankBodyInfoByType_.at(type);
 }
 
-TankTurretInfo GameData::getTurretInfoByType(TurretTypes type)
+TankTurretInfo GameData::getTurretInfoByType(TurretTypes type) const
 {
-    return tankTurretInfoByType_[type];
+    return tankTurretInfoByType_.at(type);
 }
 
-BulletInfo GameData::getBulletInfoByType(BulletTypes type)
+BulletInfo GameData::getBulletInfoByType(BulletTypes type) const
 {
-    return bulletInfoByType_[type];
+    return bulletInfoByType_.at(type);
 }

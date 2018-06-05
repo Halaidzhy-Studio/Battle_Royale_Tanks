@@ -3,7 +3,7 @@
 
 #include <components/interfaces/componentsinterfaces.h>
 #include <objects/commands/command.h>
-#include <components/body/bodyinfocomponent.h>
+#include <components/body/logicbodycomponent.h>
 #include <Graphics/graphicsitem.h>
 
 class HandleInputComponentImplBody : public HandleInputComponent
@@ -11,11 +11,10 @@ class HandleInputComponentImplBody : public HandleInputComponent
 public:
     HandleInputComponentImplBody() = default;
     HandleInputComponentImplBody(GraphicsItem* item,
-                                 const std::shared_ptr<BodyInfoComponent> bodyInfoComponent_,
+                                 const std::shared_ptr<LogicBodyComponent> bodyInfoComponent_,
                                  const std::shared_ptr<Logger>& logger_);
 
-    void update(Controlable *gameObject) override;
-    void setObject(Controlable *gameObject) override;
+    void update() override;
     void initCommand() override;
 
     // QGraphicsItem interface
@@ -37,7 +36,7 @@ private:
 
     int keys_;
     GraphicsItem* item_;
-    std::shared_ptr<BodyInfoComponent> bodyInfoComponent_;
+    std::shared_ptr<LogicBodyComponent> bodyInfoComponent_;
     std::shared_ptr<Logger> logger_;
 };
 

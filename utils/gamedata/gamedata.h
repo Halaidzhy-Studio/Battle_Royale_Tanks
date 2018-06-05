@@ -10,6 +10,7 @@
 #include <utils/data/gameinfostruct.h>
 #include <utils/gameobjectstypes.h>
 #include <utils/data/network/serverinfo.h>
+#include <utils/data/circleinfostruct.h>
 #include <memory>
 #include <map>
 #include <utils/gamedata/extractor.h>
@@ -24,15 +25,16 @@ public:
 
     GameData(GameData&& other) noexcept;
 
-    TankInfo getTankInfoByType(TankTypes type);
-    TankBodyInfo getBodyInfoByType(BodyTypes type);
-    TankTurretInfo getTurretInfoByType(TurretTypes type);
-    BulletInfo getBulletInfoByType(BulletTypes type);
+    TankInfo getTankInfoByType(TankTypes type) const;
+    TankBodyInfo getBodyInfoByType(BodyTypes type) const;
+    TankTurretInfo getTurretInfoByType(TurretTypes type) const;
+    BulletInfo getBulletInfoByType(BulletTypes type) const;
     SingleplayerMenuInfo getSingleplayerMenuInfo() const;
     MultiplayerMenuInfo getMultiplayerMenuInfo() const;
     MenuWindowInfo getMenuWindowInfo() const;
     GameWindowInfo getGameWindowInfo() const;
     GameInfo getGameInfo() const;
+    CircleInfo getCircleInfo() const;
 
     ServerInfo getServerInfo() const;
 
@@ -49,6 +51,7 @@ private:
     MenuWindowInfo menuWindowInfo_;
     GameWindowInfo gameWindowInfo_;
     GameInfo gameInfo_;
+    CircleInfo circleInfo_;
     ServerInfo serverInfo_;
 
 };

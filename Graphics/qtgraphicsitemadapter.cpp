@@ -4,6 +4,7 @@ QtGraphicsItemAdapter::QtGraphicsItemAdapter(const std::shared_ptr<Graphics> & g
     graphics_(graphics), keys_(0)
 {
     graphics_->addItem(this);
+    // pixmap.load(":Resources/images/Tank.png");
 }
 
 QRectF QtGraphicsItemAdapter::boundingRect() const
@@ -14,8 +15,10 @@ QRectF QtGraphicsItemAdapter::boundingRect() const
 void QtGraphicsItemAdapter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     // Test need to delete later
-    painter->setPen(Qt::black);
-    painter->drawRect(rectF_);
+    //painter->setPen(Qt::black);
+    //painter->drawRect(rectF_);
+
+    painter->drawPixmap(-pixmap.width()/2, -pixmap.height()/2, pixmap);
 }
 
 void QtGraphicsItemAdapter::setPos(Coordinate coord)
@@ -30,25 +33,22 @@ void QtGraphicsItemAdapter::setRotation(int rotation)
 
 void QtGraphicsItemAdapter::isControlable(bool)
 {
-
 }
 
-void QtGraphicsItemAdapter::setTexture(Texture)
+void QtGraphicsItemAdapter::setTexture(Texture texture)
 {
-}
-
-void QtGraphicsItemAdapter::setRect(int xp, int yp, int x, int y)
-{
-    rectF_.setX(x);
-    rectF_.setY(yp);
-    rectF_.setWidth(x);
-    rectF_.setHeight(y);
+    pixmap.load(texture.pathTo.c_str());
 }
 
 void QtGraphicsItemAdapter::setRect(int w, int h)
 {
-    // -w/2, -h/2 центр координат предмета, совпадает с центром предмета
-    rectF_ = QRectF(-w/2, -h/2, w, h);
+    prepareGeometryChange();
+    rectF_.setX(-w/2);
+    rectF_.setY(-h/2);
+    rectF_.setWidth(w);
+    rectF_.setHeight(h);
+
+    pixmap = pixmap.scaled(w, h, Qt::KeepAspectRatio);
 }
 
 void QtGraphicsItemAdapter::setControlable()

@@ -13,7 +13,6 @@ public:
     virtual void isControlable(bool) = 0;
     virtual void setControlable() = 0;
     virtual void setTexture(Texture) = 0;
-    virtual void setRect(int, int, int, int) = 0;
     virtual void setRect(int, int) = 0;
     virtual int getActiveKeys() = 0;
 };

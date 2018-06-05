@@ -16,7 +16,7 @@ public:
 
     void update() override {
         if (handleInputComponent_)
-            handleInputComponent_->update(nullptr);
+            handleInputComponent_->update();
 
         GameObject::update();
     }

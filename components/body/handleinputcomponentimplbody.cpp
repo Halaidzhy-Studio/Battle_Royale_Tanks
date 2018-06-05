@@ -6,13 +6,13 @@
 #include <objects/commands/turnrightcommand.h>
 
 HandleInputComponentImplBody::HandleInputComponentImplBody(GraphicsItem *item,
-                                                           const std::shared_ptr<BodyInfoComponent> bodyInfoComponent,
+                                                           const std::shared_ptr<LogicBodyComponent> bodyInfoComponent,
                                                            const std::shared_ptr<Logger> &logger) :
     item_(item), bodyInfoComponent_(bodyInfoComponent), logger_(logger)
 {
 }
 
-void HandleInputComponentImplBody::update(Controlable *gameObject)
+void HandleInputComponentImplBody::update()
 {
     keys_ = item_->getActiveKeys();
     if (keys_ & KEY_W){
@@ -29,12 +29,6 @@ void HandleInputComponentImplBody::update(Controlable *gameObject)
 
     logger_->printLog(*bodyInfoComponent_, "[GAME]");
 }
-
-void HandleInputComponentImplBody::setObject(Controlable *gameObject)
-{
-
-}
-
 
 void HandleInputComponentImplBody::initCommand()
 {

@@ -2,6 +2,5 @@
 #define BULLETINFOSTRUCT_H
 #include "infostruct.h"
 
-struct BulletInfo : public InfoStruct, CircleInfo{
-};
+struct BulletInfo {};
 #endif // BULLETINFOSTRUCT_H

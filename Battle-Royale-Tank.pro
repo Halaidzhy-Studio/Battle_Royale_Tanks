@@ -29,33 +29,23 @@ INCLUDEPATH += "Box2D/"
 SOURCES += \
     main.cpp \
     engineqt.cpp\
-    Graphics/texture.cpp \
-    Graphics/qtgraphicsitemadapter.cpp \
-    Graphics/graphics.cpp \
-    Physics/physics.cpp \
 
 HEADERS += \
     engine.h \
     engineqt.h \
-    Graphics/graphicsitem.h \
-    Graphics/texture.h \
-    Graphics/qtgraphicsitemadapter.h \
-    Graphics/graphics.h \
-    Physics/physics.h \
-    objects/commands/movebackwardcommand.h \
-    objects/commands/turnrightcommand.h \
-    objects/commands/turnleftcommand.h \
-    objects/commands/turntocommand.h
 
-SOURCES += $$files($$PWD/PlayScene/*.cpp)
-HEADERS += $$files($$PWD/PlayScene/*.h)
+SOURCES += $$files($$PWD/Graphics/*.cpp)
+HEADERS += $$files($$PWD/Graphics/*.h)
+
+SOURCES += $$files($$PWD/Physics/*.cpp)
+HEADERS += $$files($$PWD/Physics/*.h)
 
 SOURCES += $$files($$PWD/GameMenu/*.cpp)
 HEADERS += $$files($$PWD/GameMenu/*.h)
+
 SOURCES += $$files($$PWD/utils/*.cpp)
 SOURCES += $$files($$PWD/utils/data/*.cpp)
 SOURCES += $$files($$PWD/utils/gamedata/*.cpp)
-
 HEADERS += $$files($$PWD/utils/*.h)
 HEADERS += $$files($$PWD/utils/data/*.h)
 HEADERS += $$files($$PWD/utils/data/menu/*.h)
@@ -63,7 +53,9 @@ HEADERS += $$files($$PWD/utils/gamedata/*.h)
 
 SOURCES += $$files($$PWD/components/*.cpp)
 SOURCES += $$files($$PWD/components/body/*.cpp)
+SOURCES += $$files($$PWD/components/circle/*.cpp)
 HEADERS += $$files($$PWD/components/body/*.h)
+HEADERS += $$files($$PWD/components/circle/*.h)
 HEADERS += $$files($$PWD/components/*.h)
 HEADERS += $$files($$PWD/components/interfaces/*.h)
 
@@ -89,13 +81,9 @@ HEADERS += $$files($$PWD/objects/commands/*.h)
 SOURCES += $$files($$PWD/objects/*.cpp)
 HEADERS += $$files($$PWD/objects/*.h)
 
-
-FORMS += \
-    playwidget.ui \
-
-
 RESOURCES += \
-    config.qrc
+    config.qrc \
+    images.qrc
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lBox2d
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./debug/ -lBox2d

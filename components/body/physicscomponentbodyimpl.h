@@ -2,7 +2,7 @@
 #define PHYSICSCOMPONENTBODYIMPL_H
 
 #include <components/interfaces/componentsinterfaces.h>
-#include <components/body/bodyinfocomponent.h>
+#include <components/body/logicbodycomponent.h>
 #include <objects/commands/movetocommand.h>
 #include <utils/data/infostruct.h>
 #include <Physics/physics.h>
@@ -13,14 +13,14 @@ class PhysicsComponentBodyImpl : public PhysicsComponent
 public:
     PhysicsComponentBodyImpl(const PhysicsInfo& info,
                              const std::shared_ptr<Physics>& physicsEngine,
-                             const std::shared_ptr<BodyInfoComponent>& bodyInfoComponent);
+                             const std::shared_ptr<LogicBodyComponent>& bodyInfoComponent);
     void update() override;
 private:
     PhysicsInfo info_;
     Coordinate coord_;
     TankBodyInfo* dynamicBodyInfo_;
     std::shared_ptr<Physics> physicEngine_;
-    std::shared_ptr<BodyInfoComponent> bodyInfoComponent_;
+    std::shared_ptr<LogicBodyComponent> bodyInfoComponent_;
     b2Body* body_;
 
     void updateTurn(b2Body* body, int angleSpeed);

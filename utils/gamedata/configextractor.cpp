@@ -80,6 +80,11 @@ ServerInfo ConfigExtractor::getServerInfo()
 {
 }
 
+CircleInfo ConfigExtractor::getCircleInfo()
+{
+
+}
+
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Config> &config,
                                  const std::shared_ptr<Logger> &logger) :
     config_(config), logger_(logger)

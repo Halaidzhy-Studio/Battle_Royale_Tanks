@@ -2,36 +2,25 @@
 #define VIEWCOMPONENTBODYIMPL_H
 
 #include <components/interfaces/componentsinterfaces.h>
-#include <QGraphicsRectItem>
-#include <utils/data/bodyinfostruct.h>
 #include <objects/igameobject.h>
-#include <QPainter>
-#include <Graphics/graphics.h>
 #include <Graphics/graphicsitem.h>
-#include "bodyinfocomponent.h"
+#include "logicbodycomponent.h"
 
-class ViewComponentBodyImpl : public ViewComponent
+class   ViewComponentBodyImpl : public ViewComponent
 {
 public:
 
     ViewComponentBodyImpl() = default;
-    ViewComponentBodyImpl(const StyleInfo& styleInfo, const RectInfo& rectInfo,
-                          const std::shared_ptr<BodyInfoComponent>&  bodyInfo) :
-        styleInfo_(styleInfo), rectInfo_(rectInfo), bodyInfo_(bodyInfo) {  }
-
     ViewComponentBodyImpl(GraphicsItem* graphicsItem,
-                          const std::shared_ptr<BodyInfoComponent>&  bodyInfo):
-        graphicsItem_(graphicsItem), bodyInfo_(bodyInfo) {}
+                          const std::shared_ptr<LogicBodyComponent>&  bodyInfo);
 
     ~ViewComponentBodyImpl() {}
 
-    void update(GameObject *gameObject) override;
+    void update() override;
 
 private:
-    StyleInfo styleInfo_;
-    RectInfo rectInfo_;
     GraphicsItem* graphicsItem_;
-    std::shared_ptr<BodyInfoComponent> bodyInfo_;
+    std::shared_ptr<LogicBodyComponent> bodyInfo_;
 };
 
 #endif // VIEWCOMPONENTBODYIMPL_H
