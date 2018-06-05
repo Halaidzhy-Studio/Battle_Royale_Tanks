@@ -1,4 +1,4 @@
-#include "playersingleplayerbodybuilder.h"
+#include "playerofflinebodybuilder.h"
 #include <Graphics/qtgraphicsitemadapter.h>
 #include <components/body/handleinputcomponentimplbody.h>
 

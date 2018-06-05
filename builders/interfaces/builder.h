@@ -1,11 +1,12 @@
-#ifndef TANKBODYBUILDER_H
-#define TANKBODYBUILDER_H
+#ifndef BUILDER_H
+#define BUILDER_H
 
-#include <objects/tankbody.h>
+#include <components/interfaces/componentsinterfaces.h>
+#include <memory>
 
-class BodyBuilder{
+class Builder{
 public:
-    virtual ~BodyBuilder() = default;
+    virtual ~Builder() = default;
 
     virtual std::shared_ptr<HandleInputComponent> getHandleInputComponent() {}
     virtual std::shared_ptr<PhysicsComponent> getPhysicsComponent() {}
@@ -13,4 +14,5 @@ public:
     virtual std::shared_ptr<NetworkComponent> getNetworkComponent() {}
 
 };
-#endif // TANKBODYBUILDER_H
+
+#endif // BUILDER_H

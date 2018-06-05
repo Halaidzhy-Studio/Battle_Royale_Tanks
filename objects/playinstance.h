@@ -9,8 +9,7 @@
 #include <utils/gameobjectstypes.h>
 #include <objects/tankcomplexobject.h>
 #include <objects/playinstancewidget.h>
-#include <builders/directors/tankbuilderdirector.h>
-#include <builders/directors/bodybuilderdirector.h>
+#include <builders/director.h>
 
 class PlayInstance: public QObject
 {
@@ -36,10 +35,10 @@ private:
 
     // Test need to delete
     std::shared_ptr<TankBody> testBody_;
-    std::shared_ptr<BodyBuilderDirector> testBodyDirector_;
+    std::unique_ptr<Director> director_;
 
-    std::unique_ptr<TankBuilderDirector> tankDirector_;
     std::vector<std::shared_ptr<TankComplexObject>> tanksList_;
+    //std::shared_ptr<std::shared_ptr<>>
     std::unique_ptr<QTimer> timer_;
     std::unique_ptr<PlayInstanceWidget> playInstanceWidget_;
     std::shared_ptr<Graphics> graphics_;

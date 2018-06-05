@@ -1,4 +1,4 @@
-#ifndef SINGLEPLAYERBODYBUILDERIMPL_H
+    #ifndef SINGLEPLAYERBODYBUILDERIMPL_H
 #define SINGLEPLAYERBODYBUILDERIMPL_H
 
 #include <components/interfaces/componentsinterfaces.h>

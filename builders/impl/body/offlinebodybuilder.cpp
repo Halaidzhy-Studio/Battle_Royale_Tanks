@@ -1,4 +1,4 @@
-#include "singleplayerbodybuilder.h"
+#include "offlinebodybuilder.h"
 
 OfflineBodyBuilder::OfflineBodyBuilder()
 {

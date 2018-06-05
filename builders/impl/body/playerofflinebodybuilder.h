@@ -1,7 +1,7 @@
 #ifndef PLAYERSINGLEPLAYERBODYBUILDER_H
 #define PLAYERSINGLEPLAYERBODYBUILDER_H
 
-#include <builders/interfaces/body/singleplayerbodybuilderimpl.h>
+#include <builders/interfaces/offlinebodybuilderimpl.h>
 #include <utils/data/bodyinfostruct.h>
 #include <components/body/logicbodycomponent.h>
 #include <components/body/viewcomponentbodyimpl.h>

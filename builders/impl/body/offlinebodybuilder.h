@@ -1,10 +1,10 @@
 #ifndef SINGLEPLAYERBODYBUILDER_H
 #define SINGLEPLAYERBODYBUILDER_H
 
-#include <builders/interfaces/body/bodybuilder.h>
-#include <builders/interfaces/body/singleplayerbodybuilderimpl.h>
+#include <builders/interfaces/builder.h>
+#include <builders/interfaces/offlinebodybuilderimpl.h>
 
-class OfflineBodyBuilder : public BodyBuilder
+class OfflineBodyBuilder : public Builder
 {
 public:
     OfflineBodyBuilder();
