@@ -5,6 +5,8 @@ HandleInputComponentCircleImpl::HandleInputComponentCircleImpl(
         const std::shared_ptr<Logger> &logger) :
     logicCircle_(logicCircle), logger_(logger), isCanMoving_(false)
 {
+    nextRadius_ = logicCircle_->getRadius();
+    calculateNextRadius();
     QTimer::singleShot(1000*logicCircle_->getCircleInfo().start_delay, [this](){
         isCanMoving_ = true;
     });
@@ -14,9 +16,9 @@ void HandleInputComponentCircleImpl::update()
 {
     if (isCanMoving_){
         command->execute();
-
-        if (nextRadius_ <= logicCircle_->getRadius()){
+        if (nextRadius_ >= logicCircle_->getRadius()){
             isCanMoving_ = false;
+            calculateNextRadius();
             QTimer::singleShot(1000*logicCircle_->getCircleInfo().simple_delay,
                                [this](){
                 isCanMoving_ = true;

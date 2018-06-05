@@ -11,7 +11,7 @@ class ViewComponentCircleImpl : public ViewComponent
 {
 public:
     ViewComponentCircleImpl() = delete;
-    ViewComponentCircleImpl(const std::shared_ptr<GraphicsItem>&,
+    ViewComponentCircleImpl(GraphicsItem*,
                             const std::shared_ptr<LogicCircleComponent>&,
                             const std::shared_ptr<Logger>&);
     
@@ -19,7 +19,7 @@ public:
     void update() override;
 
 private:
-    std::shared_ptr<GraphicsItem> graphicsItem_;
+    GraphicsItem* graphicsItem_;
     std::shared_ptr<LogicCircleComponent> logicCircle_;
     std::shared_ptr<Logger> logger_;
 };

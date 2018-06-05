@@ -1,6 +1,7 @@
 #include "playinstance.h"
 #include <builders/impl/body/playerofflinebodybuilder.h>
-#include <builders/impl/body/offlinebodybuilder.h>
+#include <builders/impl/circle/simpleofflinecirclebuilder.h>
+#include <builders/impl/offlinebuilder.h>
 #include <Graphics/qtgraphicsitemadapter.h>
 
 PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
@@ -23,8 +24,11 @@ void PlayInstance::start()
     initPlayer();
     //graphics_->addItem(rect);
 
-    connect(timer_.get(), &QTimer::timeout,this, &PlayInstance::update);
     playInstanceWidget_->show();
+
+    initCircle();
+
+    connect(timer_.get(), &QTimer::timeout,this, &PlayInstance::update);
     timer_->start(1000/gameInfo_.tick);
 
 }
@@ -39,7 +43,10 @@ void PlayInstance::stop()
 void PlayInstance::update()
 {
     logger_->printLog("PlayInstance is updated", "[GAME]");
+
     testBody_->update();
+    circle_->update();
+
     std::for_each(tanksList_.cbegin(), tanksList_.cend(), [](auto& el) {
         el->update();
     });
@@ -61,7 +68,18 @@ void PlayInstance::initPlayer()
     TankBodyInfo bodyInfo = gameData_->getBodyInfoByType(BodyTypes::DEFAULT);
 
     std::shared_ptr<Builder> builder =
-            std::make_shared<OfflineBodyBuilder>(std::make_shared<PlayerOfflineBodyBuilder>(bodyInfo, graphics_, logger_));
+            std::make_shared<OfflineBuilder>(std::make_shared<PlayerOfflineBodyBuilder>(bodyInfo, graphics_, logger_));
 
     testBody_ = director_->getTankBody(builder);
+}
+
+void PlayInstance::initCircle()
+{
+    CircleInfo circleInfo = gameData_->getCircleInfo();
+    circleInfo.r = 400;
+    std::shared_ptr<Builder> builder =
+            std::make_shared<OfflineBuilder>(
+                std::make_shared<SimpleOfflineCircleBuilder>(graphics_, nullptr, logger_, circleInfo));
+
+    circle_ = director_->getCircle(builder);
 }

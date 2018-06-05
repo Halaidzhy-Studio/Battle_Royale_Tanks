@@ -3,7 +3,6 @@
 LogicCircleComponent::LogicCircleComponent(const CircleInfo &circleInfo) :
     circleInfoConst_(circleInfo), circleInfoDynamic_(circleInfo)
 {
-
 }
 
 int LogicCircleComponent::getRadius() const

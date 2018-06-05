@@ -1,6 +1,6 @@
 #include "viewcomponentcircleimpl.h"
 
-ViewComponentCircleImpl::ViewComponentCircleImpl(const std::shared_ptr<GraphicsItem> &graphicsItem,
+ViewComponentCircleImpl::ViewComponentCircleImpl(GraphicsItem* graphicsItem,
                                                  const std::shared_ptr<LogicCircleComponent> &logicCircle,
                                                  const std::shared_ptr<Logger> &logger) :
     graphicsItem_(graphicsItem), logicCircle_(logicCircle), logger_(logger)

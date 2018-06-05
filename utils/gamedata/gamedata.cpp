@@ -46,6 +46,7 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extract
     gameData->gameWindowInfo_ = extractor->getGameWindowInfo();
     gameData->gameInfo_ = extractor->getGameInfo();
     gameData->tankBodyInfoByType_[BodyTypes::DEFAULT] = extractor->getBodyInfoByType(BodyTypes::DEFAULT);
+    gameData->circleInfo_ = extractor->getCircleInfo();
 
     return gameData;
 }

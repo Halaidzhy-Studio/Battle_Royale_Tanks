@@ -8,6 +8,7 @@ std::shared_ptr<Circle> Director::getCircle(const std::shared_ptr<Builder> & bui
     }
 
     std::shared_ptr<Circle> circle = std::make_shared<Circle>();
+
     circle->setViewComponent(builder->getViewComponent());
     circle->setHandleInputComponent(builder->getHandleInputComponent());
     return circle;

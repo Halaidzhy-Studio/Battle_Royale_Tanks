@@ -14,11 +14,9 @@ QRectF QtGraphicsItemAdapter::boundingRect() const
 
 void QtGraphicsItemAdapter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    // Test need to delete later
-    //painter->setPen(Qt::black);
-    //painter->drawRect(rectF_);
+    QRectF res(0, 0,pixmap.height(), pixmap.width());
+    painter->drawPixmap(rectF_, pixmap, res);
 
-    painter->drawPixmap(-pixmap.width()/2, -pixmap.height()/2, pixmap);
 }
 
 void QtGraphicsItemAdapter::setPos(Coordinate coord)
@@ -48,7 +46,7 @@ void QtGraphicsItemAdapter::setRect(int w, int h)
     rectF_.setWidth(w);
     rectF_.setHeight(h);
 
-    pixmap = pixmap.scaled(w, h, Qt::KeepAspectRatio);
+    //pixmap = pixmap.scaled(w, h);
 }
 
 void QtGraphicsItemAdapter::setControlable()

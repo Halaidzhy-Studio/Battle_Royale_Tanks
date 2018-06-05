@@ -38,7 +38,7 @@ private:
     std::unique_ptr<Director> director_;
 
     std::vector<std::shared_ptr<TankComplexObject>> tanksList_;
-    //std::shared_ptr<std::shared_ptr<>>
+    std::shared_ptr<Circle> circle_;
     std::unique_ptr<QTimer> timer_;
     std::unique_ptr<PlayInstanceWidget> playInstanceWidget_;
     std::shared_ptr<Graphics> graphics_;
@@ -46,6 +46,7 @@ private:
     GameInfo gameInfo_;
 
     void initPlayer();
+    void initCircle();
 };
 
 #endif // PLAYINSTANCE_H

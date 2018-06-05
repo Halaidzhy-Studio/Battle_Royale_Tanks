@@ -1,14 +1,14 @@
 #ifndef PLAYERSINGLEPLAYERBODYBUILDER_H
 #define PLAYERSINGLEPLAYERBODYBUILDER_H
 
-#include <builders/interfaces/offlinebodybuilderimpl.h>
+#include <builders/interfaces/offlinebuilderimpl.h>
 #include <utils/data/bodyinfostruct.h>
 #include <components/body/logicbodycomponent.h>
 #include <components/body/viewcomponentbodyimpl.h>
 #include <Graphics/graphics.h>
 #include <Graphics/graphicsitem.h>
 
-class PlayerOfflineBodyBuilder : public OfflineBodyBuilderImpl
+class PlayerOfflineBodyBuilder : public OfflineBuilderImpl
 {
 public:
     PlayerOfflineBodyBuilder() = default;

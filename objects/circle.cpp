@@ -8,6 +8,7 @@ void Circle::update()
     if (networkComponent_){
         networkComponent_->update();
     }
+    GameObject::update();
 }
 
 std::shared_ptr<HandleInputComponent> Circle::handleInputComponent() const

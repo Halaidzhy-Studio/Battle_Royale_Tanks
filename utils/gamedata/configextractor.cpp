@@ -6,6 +6,7 @@
 #include "configgameinfodata.h"
 #include "configgamewindowdata.h"
 #include "configtankbodydata.h"
+#include "configcircledata.h"
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Logger> &logger, const std::string &configFile) :
     logger_(logger), configFile_(configFile)
@@ -82,7 +83,8 @@ ServerInfo ConfigExtractor::getServerInfo()
 
 CircleInfo ConfigExtractor::getCircleInfo()
 {
-
+    data_.reset(new ConfigCircleData(config_, logger_));
+    return data_->getCircleInfo();
 }
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Config> &config,

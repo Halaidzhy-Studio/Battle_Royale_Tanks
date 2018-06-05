@@ -1,14 +1,14 @@
-    #ifndef SINGLEPLAYERBODYBUILDERIMPL_H
-#define SINGLEPLAYERBODYBUILDERIMPL_H
+#ifndef OFFLINEBUILDERIMPL_H
+#define OFFLINEBUILDERIMPL_H
 
 #include <components/interfaces/componentsinterfaces.h>
 #include <memory>
 
-class OfflineBodyBuilderImpl{
+class OfflineBuilderImpl{
 public:
-    virtual ~OfflineBodyBuilderImpl() = default;
+    ~OfflineBuilderImpl() = default;
     virtual std::shared_ptr<HandleInputComponent> getHandleInputComponent() = 0;
     virtual std::shared_ptr<PhysicsComponent> getPhysicsComponent() = 0;
     virtual std::shared_ptr<ViewComponent> getViewComponent() = 0;
 };
-#endif // SINGLEPLAYERBODYBUILDERIMPL_H
+#endif // OFFLINEBUILDERIMPL_H
