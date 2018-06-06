@@ -7,6 +7,8 @@
 class ConfigMenuWindowData : public ConfigExtractor
 {
 public:
+    ConfigMenuWindowData() = delete;
+    ~ConfigMenuWindowData() = default;
     ConfigMenuWindowData(const std::shared_ptr<Config>& config,
                          const std::shared_ptr<Logger>& logger);
     MenuWindowInfo getMenuWindowInfo() override;

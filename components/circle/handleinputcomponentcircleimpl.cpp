@@ -3,7 +3,8 @@
 HandleInputComponentCircleImpl::HandleInputComponentCircleImpl(
         const std::shared_ptr<LogicCircleComponent> &logicCircle,
         const std::shared_ptr<Logger> &logger) :
-    logicCircle_(logicCircle), logger_(logger), isCanMoving_(false)
+    logicCircle_(logicCircle), logger_(logger),
+    isCanMoving_(false), isNeverMove_(false)
 {
     nextRadius_ = logicCircle_->getRadius();
     calculateNextRadius();
@@ -14,9 +15,12 @@ HandleInputComponentCircleImpl::HandleInputComponentCircleImpl(
 
 void HandleInputComponentCircleImpl::update()
 {
-    if (isCanMoving_){
-        command->execute();
+    if (isCanMoving_ && !isNeverMove_){
         if (nextRadius_ >= logicCircle_->getRadius()){
+            if (nextRadius_ <= logicCircle_->getCircleInfo().min_r){
+                isNeverMove_ = true;
+            }
+
             isCanMoving_ = false;
             calculateNextRadius();
             QTimer::singleShot(1000*logicCircle_->getCircleInfo().simple_delay,
@@ -24,6 +28,8 @@ void HandleInputComponentCircleImpl::update()
                 isCanMoving_ = true;
             });
         }
+
+        command->execute();
     }
 }
 

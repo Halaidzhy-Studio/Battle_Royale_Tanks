@@ -4,7 +4,6 @@
 Graphics::Graphics() : graphicsScene_(new QGraphicsScene()),
                        graphicsView_(new QGraphicsView())
 {
-    graphicsScene_->setSceneRect(-150, -150, 300, 300);
     graphicsView_->setScene(graphicsScene_);
 }
 
@@ -38,4 +37,9 @@ void Graphics::setViewParent(QWidget *parent)
 void Graphics::addWidget(QWidget *widget)
 {
     graphicsScene_->addWidget(widget);
+}
+
+void Graphics::centerViewOn(int x, int y)
+{
+    graphicsView_->centerOn(QPointF(x, y));
 }

@@ -20,6 +20,7 @@ public:
     virtual TankBodyInfo getBodyInfoByType(BodyTypes type) = 0;
     virtual TankTurretInfo getTurretInfoByType(TurretTypes type) = 0;
     virtual BulletInfo getBulletInfoByType(BulletTypes type) = 0;
+    virtual std::string getMapFileByType(MapTypes type) = 0;
     virtual SingleplayerMenuInfo getSingleplayerMenuInfo() = 0;
     virtual MultiplayerMenuInfo getMultiplayerMenuInfo () = 0;
     virtual MenuWindowInfo getMenuWindowInfo() = 0;

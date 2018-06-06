@@ -4,7 +4,7 @@
 #include <memory>
 #include "engine.h"
 #include "engineqt.h"
-
+#include <QDebug>
 int main(int argc, char *argv[])
 {
     std::shared_ptr<Engine> engineQt = std::make_shared<EngineQT>(argc, argv);

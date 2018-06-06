@@ -16,7 +16,6 @@ void QtGraphicsItemAdapter::paint(QPainter *painter, const QStyleOptionGraphicsI
 {
     QRectF res(0, 0,pixmap.height(), pixmap.width());
     painter->drawPixmap(rectF_, pixmap, res);
-
 }
 
 void QtGraphicsItemAdapter::setPos(Coordinate coord)

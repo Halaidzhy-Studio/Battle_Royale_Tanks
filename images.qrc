@@ -4,5 +4,6 @@
         <file>Resources/images/GunTurret.png</file>
         <file>Resources/images/Bullet.png</file>
         <file>Resources/images/Circle.png</file>
+        <file>Resources/images/Wall.png</file>
     </qresource>
 </RCC>

@@ -24,6 +24,7 @@ public:
     TankBodyInfo getBodyInfoByType(BodyTypes type) override;
     TankTurretInfo getTurretInfoByType(TurretTypes type) override;
     BulletInfo getBulletInfoByType(BulletTypes type) override;
+    std::string getMapFileByType(MapTypes type);
     MenuWindowInfo getMenuWindowInfo() override;
     SingleplayerMenuInfo getSingleplayerMenuInfo() override;
     MultiplayerMenuInfo getMultiplayerMenuInfo() override;

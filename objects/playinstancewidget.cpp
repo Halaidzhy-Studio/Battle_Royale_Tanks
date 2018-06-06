@@ -12,6 +12,7 @@ PlayInstanceWidget::PlayInstanceWidget(const std::shared_ptr<GameData> &gameData
     gameData_(gameData), graphics_(graphics)
 {
     gameWindowInfo_ = gameData_->getGameWindowInfo();
+
     if (gameWindowInfo_.is_full_screen){
         setFixedSize(QApplication::desktop()->width(), QApplication::desktop()->height());
     }else {

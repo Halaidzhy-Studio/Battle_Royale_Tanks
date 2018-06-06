@@ -10,6 +10,7 @@
 #include <objects/tankcomplexobject.h>
 #include <objects/playinstancewidget.h>
 #include <builders/director.h>
+#include <utils/mapmanager.h>
 
 class PlayInstance: public QObject
 {
@@ -38,8 +39,10 @@ private:
     std::unique_ptr<Director> director_;
 
     std::vector<std::shared_ptr<TankComplexObject>> tanksList_;
+    std::shared_ptr<Wall> wall_;
     std::shared_ptr<Circle> circle_;
     std::unique_ptr<QTimer> timer_;
+    std::unique_ptr<MapManager> mapManager_;
     std::unique_ptr<PlayInstanceWidget> playInstanceWidget_;
     std::shared_ptr<Graphics> graphics_;
     TankTypes playerTankType_;
@@ -47,6 +50,7 @@ private:
 
     void initPlayer();
     void initCircle();
+    void initMap();
 };
 
 #endif // PLAYINSTANCE_H

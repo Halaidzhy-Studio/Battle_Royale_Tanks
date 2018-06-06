@@ -25,3 +25,15 @@ std::shared_ptr<TankBody> Director::getTankBody(const std::shared_ptr<Builder> &
     body->setHandleInputComponent(builder->getHandleInputComponent());
     return body;
 }
+
+std::shared_ptr<Wall> Director::getWall(const std::shared_ptr<Builder> &builder)
+{
+    if (!builder){
+        return nullptr;
+    }
+
+    std::shared_ptr<Wall> wall = std::make_shared<Wall>();
+    wall->setViewComponent(builder->getViewComponent());
+
+    return wall;
+}

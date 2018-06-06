@@ -21,12 +21,12 @@ private:
     std::shared_ptr<Logger> logger_;
 
     bool isCanMoving_;
+    bool isNeverMove_;
     int nextRadius_;
 
     std::shared_ptr<Command> command;
 
     void calculateNextRadius();
-
     void canMove();
 };
 

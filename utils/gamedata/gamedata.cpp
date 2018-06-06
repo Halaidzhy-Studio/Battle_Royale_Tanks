@@ -30,6 +30,11 @@ CircleInfo GameData::getCircleInfo() const
     return circleInfo_;
 }
 
+std::string GameData::getMapFileByType(MapTypes type) const
+{
+    return mapFileByType_.at(type);
+}
+
 ServerInfo GameData::getServerInfo() const
 {
     return serverInfo_;
@@ -46,6 +51,7 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extract
     gameData->gameWindowInfo_ = extractor->getGameWindowInfo();
     gameData->gameInfo_ = extractor->getGameInfo();
     gameData->tankBodyInfoByType_[BodyTypes::DEFAULT] = extractor->getBodyInfoByType(BodyTypes::DEFAULT);
+    gameData->mapFileByType_[MapTypes::DEFAULT] = extractor->getMapFileByType(MapTypes::DEFAULT);
     gameData->circleInfo_ = extractor->getCircleInfo();
 
     return gameData;

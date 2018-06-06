@@ -15,6 +15,7 @@ public:
     void setControlable(QGraphicsItem* item);
     void setViewParent(QWidget* parent);
     void addWidget(QWidget* widget);
+    void centerViewOn(int x, int y);
 private:
     QGraphicsScene* graphicsScene_;
     QGraphicsView* graphicsView_;

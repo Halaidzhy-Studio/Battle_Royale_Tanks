@@ -45,6 +45,7 @@ TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
     return info;
 }
 
+// Вынесу в конфиг класс, если будет время
 int ConfigTankBodyData::findIndexOfType(const std::string& type){
     int lengthOfList = config_->getLengthOfList(listNameInConfig_);
 

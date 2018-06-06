@@ -29,13 +29,13 @@ public:
     TankBodyInfo getBodyInfoByType(BodyTypes type) const;
     TankTurretInfo getTurretInfoByType(TurretTypes type) const;
     BulletInfo getBulletInfoByType(BulletTypes type) const;
+    std::string getMapFileByType(MapTypes type) const;
     SingleplayerMenuInfo getSingleplayerMenuInfo() const;
     MultiplayerMenuInfo getMultiplayerMenuInfo() const;
     MenuWindowInfo getMenuWindowInfo() const;
     GameWindowInfo getGameWindowInfo() const;
     GameInfo getGameInfo() const;
     CircleInfo getCircleInfo() const;
-
     ServerInfo getServerInfo() const;
 
     static std::shared_ptr<GameData> createGameData(const std::shared_ptr<Extractor>& extractor);
@@ -45,6 +45,7 @@ private:
     std::map<BodyTypes, TankBodyInfo> tankBodyInfoByType_;
     std::map<TurretTypes, TankTurretInfo> tankTurretInfoByType_;
     std::map<BulletTypes, BulletInfo> bulletInfoByType_;
+    std::map<MapTypes, std::string> mapFileByType_;
 
     SingleplayerMenuInfo singleplayerMenuInfo_;
     MultiplayerMenuInfo multiplayerMenuInfo_;

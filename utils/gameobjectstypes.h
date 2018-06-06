@@ -24,4 +24,9 @@ enum class BulletTypes
     DEFAULT
 };
 
+enum class MapTypes
+{
+    DEFAULT
+};
+
 #endif // GAMEOBJECTSTRUCTURES_H

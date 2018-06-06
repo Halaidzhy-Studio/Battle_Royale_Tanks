@@ -1,8 +1,11 @@
 #include "playinstance.h"
 #include <builders/impl/body/playerofflinebodybuilder.h>
 #include <builders/impl/circle/simpleofflinecirclebuilder.h>
+#include <builders/impl/wall/simplewallbuilder.h>
 #include <builders/impl/offlinebuilder.h>
 #include <Graphics/qtgraphicsitemadapter.h>
+#include <utils/data/wallinfostruct.h>
+#include <utils/mapmanagertxtimpl.h>
 
 PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
                            const std::shared_ptr<Logger>& logger) :
@@ -10,6 +13,9 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
 {
 
     director_ = std::make_unique<Director>();
+    mapManager_ = std::make_unique<MapManager>(graphics_, nullptr, logger_);
+
+    mapManager_->setMapManagerImpl(std::make_unique<MapManagerTxtImpl>(logger_));
 
     // need to set PlayerBuilder for bodyDirector
     gameInfo_ = gameData->getGameInfo();
@@ -21,13 +27,12 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
 void PlayInstance::start()
 {
     //tanksList_.push_back(tankDirector_->getTank());
+    initMap();
     initPlayer();
-    //graphics_->addItem(rect);
 
     playInstanceWidget_->show();
 
     initCircle();
-
     connect(timer_.get(), &QTimer::timeout,this, &PlayInstance::update);
     timer_->start(1000/gameInfo_.tick);
 
@@ -76,10 +81,17 @@ void PlayInstance::initPlayer()
 void PlayInstance::initCircle()
 {
     CircleInfo circleInfo = gameData_->getCircleInfo();
-    circleInfo.r = 400;
     std::shared_ptr<Builder> builder =
             std::make_shared<OfflineBuilder>(
                 std::make_shared<SimpleOfflineCircleBuilder>(graphics_, nullptr, logger_, circleInfo));
 
     circle_ = director_->getCircle(builder);
+}
+
+void PlayInstance::initMap()
+{
+    // Пока только один тип
+    auto file = gameData_->getMapFileByType(MapTypes::DEFAULT);
+    mapManager_->upload(file);
+    mapManager_->create();
 }

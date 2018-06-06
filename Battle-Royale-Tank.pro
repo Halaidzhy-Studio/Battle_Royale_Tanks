@@ -29,10 +29,14 @@ INCLUDEPATH += "Box2D/"
 SOURCES += \
     main.cpp \
     engineqt.cpp\
+    builders/impl/wall/simplewallbuilder.cpp \
+    components/turret/viewcomponentturretimpl.cpp \
 
 HEADERS += \
     engine.h \
     engineqt.h \
+    builders/impl/wall/simplewallbuilder.h \
+    components/turret/viewcomponentturretimpl.h \
 
 SOURCES += $$files($$PWD/Graphics/*.cpp)
 HEADERS += $$files($$PWD/Graphics/*.h)
@@ -52,8 +56,10 @@ HEADERS += $$files($$PWD/utils/data/menu/*.h)
 HEADERS += $$files($$PWD/utils/gamedata/*.h)
 
 SOURCES += $$files($$PWD/components/*.cpp)
+SOURCES += $$files($$PWD/components/wall/*.cpp)
 SOURCES += $$files($$PWD/components/body/*.cpp)
 SOURCES += $$files($$PWD/components/circle/*.cpp)
+HEADERS += $$files($$PWD/components/wall/*.h)
 HEADERS += $$files($$PWD/components/body/*.h)
 HEADERS += $$files($$PWD/components/circle/*.h)
 HEADERS += $$files($$PWD/components/*.h)
@@ -82,7 +88,8 @@ HEADERS += $$files($$PWD/objects/*.h)
 
 RESOURCES += \
     config.qrc \
-    images.qrc
+    images.qrc \
+    map.qrc
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lBox2d
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./debug/ -lBox2d
