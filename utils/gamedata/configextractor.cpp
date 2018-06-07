@@ -1,4 +1,3 @@
-#include <libconfig.h++>
 #include "configextractor.h"
 #include "configmenuwindowdata.h"
 #include "configsingleplayermenudata.h"
