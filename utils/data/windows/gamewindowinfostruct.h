@@ -6,7 +6,7 @@ struct GameWindowInfo
     int btn_padding;
     int back_btn_width;
     int back_btn_height;
-    bool isFullScrean;
+    bool is_full_screen;
 
     int width;
     int height;

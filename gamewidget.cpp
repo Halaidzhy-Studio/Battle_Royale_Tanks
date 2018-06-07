@@ -22,7 +22,7 @@ void GameWidget::initInterface()
 
     connect(backToMenuBTN_, &QPushButton::released,this, &GameWidget::backToMenu);
 
-    if (gameWindowInfo_.isFullScrean){
+    if (gameWindowInfo_.is_full_screen){
         showFullScreen();
     } else {
         show();

@@ -1,31 +1,15 @@
 #ifndef CONFIGMENUWINDOWDATA_H
 #define CONFIGMENUWINDOWDATA_H
 
-#include "configextractorlibconfig.h"
+#include "configextractor.h"
 #include <utils/data/menu/menuwindowinfostruct.h>
 
-using namespace libconfig;
-
-class ConfigMenuWindowData : public ConfigExtractorLibconfig
+class ConfigMenuWindowData : public ConfigExtractor
 {
 public:
     ConfigMenuWindowData(const std::shared_ptr<Config>& config,
-                         const std::shared_ptr<Logger>& logger,
-                         bool configIsUpload) :
-                         ConfigExtractorLibconfig(
-                         config, logger, configIsUpload), configIsUpload_(configIsUpload),
-                         logger_(logger), config_(config) {
-
-        std::string total = "ConMenuWindowData is created";
-        logger_->printLog(total, "[CONFIG]");
-    }
-    // GameData interface
-public:
+                         const std::shared_ptr<Logger>& logger);
     MenuWindowInfo getMenuWindowInfo() override;
-private:
-    bool configIsUpload_;
-    std::shared_ptr<Config> config_;
-    std::shared_ptr<Logger> logger_;
 };
 
 #endif // CONFIGMENUWINDOWDATA_H

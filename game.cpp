@@ -22,7 +22,7 @@ void Game::startGame()
     gameTimer_ = std::make_unique<QTimer>();
     connect(gameTimer_.get(), &QTimer::timeout, this, &Game::update);
 
-    gameTimer_->start(gameInfo_.gameTick);
+    gameTimer_->start(gameInfo_.tick);
     logger_->printLog("Game is started", "[ GAME ]");
 
 }
