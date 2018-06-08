@@ -13,9 +13,6 @@ ConfigTankBodyData::ConfigTankBodyData(const std::shared_ptr<Config> &config,
 TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
 {
     TankBodyInfo info;
-    info.w = 40;
-    info.h = 50;
-    info.styleInfo.pathToTexture = "default.png";
 
     std::string typenameByEnum;
     switch (type) {
@@ -28,34 +25,26 @@ TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
     if (config_->isConfigUpload()){
         logger_->printLog("ConfigTankBodyData is downloading", "[CONFIG]");
 
-        int indexOfType = findIndexOfType(typenameByEnum);
+        int indexOfType = config_->findIndexOfType(listNameInConfig_, typenameByEnum);
         if (indexOfType == -1){
             std::string total = "No '" + typenameByEnum + "' in config in '" + listNameInConfig_ + "'\n";
             logger_->printLog(total, "[CONFIG]");
         }else {
-            config_->lookup(listNameInConfig_, indexOfType, "width", info.w);
-            config_->lookup(listNameInConfig_, indexOfType, "height", info.h);
-            config_->lookup(listNameInConfig_, indexOfType, "texture_body", info.styleInfo.pathToTexture);
-            config_->lookup(listNameInConfig_, indexOfType, "speed", info.speed);
-            config_->lookup(listNameInConfig_, indexOfType, "speed_angle", info.turnSpeed);
-            config_->lookup(listNameInConfig_, indexOfType, "hp", info.hp);
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.default_rect_pos", info.styleInfo.default_rect_pos);
+
+            if (!info.styleInfo.default_rect_pos){
+                config_->lookup(listNameInConfig_, indexOfType, "body.style.x", info.styleInfo.x);
+                config_->lookup(listNameInConfig_, indexOfType, "body.style.y", info.styleInfo.y);
+            }
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.width", info.styleInfo.width);
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.height", info.styleInfo.height);
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.texture", info.styleInfo.pathToTexture);
+            config_->lookup(listNameInConfig_, indexOfType, "body.logic.speed", info.speed);
+            config_->lookup(listNameInConfig_, indexOfType, "body.logic.speed_angle", info.turnSpeed);
+            config_->lookup(listNameInConfig_, indexOfType, "body.logic.hp", info.hp);
         }
     }
 
     return info;
 }
 
-// Вынесу в конфиг класс, если будет время
-int ConfigTankBodyData::findIndexOfType(const std::string& type){
-    int lengthOfList = config_->getLengthOfList(listNameInConfig_);
-
-    for (int i = 0; i < lengthOfList; i++){
-        std::string tmp;
-        config_->lookup(listNameInConfig_, i, "title", tmp);
-
-        if (tmp == type)
-            return i;
-    }
-
-    return -1;
-}

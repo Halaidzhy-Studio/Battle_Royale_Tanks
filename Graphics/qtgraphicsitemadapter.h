@@ -11,30 +11,31 @@
 class QtGraphicsItemAdapter : public GraphicsItem, public QGraphicsItem
 {
 public:
-    QtGraphicsItemAdapter(const std::shared_ptr<Graphics>&);
+    QtGraphicsItemAdapter(const std::shared_ptr<Graphics>&,
+                          const std::shared_ptr<Logger>& logger);
+
     virtual ~QtGraphicsItemAdapter() = default;
 
     // GraphicsItem interface
     void setPos(Coordinate) override;
     void setRotation(int) override;
     void isControlable(bool) override;
-    void setTexture(Texture) override;
+    void setTexture(const std::string&) override;
     void setRect(int, int) override;
+    void setRect(int, int, int, int) override;
     void setControlable() override;
     int getActiveKeys() override;
+    void setParent(GraphicsItem *) override;
+    void setIsScalableTexture(bool) override;
 
 private:
     std::shared_ptr<Graphics> graphics_;
+    std::shared_ptr<Logger> logger_;
     QPixmap pixmap;
+    bool isScalableTexture_;
     QRectF rectF_;
     int keys_;
 
-    enum {
-        KEY_W = 0x01,
-        KEY_S = 0x02,
-        KEY_A = 0x04,
-        KEY_D = 0x08,
-    };
 protected:
     // QGraphicsItem interface
     QRectF boundingRect() const override;

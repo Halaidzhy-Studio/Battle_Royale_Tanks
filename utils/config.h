@@ -22,7 +22,9 @@ public:
                 const std::string &setting, std::string& var) const;
     void lookup(const std::string &list, int groupIndex,
                 const std::string &setting, int& var) const;
-
+    void lookup(const std::string &list, int groupIndex,
+                const std::string &setting, bool& var) const;
+    int findIndexOfType(const std::string &listNameInConfig, const std::string &type);
     int getLengthOfList(const std::string &list);
     bool isConfigUpload() const;
 private:

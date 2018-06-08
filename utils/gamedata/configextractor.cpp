@@ -8,6 +8,7 @@
 #include "configtankbodydata.h"
 #include "configcircledata.h"
 #include "configmapfiledata.h"
+#include "configtankturretdata.h"
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Logger> &logger, const std::string &configFile) :
     logger_(logger), configFile_(configFile)
@@ -39,6 +40,8 @@ TankBodyInfo ConfigExtractor::getBodyInfoByType(BodyTypes type)
 
 TankTurretInfo ConfigExtractor::getTurretInfoByType(TurretTypes type)
 {
+    data_.reset(new ConfigTankTurretData(config_, logger_));
+    return data_->getTurretInfoByType(type);
 }
 
 BulletInfo ConfigExtractor::getBulletInfoByType(BulletTypes type)

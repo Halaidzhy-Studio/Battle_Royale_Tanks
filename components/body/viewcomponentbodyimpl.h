@@ -14,10 +14,10 @@ public:
     ViewComponentBodyImpl(GraphicsItem* graphicsItem,
                           const std::shared_ptr<LogicBodyComponent>&  bodyInfo);
 
-    ~ViewComponentBodyImpl() {}
+    ~ViewComponentBodyImpl() = default;
 
     void update() override;
-
+    GraphicsItem* getGraphicsItem() override;
 private:
     GraphicsItem* graphicsItem_;
     std::shared_ptr<LogicBodyComponent> bodyInfo_;

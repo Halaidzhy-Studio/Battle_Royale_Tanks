@@ -27,6 +27,7 @@ public:
     void setMapManagerImpl(std::unique_ptr<MapManagerImpl>);
     void upload(const std::string&);
     void create();
+    Coordinate getPlayerStartCoord();
 private:
     std::string file_;
     std::unique_ptr<MapManagerImpl> impl_;

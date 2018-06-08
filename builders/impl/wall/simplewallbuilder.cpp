@@ -20,12 +20,15 @@ std::shared_ptr<PhysicsComponent> SimpleWallBuilder::getPhysicsComponent()
 
 std::shared_ptr<ViewComponent> SimpleWallBuilder::getViewComponent()
 {
-    GraphicsItem* item = new QtGraphicsItemAdapter(graphics_);
-    Texture texture;
-    texture.pathTo = info_.styleInfo.pathToTexture;
-    item->setTexture(texture);
+    GraphicsItem* item = new QtGraphicsItemAdapter(graphics_, logger_);
+    item->setTexture(info_.styleInfo.pathToTexture);
+
     item->setPos(Coordinate(info_.x, info_.y, Coordinate::CoordTypes::QT, logger_));
-    item->setRect(info_.w, info_.h);
+
+    if (info_.styleInfo.default_rect_pos)
+        item->setRect(info_.styleInfo.width, info_.styleInfo.height);
+    else
+        item->setRect(info_.styleInfo.x, info_.styleInfo.y, info_.styleInfo.width, info_.styleInfo.height);
 
     std::shared_ptr<ViewComponent> view =
             std::make_shared<ViewComponentWallImpl>(item);

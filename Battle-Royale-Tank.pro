@@ -30,13 +30,11 @@ SOURCES += \
     main.cpp \
     engineqt.cpp\
     builders/impl/wall/simplewallbuilder.cpp \
-    components/turret/viewcomponentturretimpl.cpp \
 
 HEADERS += \
     engine.h \
     engineqt.h \
     builders/impl/wall/simplewallbuilder.h \
-    components/turret/viewcomponentturretimpl.h \
 
 SOURCES += $$files($$PWD/Graphics/*.cpp)
 HEADERS += $$files($$PWD/Graphics/*.h)
@@ -59,9 +57,11 @@ SOURCES += $$files($$PWD/components/*.cpp)
 SOURCES += $$files($$PWD/components/wall/*.cpp)
 SOURCES += $$files($$PWD/components/body/*.cpp)
 SOURCES += $$files($$PWD/components/circle/*.cpp)
+SOURCES += $$files($$PWD/components/turret/*.cpp)
 HEADERS += $$files($$PWD/components/wall/*.h)
 HEADERS += $$files($$PWD/components/body/*.h)
 HEADERS += $$files($$PWD/components/circle/*.h)
+HEADERS += $$files($$PWD/components/turret/*.h)
 HEADERS += $$files($$PWD/components/*.h)
 HEADERS += $$files($$PWD/components/interfaces/*.h)
 

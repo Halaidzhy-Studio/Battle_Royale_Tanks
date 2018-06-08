@@ -2,7 +2,7 @@
 #define COMPONENTSINTERFACES_H
 
 #include <objects/possibilityinterfaces.h>
-class GameObject;
+#include <Graphics/graphicsitem.h>
 
 class HandleInputComponent{
 public:
@@ -15,6 +15,7 @@ public:
 class ViewComponent{
 public:
     virtual ~ViewComponent() = default;
+    virtual GraphicsItem* getGraphicsItem() {}
     virtual void update() = 0;
 };
 

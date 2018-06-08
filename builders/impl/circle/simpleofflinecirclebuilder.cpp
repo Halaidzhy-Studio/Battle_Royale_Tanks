@@ -26,15 +26,11 @@ std::shared_ptr<PhysicsComponent> SimpleOfflineCircleBuilder::getPhysicsComponen
 
 std::shared_ptr<ViewComponent> SimpleOfflineCircleBuilder::getViewComponent()
 {
-    GraphicsItem* graphicsItem = new QtGraphicsItemAdapter(graphics_);
-
-
-    Texture texture;
-    texture.pathTo = info_.styleInfo.pathToTexture;
-    graphicsItem->setTexture(texture);
+    GraphicsItem* graphicsItem = new QtGraphicsItemAdapter(graphics_, logger_);
+    graphicsItem->setTexture(info_.styleInfo.pathToTexture);
     graphicsItem->setPos(Coordinate(0, 0, Coordinate::CoordTypes::QT, logger_));
     graphicsItem->setRect(info_.r*2, info_.r*2);
-
+    graphicsItem->setIsScalableTexture(false);
     std::shared_ptr<ViewComponent> view =
             std::make_shared<ViewComponentCircleImpl>(graphicsItem, logicCircle_, logger_);
 

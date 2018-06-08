@@ -28,10 +28,12 @@ void MapManagerTxtImpl::upload(const std::string & file)
             break;
         case 'W':
             uploadWall(ss);
+            break;
         case 'P':
             uploadPlayerPos(ss);
+            break;
         default:
-            std::string total = "No such object type \'" + std::to_string(objectType) + "\'";
+            std::string total = "No such object type \'" + std::string(1, objectType) + "\'";
             logger_->printLog(total, "[MapManager]");
             break;
         }

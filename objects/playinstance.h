@@ -34,10 +34,9 @@ private:
     std::shared_ptr<GameData> gameData_;
     std::shared_ptr<Logger> logger_;
 
-    // Test need to delete
-    std::shared_ptr<TankBody> testBody_;
     std::unique_ptr<Director> director_;
 
+    // 0 так - это игрок
     std::vector<std::shared_ptr<TankComplexObject>> tanksList_;
     std::shared_ptr<Wall> wall_;
     std::shared_ptr<Circle> circle_;

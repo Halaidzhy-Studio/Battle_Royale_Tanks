@@ -14,6 +14,7 @@
 #include <memory>
 #include <map>
 #include <utils/gamedata/extractor.h>
+#include <utils/loggerinterface.h>
 
 class GameData
 {
@@ -38,7 +39,8 @@ public:
     CircleInfo getCircleInfo() const;
     ServerInfo getServerInfo() const;
 
-    static std::shared_ptr<GameData> createGameData(const std::shared_ptr<Extractor>& extractor);
+    static std::shared_ptr<GameData> createGameData(const std::shared_ptr<Extractor>& extractor,
+                                                    const std::shared_ptr<Logger> &logger);
 
 private:
     std::map<TankTypes, TankInfo> tankInfoByType_;
@@ -55,6 +57,7 @@ private:
     CircleInfo circleInfo_;
     ServerInfo serverInfo_;
 
+    std::shared_ptr<Logger> logger_;
 };
 
 #endif // GAMEDATA_H

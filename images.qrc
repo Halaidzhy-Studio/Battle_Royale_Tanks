@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/image">
-        <file>Resources/images/Tank.png</file>
-        <file>Resources/images/GunTurret.png</file>
-        <file>Resources/images/Bullet.png</file>
         <file>Resources/images/Circle.png</file>
-        <file>Resources/images/Wall.png</file>
+        <file>Resources/images/default_wall.png</file>
+        <file>Resources/images/default_turret.png</file>
+        <file>Resources/images/default_bullet.png</file>
+        <file>Resources/images/default_body.png</file>
     </qresource>
 </RCC>

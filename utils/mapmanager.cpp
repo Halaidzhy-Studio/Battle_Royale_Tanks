@@ -37,3 +37,9 @@ void MapManager::create()
     }else
         logger_->printLog("Can't create Map, because MapManagerImpl wasn't installed", "[MapManager]");
 }
+
+Coordinate MapManager::getPlayerStartCoord()
+{
+    return impl_->getPlayerPos();
+}
+

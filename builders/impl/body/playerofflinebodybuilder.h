@@ -27,8 +27,8 @@ private:
     std::shared_ptr<Logger> logger_;
 
     // За его удаление отвечает QGraphicsScene;
-    GraphicsItem* graphicsItem;
-    TankBodyInfo tankBodyInfo_;
+    GraphicsItem* item_;
+    TankBodyInfo info_;
 };
 
 #endif // PLAYERSINGLEPLAYERBODYBUILDER_H

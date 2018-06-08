@@ -27,6 +27,11 @@ struct CircleShapeInfo
 
 struct StyleInfo{
     std::string pathToTexture;
+    int width;
+    int height;
+    bool default_rect_pos;
+    int x;
+    int y;
 };
 
 struct InfoStruct{

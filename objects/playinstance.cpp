@@ -6,6 +6,7 @@
 #include <Graphics/qtgraphicsitemadapter.h>
 #include <utils/data/wallinfostruct.h>
 #include <utils/mapmanagertxtimpl.h>
+#include <builders/impl/turret/playerofflineturretbuilder.h>
 
 PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
                            const std::shared_ptr<Logger>& logger) :
@@ -17,7 +18,6 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
 
     mapManager_->setMapManagerImpl(std::make_unique<MapManagerTxtImpl>(logger_));
 
-    // need to set PlayerBuilder for bodyDirector
     gameInfo_ = gameData->getGameInfo();
     timer_ = std::make_unique<QTimer>();
     playInstanceWidget_ = std::make_unique<PlayInstanceWidget>(gameData_, graphics_);
@@ -26,7 +26,6 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
 
 void PlayInstance::start()
 {
-    //tanksList_.push_back(tankDirector_->getTank());
     initMap();
     initPlayer();
 
@@ -48,13 +47,9 @@ void PlayInstance::stop()
 void PlayInstance::update()
 {
     logger_->printLog("PlayInstance is updated", "[GAME]");
-
-    testBody_->update();
     circle_->update();
-
-    std::for_each(tanksList_.cbegin(), tanksList_.cend(), [](auto& el) {
+    for(const auto& el: tanksList_)
         el->update();
-    });
 }
 
 TankTypes PlayInstance::playerTankType() const
@@ -69,13 +64,25 @@ void PlayInstance::setPlayerTankType(const TankTypes &playerTankType)
 
 void PlayInstance::initPlayer()
 {
-    // Test need to delete
+
     TankBodyInfo bodyInfo = gameData_->getBodyInfoByType(BodyTypes::DEFAULT);
+    TankTurretInfo turretInfo = gameData_->getTurretInfoByType(TurretTypes::DEFAULT);
 
-    std::shared_ptr<Builder> builder =
-            std::make_shared<OfflineBuilder>(std::make_shared<PlayerOfflineBodyBuilder>(bodyInfo, graphics_, logger_));
 
-    testBody_ = director_->getTankBody(builder);
+    auto body = director_->getTankBody(
+                std::make_shared<OfflineBuilder>(
+                    std::make_shared<PlayerOfflineBodyBuilder>(bodyInfo, graphics_, logger_)
+                    )
+                );
+
+    auto turret = director_->getTurret(
+                std::make_shared<OfflineBuilder>(
+                    std::make_shared<PlayerOfflineTurretBuilder>(graphics_, nullptr,logger_, turretInfo)
+                    )
+                );
+
+    tanksList_.push_back(std::make_shared<TankComplexObject>(body, turret));
+    tanksList_[0]->setPos(mapManager_->getPlayerStartCoord());
 }
 
 void PlayInstance::initCircle()
@@ -94,4 +101,5 @@ void PlayInstance::initMap()
     auto file = gameData_->getMapFileByType(MapTypes::DEFAULT);
     mapManager_->upload(file);
     mapManager_->create();
+
 }
