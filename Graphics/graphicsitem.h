@@ -2,7 +2,6 @@
 #define GRAPHICSITEM_H
 
 #include <utils/coordinate.h>
-#include <Graphics/texture.h>
 
 class GraphicsItem
 {

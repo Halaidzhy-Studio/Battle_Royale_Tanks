@@ -15,6 +15,7 @@
 #include <map>
 #include <utils/gamedata/extractor.h>
 #include <utils/loggerinterface.h>
+#include <utils/data/hudinfostruct.h>
 
 class GameData
 {
@@ -31,6 +32,7 @@ public:
     TankTurretInfo getTurretInfoByType(TurretTypes type) const;
     BulletInfo getBulletInfoByType(BulletTypes type) const;
     std::string getMapFileByType(MapTypes type) const;
+    HudInfo getHudInfo() const;
     SingleplayerMenuInfo getSingleplayerMenuInfo() const;
     MultiplayerMenuInfo getMultiplayerMenuInfo() const;
     MenuWindowInfo getMenuWindowInfo() const;
@@ -56,7 +58,7 @@ private:
     GameInfo gameInfo_;
     CircleInfo circleInfo_;
     ServerInfo serverInfo_;
-
+    HudInfo hudInfo_;
     std::shared_ptr<Logger> logger_;
 };
 

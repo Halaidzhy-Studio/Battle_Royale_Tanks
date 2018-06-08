@@ -29,3 +29,8 @@ void QtWidget::show()
 {
     widget_->show();
 }
+
+void QtWidget::close()
+{
+    widget_->close();
+}

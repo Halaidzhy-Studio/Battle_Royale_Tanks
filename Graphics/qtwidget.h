@@ -13,6 +13,7 @@ public:
     int getW() override;
     int getH() override;
     void show() override;
+    void close() override;
     QWidget* getSourceWidget() const;
 private:
     QWidget* widget_;

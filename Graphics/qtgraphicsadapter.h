@@ -14,10 +14,11 @@ public:
     void setSceneRect(int xp, int yp, int x, int y) override;
     void addItem(GraphicsItem *item) override;
     void setControlable(GraphicsItem *item) override;
-    void setViewParent(Widget *parent) override;
-    void addWidget(Widget *widget) override;
+    void setViewParent(std::shared_ptr<Widget> parent) override;
+    void addWidget(std::shared_ptr<Widget> widget) override;
     void centerViewOn(int x, int y) override;
-
+    void addPushButtonWidget(std::shared_ptr<PushButtonWidget>) override;
+    void addLabelWidget(std::shared_ptr<LabelWidget>) override;
 private:
     QGraphicsScene* scene_;
     QGraphicsView* view_;

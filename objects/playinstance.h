@@ -14,6 +14,7 @@
 
 class PlayInstance: public QObject
 {
+    Q_OBJECT
 public:
     PlayInstance() = delete;
     ~PlayInstance() = default;
@@ -35,8 +36,7 @@ private:
 
     std::unique_ptr<Director> director_;
 
-
-    // 0 так - это игрок
+    // 0 танк - это игрок
     std::vector<std::shared_ptr<TankComplexObject>> tanksList_;
     std::shared_ptr<Wall> wall_;
     std::shared_ptr<Circle> circle_;

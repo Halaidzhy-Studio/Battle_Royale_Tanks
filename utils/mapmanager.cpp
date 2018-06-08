@@ -40,6 +40,12 @@ void MapManager::create()
 
 Coordinate MapManager::getPlayerStartCoord()
 {
-    return impl_->getPlayerPos();
+    if (impl_){
+        return impl_->getPlayerPos();
+    } else {
+        logger_->printLog("Can't get Player Pos, because MapManagerImpl wasn't installed", "[MapManager]");
+    }
+
+    return Coordinate();
 }
 

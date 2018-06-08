@@ -1,6 +1,8 @@
 #include "qtgraphicsadapter.h"
 #include "qtgraphicsitemadapter.h"
 #include "qtwidget.h"
+#include "qtpushbuttonadapter.h"
+#include "qtlabeladapter.h"
 
 QtGraphicsAdapter::QtGraphicsAdapter(const std::shared_ptr<Logger>& logger) : scene_(new QGraphicsScene()),
                        view_(new QGraphicsView()), logger_(logger)
@@ -34,9 +36,10 @@ void QtGraphicsAdapter::setControlable(GraphicsItem *item)
     }
 }
 
-void QtGraphicsAdapter::setViewParent(Widget *parent)
+
+void QtGraphicsAdapter::setViewParent(std::shared_ptr<Widget> parent)
 {
-    auto qtWidget = dynamic_cast<QtWidget*>(parent);
+    auto qtWidget = std::dynamic_pointer_cast<QtWidget>(parent);
 
     if (qtWidget){
         view_->setParent(qtWidget->getSourceWidget());
@@ -47,9 +50,9 @@ void QtGraphicsAdapter::setViewParent(Widget *parent)
     view_->setFixedSize(parent->getW(), parent->getH());
 }
 
-void QtGraphicsAdapter::addWidget(Widget *widget)
+void QtGraphicsAdapter::addWidget(std::shared_ptr<Widget> widget)
 {
-    auto qtWidget = dynamic_cast<QtWidget*>(widget);
+    auto qtWidget = std::dynamic_pointer_cast<QtWidget>(widget);
 
     if (qtWidget){
         scene_->addWidget(qtWidget->getSourceWidget());
@@ -62,3 +65,24 @@ void QtGraphicsAdapter::centerViewOn(int x, int y)
 {
     view_->centerOn(x, y);
 }
+
+void QtGraphicsAdapter::addPushButtonWidget(std::shared_ptr<PushButtonWidget> pushButton)
+{
+    auto qtPushButton = std::dynamic_pointer_cast<QtPushButtonAdapter>(pushButton);
+    if (qtPushButton){
+        scene_->addWidget(qtPushButton->getSourceWidget());
+    } else {
+        logger_->printLog("Can't cast PushButtonWidget* to QtPushButtonAdapter*", "[GRAPHICS]");
+    }
+}
+
+void QtGraphicsAdapter::addLabelWidget(std::shared_ptr<LabelWidget>)
+{
+    auto qtLabelWidget = std::dynamic_pointer_cast<QtLabelAdapter>(logger_);
+    if (qtLabelWidget){
+        scene_->addWidget(qtLabelWidget->getSourceWidget());
+    }else {
+        logger_->printLog("Can't cast LabelWidget* to QtLabelAdapter*", "[GRAPHICS]");
+    }
+}
+

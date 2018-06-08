@@ -8,22 +8,28 @@
 
 class PlayWindow : public QObject
 {
+    Q_OBJECT
 public:
     PlayWindow() = default;
-    PlayWindow(const std::shared_ptr<GameData>&);
+    PlayWindow(const std::shared_ptr<GameData>&,
+               const std::shared_ptr<Graphics>&,
+               const std::shared_ptr<Logger>&);
     ~PlayWindow() = default;
     void initPlayerHud(const std::shared_ptr<PlayerHUD>&);
     void setSize(int , int);
     void setRenderView(const std::shared_ptr<Graphics>& );
     void show();
+    void initInterface();
 signals:
     void exitSignal();
 private:
+    std::shared_ptr<Graphics> graphics_;
     std::shared_ptr<Widget> widget_;
-    std::unique_ptr<PushButtonWidget> exitBTN_;
+    std::shared_ptr<Logger> logger_;
+    std::shared_ptr<PushButtonWidget> exitBTN_;
     GameWindowInfo info_;
 
-    void initInterface();
+    void exit();
 };
 
 #endif // PLAYWINDOW_H

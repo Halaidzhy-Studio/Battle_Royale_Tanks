@@ -18,9 +18,10 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
     mapManager_ = std::make_unique<MapManager>(graphics_, nullptr, logger_);
     mapManager_->setMapManagerImpl(std::make_unique<MapManagerTxtImpl>(logger_));
 
-    window_ = std::make_unique<PlayWindow>(gameData_);
+    window_ = std::make_unique<PlayWindow>(gameData_, graphics_, logger_);
     window_->setRenderView(graphics_);
-    //playerHud_ = std::make_shared<PlayerHUD>();
+    window_->initInterface();
+
     gameInfo_ = gameData->getGameInfo();
     timer_ = std::make_unique<QTimer>();
 
@@ -32,7 +33,6 @@ void PlayInstance::start()
     initMap();
     initPlayer();
     window_->show();
-
     initCircle();
     connect(timer_.get(), &QTimer::timeout,this, &PlayInstance::update);
     timer_->start(1000/gameInfo_.tick);
@@ -48,7 +48,6 @@ void PlayInstance::stop()
 
 void PlayInstance::update()
 {
-    logger_->printLog("PlayInstance is updated", "[GAME]");
     circle_->update();
     for(const auto& el: tanksList_)
         el->update();

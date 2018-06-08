@@ -8,6 +8,7 @@ public:
     virtual int getW() = 0;
     virtual int getH() = 0;
     virtual void show() = 0;
+    virtual void close() = 0;
 };
 
 #endif // WIDGET_H

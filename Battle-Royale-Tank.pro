@@ -30,14 +30,11 @@ SOURCES += \
     main.cpp \
     engineqt.cpp\
     builders/impl/wall/simplewallbuilder.cpp \
-    Graphics/qtpushbuttonadapter.cpp
 
 HEADERS += \
     engine.h \
     engineqt.h \
     builders/impl/wall/simplewallbuilder.h \
-    Graphics/pushbuttonwidget.h \
-    Graphics/qtpushbuttonadapter.h
 
 SOURCES += $$files($$PWD/Graphics/*.cpp)
 HEADERS += $$files($$PWD/Graphics/*.h)
@@ -70,6 +67,7 @@ HEADERS += $$files($$PWD/components/interfaces/*.h)
 
 SOURCES += $$files($$PWD/builders/*.cpp)
 SOURCES += $$files($$PWD/builders/impl/*.cpp)
+SOURCES += $$files($$PWD/builders/impl/wall/*.cpp)
 SOURCES += $$files($$PWD/builders/impl/body/*.cpp)
 SOURCES += $$files($$PWD/builders/impl/turret/*.cpp)
 SOURCES += $$files($$PWD/builders/impl/tank/*.cpp)
@@ -78,6 +76,7 @@ SOURCES += $$files($$PWD/builders/impl/circle/*.cpp)
 HEADERS += $$files($$PWD/builders/*.h)
 HEADERS += $$files($$PWD/builders/impl/*.h)
 HEADERS += $$files($$PWD/builders/interfaces/*.h)
+HEADERS += $$files($$PWD/builders/impl/wall/*.h)
 HEADERS += $$files($$PWD/builders/impl/body/*.h)
 HEADERS += $$files($$PWD/builders/impl/turret/*.h)
 HEADERS += $$files($$PWD/builders/impl/tank/*.h)

@@ -6,7 +6,7 @@
 #include <Graphics/graphicsitem.h>
 #include "logicbodycomponent.h"
 
-class   ViewComponentBodyImpl : public ViewComponent
+class ViewComponentBodyImpl : public ViewComponent
 {
 public:
 

@@ -97,6 +97,10 @@ CircleInfo ConfigExtractor::getCircleInfo()
     return data_->getCircleInfo();
 }
 
+HudInfo ConfigExtractor::getHudInfo()
+{
+}
+
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Config> &config,
                                  const std::shared_ptr<Logger> &logger) :
     config_(config), logger_(logger)

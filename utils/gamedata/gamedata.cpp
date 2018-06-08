@@ -35,6 +35,11 @@ std::string GameData::getMapFileByType(MapTypes type) const
     return mapFileByType_.at(type);
 }
 
+HudInfo GameData::getHudInfo() const
+{
+    return hudInfo_;
+}
+
 ServerInfo GameData::getServerInfo() const
 {
     return serverInfo_;
@@ -58,6 +63,7 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extract
 
     gameData->circleInfo_ = extractor->getCircleInfo();
 
+    gameData->hudInfo_ = extractor->getHudInfo();
     return gameData;
 }
 

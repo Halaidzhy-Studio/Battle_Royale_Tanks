@@ -14,7 +14,7 @@ class GameMenu : public QWidget
 {
     Q_OBJECT
 public:
-    GameMenu() {}
+    GameMenu() = default;
     explicit GameMenu( const std::shared_ptr<GameData>& gameData,
                        const std::shared_ptr<Logger>& logger,
                        QWidget *parent = nullptr);

@@ -16,7 +16,6 @@ public:
     EngineQT(int& argc, char **argv);
 
     ~EngineQT() = default;
-    // Engine interface
     void setGameData(const std::shared_ptr<GameData> & gameData) override;
     void setLogger(const std::shared_ptr<Logger> & logger) override;
     int startGame() override;

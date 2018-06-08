@@ -10,6 +10,8 @@
 #include <utils/gameobjectstypes.h>
 #include <utils/data/network/serverinfo.h>
 #include <utils/data/circleinfostruct.h>
+#include <utils/data/hudinfostruct.h>
+
 class Extractor{
 public:
     virtual ~Extractor() = default;
@@ -28,5 +30,6 @@ public:
     virtual GameInfo getGameInfo() = 0;
     virtual ServerInfo getServerInfo() = 0;
     virtual CircleInfo getCircleInfo() = 0;
+    virtual HudInfo getHudInfo() = 0;
 };
 #endif // CONFIGEXTRACTOR_H
