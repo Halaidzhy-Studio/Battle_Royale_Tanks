@@ -30,11 +30,14 @@ SOURCES += \
     main.cpp \
     engineqt.cpp\
     builders/impl/wall/simplewallbuilder.cpp \
+    Graphics/qtpushbuttonadapter.cpp
 
 HEADERS += \
     engine.h \
     engineqt.h \
     builders/impl/wall/simplewallbuilder.h \
+    Graphics/pushbuttonwidget.h \
+    Graphics/qtpushbuttonadapter.h
 
 SOURCES += $$files($$PWD/Graphics/*.cpp)
 HEADERS += $$files($$PWD/Graphics/*.h)

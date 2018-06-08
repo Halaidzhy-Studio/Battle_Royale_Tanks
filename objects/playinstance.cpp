@@ -7,29 +7,31 @@
 #include <utils/data/wallinfostruct.h>
 #include <utils/mapmanagertxtimpl.h>
 #include <builders/impl/turret/playerofflineturretbuilder.h>
+#include <Graphics/qtgraphicsadapter.h>
 
 PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
                            const std::shared_ptr<Logger>& logger) :
-    gameData_(gameData), logger_(logger), graphics_(std::make_shared<Graphics>())
+    gameData_(gameData), logger_(logger), graphics_(std::make_shared<QtGraphicsAdapter>(logger))
 {
 
     director_ = std::make_unique<Director>();
     mapManager_ = std::make_unique<MapManager>(graphics_, nullptr, logger_);
-
     mapManager_->setMapManagerImpl(std::make_unique<MapManagerTxtImpl>(logger_));
 
+    window_ = std::make_unique<PlayWindow>(gameData_);
+    window_->setRenderView(graphics_);
+    //playerHud_ = std::make_shared<PlayerHUD>();
     gameInfo_ = gameData->getGameInfo();
     timer_ = std::make_unique<QTimer>();
-    playInstanceWidget_ = std::make_unique<PlayInstanceWidget>(gameData_, graphics_);
-    connect(playInstanceWidget_.get(), &PlayInstanceWidget::exitSignal, this, &PlayInstance::stop);
+
+    connect(window_.get(), &PlayWindow::exitSignal, this, &PlayInstance::stop);
 }
 
 void PlayInstance::start()
 {
     initMap();
     initPlayer();
-
-    playInstanceWidget_->show();
+    window_->show();
 
     initCircle();
     connect(timer_.get(), &QTimer::timeout,this, &PlayInstance::update);

@@ -4,21 +4,19 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <memory>
+#include <Graphics/graphicsitem.h>
+#include <Graphics/widget.h>
 
 class Graphics
 {
 public:
-    Graphics();
-    ~Graphics();
-    void setSceneRect(int xp, int yp, int x, int y);
-    void addItem(QGraphicsItem* item);
-    void setControlable(QGraphicsItem* item);
-    void setViewParent(QWidget* parent);
-    void addWidget(QWidget* widget);
-    void centerViewOn(int x, int y);
-private:
-    QGraphicsScene* graphicsScene_;
-    QGraphicsView* graphicsView_;
+    virtual ~Graphics() = default;
+    virtual void setSceneRect(int xp, int yp, int x, int y) = 0;
+    virtual void addItem(GraphicsItem* item) = 0;
+    virtual void setControlable(GraphicsItem* item) = 0;
+    virtual void setViewParent(Widget* parent) = 0;
+    virtual void addWidget(Widget* widget) = 0;
+    virtual void centerViewOn(int x, int y) = 0;
 };
 
 #endif // GRAPHICS_H
