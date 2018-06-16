@@ -1,5 +1,4 @@
 #include "config.h"
-#include <libconfig.h++>
 #include <utils/loggerinterface.h>
 
 class Config::ConfigImpl{
