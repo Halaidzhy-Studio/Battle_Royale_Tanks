@@ -1,53 +1,53 @@
 #include "handleinputcomponentimplbody.h"
 
-HandleInputComponentImplBody::HandleInputComponentImplBody(const std::shared_ptr<BodyInfoComponent> bodyInfoComponent)
-    : bodyInfoComponent_(bodyInfoComponent)
-{
+#include <objects/commands/moveforwardcommand.h>
+#include <objects/commands/movebackwardcommand.h>
+#include <objects/commands/turnleftcommand.h>
+#include <objects/commands/turnrightcommand.h>
+#include <engine.h>
 
+HandleInputComponentImplBody::HandleInputComponentImplBody(GraphicsItem *item,
+                                                           const std::shared_ptr<LogicBodyComponent> bodyInfoComponent,
+                                                           const std::shared_ptr<Logger> &logger) :
+    item_(item), bodyInfoComponent_(bodyInfoComponent), logger_(logger)
+{
 }
 
-
-void HandleInputComponentImplBody::update(Controlable *gameObject)
+void HandleInputComponentImplBody::update()
 {
-    if ( keys_ & KEY_W){
+    keys_ = item_->getActiveKeys();
+    if (keys_ & static_cast<int>(Engine::Keys::KEY_W)){
         keyW_->execute();
+    } else if (keys_ & static_cast<int>(Engine::Keys::KEY_S)){
+        keyS_->execute();
     }
-}
 
-void HandleInputComponentImplBody::setObject(Controlable *gameObject)
-{
-    gameObject_ = gameObject;
-}
-
-void HandleInputComponentImplBody::initKeyBoardCommand()
-{
-    keyW_ = std::make_shared<MoveForwardCommand>(bodyInfoComponent_);
-}
-
-void HandleInputComponentImplBody::keyPressEvent(QKeyEvent *event)
-{
-    switch (event->key()) {
-
-    case Qt::Key_W: keys_ |= KEY_W; break;
-    case Qt::Key_S: keys_ |= KEY_S; break;
-    case Qt::Key_A: keys_ |= KEY_A; break;
-    case Qt::Key_D: keys_ |= KEY_D; break;
-
-    default:
-        break;
+    if (keys_ & static_cast<int>(Engine::Keys::KEY_A)){
+        keyA_->execute();
+    }else if (keys_ & static_cast<int>(Engine::Keys::KEY_D)){
+        keyD_->execute();
     }
+
+    logger_->printLog(*bodyInfoComponent_, "[GAME]");
 }
 
-void HandleInputComponentImplBody::keyReleaseEvent(QKeyEvent *event)
+void HandleInputComponentImplBody::initCommand()
 {
-    switch (event->key()) {
-
-    case Qt::Key_W: keys_ &= ~KEY_W; break;
-    case Qt::Key_S: keys_ &= ~KEY_S; break;
-    case Qt::Key_A: keys_ &= ~KEY_A; break;
-    case Qt::Key_D: keys_ &= ~KEY_D; break;
-
-    default:
-        break;
+    auto moveable = std::dynamic_pointer_cast<Moveable>(bodyInfoComponent_);
+    if (moveable){
+        keyW_ = std::make_shared<MoveForwardCommand>(std::static_pointer_cast<Moveable>(bodyInfoComponent_));
+        keyS_ = std::make_shared<MoveBackwardCommand>(std::static_pointer_cast<Moveable>(bodyInfoComponent_));
+    }else{
+        logger_->printLog("Body doesn't have Move Possibility", "[GAME]");
     }
+
+    auto turnable = std::dynamic_pointer_cast<Turnable>(bodyInfoComponent_);
+    if (turnable){
+        keyA_ = std::make_shared<TurnLeftCommand>(std::static_pointer_cast<Turnable>(bodyInfoComponent_));
+        keyD_ = std::make_shared<TurnRightCommand>(std::static_pointer_cast<Turnable>(bodyInfoComponent_));
+    }else {
+        logger_->printLog("Body doesn't have Turn Possibility", "[GAME]");
+    }
+
 }
+

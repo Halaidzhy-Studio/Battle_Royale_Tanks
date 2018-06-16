@@ -8,7 +8,8 @@
 class TankComplexObject: public Object{
 public:
     TankComplexObject() = default;
-
+    TankComplexObject(const std::shared_ptr<TankBody> &,
+                      const std::shared_ptr<TankTurret> &);
     void update() override {
         body_->update();
         turret_->update();
@@ -16,11 +17,15 @@ public:
 
     void setBody(const std::shared_ptr<TankBody> &body);
     void setTurret(const std::shared_ptr<TankTurret> &turret);
+    void createTank();
 
+    void setPos(const Coordinate& coord);
 private:
     TankInfo tankInfo;
     std::shared_ptr<TankBody> body_;
     std::shared_ptr<TankTurret> turret_;
+
+    bool isJointsCreated_;
 };
 
 

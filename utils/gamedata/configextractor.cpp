@@ -5,6 +5,9 @@
 #include "configgameinfodata.h"
 #include "configgamewindowdata.h"
 #include "configtankbodydata.h"
+#include "configcircledata.h"
+#include "configmapfiledata.h"
+#include "configtankturretdata.h"
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Logger> &logger, const std::string &configFile) :
     logger_(logger), configFile_(configFile)
@@ -36,10 +39,18 @@ TankBodyInfo ConfigExtractor::getBodyInfoByType(BodyTypes type)
 
 TankTurretInfo ConfigExtractor::getTurretInfoByType(TurretTypes type)
 {
+    data_.reset(new ConfigTankTurretData(config_, logger_));
+    return data_->getTurretInfoByType(type);
 }
 
 BulletInfo ConfigExtractor::getBulletInfoByType(BulletTypes type)
 {
+}
+
+std::string ConfigExtractor::getMapFileByType(MapTypes type)
+{
+    data_.reset(new ConfigMapFileData(config_, logger_));
+    return data_->getMapFileByType(type);
 }
 
 MenuWindowInfo ConfigExtractor::getMenuWindowInfo()
@@ -76,6 +87,16 @@ GameInfo ConfigExtractor::getGameInfo()
 
 
 ServerInfo ConfigExtractor::getServerInfo()
+{
+}
+
+CircleInfo ConfigExtractor::getCircleInfo()
+{
+    data_.reset(new ConfigCircleData(config_, logger_));
+    return data_->getCircleInfo();
+}
+
+HudInfo ConfigExtractor::getHudInfo()
 {
 }
 

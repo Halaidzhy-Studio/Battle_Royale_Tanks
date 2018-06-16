@@ -24,12 +24,15 @@ public:
     TankBodyInfo getBodyInfoByType(BodyTypes type) override;
     TankTurretInfo getTurretInfoByType(TurretTypes type) override;
     BulletInfo getBulletInfoByType(BulletTypes type) override;
+    std::string getMapFileByType(MapTypes type);
     MenuWindowInfo getMenuWindowInfo() override;
     SingleplayerMenuInfo getSingleplayerMenuInfo() override;
     MultiplayerMenuInfo getMultiplayerMenuInfo() override;
     GameWindowInfo getGameWindowInfo() override;
     GameInfo getGameInfo() override;
     ServerInfo getServerInfo() override;
+    CircleInfo getCircleInfo() override;
+    HudInfo getHudInfo() override;
 
 private:
     // Переменная для хранения класса наследника

@@ -91,6 +91,8 @@ private:
     bool configIsUpload_;
 };
 
+const int Config::NO_FINDED_INDEX = -1;
+
 Config::~Config() = default;
 
 Config::Config(const std::shared_ptr<Logger>& logger)
@@ -133,6 +135,11 @@ void Config::lookup(const std::string &list, int groupIndex, const std::string &
     pImpl_->lookup(list, groupIndex, setting, var);
 }
 
+void Config::lookup(const std::string &list, int groupIndex, const std::string &setting, bool &var) const
+{
+    pImpl_->lookup(list, groupIndex, setting, var);
+}
+
 int Config::getLengthOfList(const std::string &list)
 {
     pImpl_->getLengthOfList(list);
@@ -141,6 +148,35 @@ int Config::getLengthOfList(const std::string &list)
 bool Config::isConfigUpload() const
 {
     pImpl_->isConfigUpload();
+}
+
+int Config::findIndexOfType(const std::string& listNameInConfig, const std::string& type){
+    int lengthOfList = pImpl_->getLengthOfList(listNameInConfig);
+
+    for (int i = 0; i < lengthOfList; i++){
+        std::string tmp;
+        pImpl_->lookup(listNameInConfig, i, "title", tmp);
+
+        if (tmp == type)
+            return i;
+    }
+
+    return NO_FINDED_INDEX;
+}
+
+int Config::findIndexOfType(const std::string &listNameInConfig, const int &type)
+{
+    int lengthOfList = pImpl_->getLengthOfList(listNameInConfig);
+
+    for (int i = 0; i < lengthOfList; i++){
+        int tmp;
+        pImpl_->lookup(listNameInConfig, i, "type", tmp);
+
+        if (tmp == type)
+            return i;
+    }
+
+    return NO_FINDED_INDEX;
 }
 
 

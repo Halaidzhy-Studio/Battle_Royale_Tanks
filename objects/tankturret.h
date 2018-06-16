@@ -17,7 +17,7 @@ public:
 
     void update() override {
         GameObject::update();
-        handleInputComponent_->update(nullptr);
+        handleInputComponent_->update();
     }
 
     std::shared_ptr<HandleInputComponent> handleInputComponent() const;
@@ -34,6 +34,7 @@ public:
 protected:
     TankTurretInfo tankTUrretInfo_;
     std::shared_ptr<HandleInputComponent> handleInputComponent_;
+    std::shared_ptr<NetworkComponent> networkComponent_;
 
 };
 

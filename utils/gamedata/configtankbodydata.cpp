@@ -21,37 +21,33 @@ TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
     switch (type) {
     default:
         logger_->printLog("There is no such type of tank, so DEFAULT type selected", "[GAME]");
-        typenameByEnum = "default";
+        typenameByEnum = GameData::DEFAULT_OBJECT_TYPE_NAME;
         break;
     }
 
     if (config_->isConfigUpload()){
         logger_->printLog("ConfigTankBodyData is downloading", "[CONFIG]");
-
-        int indexOfType = findIndexOfType(typenameByEnum);
-        if (indexOfType == -1){
+        
+        int indexOfType = config_->findIndexOfType(listNameInConfig_, typenameByEnum);
+        if (indexOfType == Config::NO_FINDED_INDEX){
             std::string total = "No '" + typenameByEnum + "' in config in '" + listNameInConfig_ + "'\n";
             logger_->printLog(total, "[CONFIG]");
         }else {
-            config_->lookup(listNameInConfig_, indexOfType, "width", info.w);
-            config_->lookup(listNameInConfig_, indexOfType, "height", info.h);
-            config_->lookup(listNameInConfig_, indexOfType, "texture", info.styleInfo.pathToTexture);
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.default_rect_pos", info.styleInfo.default_rect_pos);
+
+            if (!info.styleInfo.default_rect_pos){
+                config_->lookup(listNameInConfig_, indexOfType, "body.style.x", info.styleInfo.x);
+                config_->lookup(listNameInConfig_, indexOfType, "body.style.y", info.styleInfo.y);
+            }
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.width", info.styleInfo.width);
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.height", info.styleInfo.height);
+            config_->lookup(listNameInConfig_, indexOfType, "body.style.texture", info.styleInfo.pathToTexture);
+            config_->lookup(listNameInConfig_, indexOfType, "body.logic.speed", info.speed);
+            config_->lookup(listNameInConfig_, indexOfType, "body.logic.speed_angle", info.turnSpeed);
+            config_->lookup(listNameInConfig_, indexOfType, "body.logic.hp", info.hp);
         }
     }
 
     return info;
 }
 
-int ConfigTankBodyData::findIndexOfType(const std::string& type){
-    int lengthOfList = config_->getLengthOfList(listNameInConfig_);
-
-    for (int i = 0; i < lengthOfList; i++){
-        std::string tmp;
-        config_->lookup(listNameInConfig_, i, "title", tmp);
-
-        if (tmp == type)
-            return i;
-    }
-
-    return -1;
-}

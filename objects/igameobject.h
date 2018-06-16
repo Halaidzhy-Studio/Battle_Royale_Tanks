@@ -23,8 +23,11 @@ public:
     virtual ~GameObject() = default;
 
     void update() override {
-        viewComponent_->update(this);
-        physicsComponent_->update(this);
+        if (viewComponent_)
+            viewComponent_->update();
+
+        if (physicsComponent_)
+            physicsComponent_->update();
     }
 
     std::shared_ptr<ViewComponent> viewComponent() const;

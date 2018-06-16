@@ -1,22 +1,18 @@
 #include "viewcomponentbodyimpl.h"
 
-ViewComponentBodyImpl::ViewComponentBodyImpl()
+ViewComponentBodyImpl::ViewComponentBodyImpl(GraphicsItem *graphicsItem,
+                                             const std::shared_ptr<LogicBodyComponent> &bodyInfo) :
+    graphicsItem_(graphicsItem), bodyInfo_(bodyInfo)
 {
 }
 
-QRectF ViewComponentBodyImpl::boundingRect() const
+void ViewComponentBodyImpl::update()
 {
-    return QRectF(-rectInfo_.w/2, -rectInfo_.h/2, rectInfo_.w, rectInfo_.h);
+    graphicsItem_->setPos(bodyInfo_->coord());
+    graphicsItem_->setRotation(bodyInfo_->angle());
 }
 
-void ViewComponentBodyImpl::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+GraphicsItem *ViewComponentBodyImpl::getGraphicsItem()
 {
-    painter->setPen(Qt::black);
-    painter->drawRect(boundingRect());
-}
-
-void ViewComponentBodyImpl::update(GameObject *gameObject)
-{
-    this->setPos(bodyInfo_->coord().toQt().x(), bodyInfo_->coord().toQt().y());
-    this->setRotation(bodyInfo_->angle());
+    return graphicsItem_;
 }

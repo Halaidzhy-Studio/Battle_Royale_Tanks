@@ -2,23 +2,35 @@
 #define COMPONENTSINTERFACES_H
 
 #include <objects/possibilityinterfaces.h>
-class GameObject;
+#include <Graphics/graphicsitem.h>
 
 class HandleInputComponent{
 public:
-    virtual void update(Controlable* gameObject) = 0;
-    virtual void initKeyBoardCommand() = 0;
-    virtual void setObject(Controlable* gameObject) { }
+    virtual ~HandleInputComponent() = default;
+
+    virtual void update() = 0;
+    virtual void initCommand() = 0;
 };
 
 class ViewComponent{
 public:
-    virtual void update(GameObject* gameObject) = 0;
+    virtual ~ViewComponent() = default;
+    virtual GraphicsItem* getGraphicsItem() {}
+    virtual void update() = 0;
 };
 
 class PhysicsComponent{
 public:
-    virtual void update(GameObject* gameObject) = 0;
+    virtual ~PhysicsComponent() = default;
+
+    virtual void update() = 0;
+};
+
+class NetworkComponent {
+public:
+    virtual ~NetworkComponent() = default;
+    virtual void update() = 0;
+    virtual void setId() = 0;
 };
 
 

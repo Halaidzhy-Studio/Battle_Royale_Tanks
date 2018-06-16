@@ -1,4 +1,5 @@
 #include "gamedata.h"
+const std::string GameData::DEFAULT_OBJECT_TYPE_NAME = "default";
 
 SingleplayerMenuInfo GameData::getSingleplayerMenuInfo() const
 {
@@ -30,18 +31,40 @@ ServerInfo GameData::getServerInfo() const
     return serverInfo_;
 }
 
-std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extractor> &extractor)
+CircleInfo GameData::getCircleInfo() const
+{
+    return circleInfo_;
+}
+
+std::string GameData::getMapFileByType(MapTypes type) const
+{
+    return mapFileByType_.at(type);
+}
+
+HudInfo GameData::getHudInfo() const
+{
+    return hudInfo_;
+}
+
+std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extractor> &extractor,
+                                                   const std::shared_ptr<Logger> &logger)
 {
     std::shared_ptr<GameData> gameData(new GameData());
-
+    gameData->logger_ = logger;
     extractor->upload();
     gameData->menuWindowInfo_ = extractor->getMenuWindowInfo();
     gameData->singleplayerMenuInfo_ = extractor->getSingleplayerMenuInfo();
     gameData->multiplayerMenuInfo_ = extractor->getMultiplayerMenuInfo();
     gameData->gameWindowInfo_ = extractor->getGameWindowInfo();
     gameData->gameInfo_ = extractor->getGameInfo();
-    gameData->tankBodyInfoByType_[BodyTypes::DEFAULT] = extractor->getBodyInfoByType(BodyTypes::DEFAULT);
 
+    gameData->tankBodyInfoByType_[BodyTypes::DEFAULT] = extractor->getBodyInfoByType(BodyTypes::DEFAULT);
+    gameData->mapFileByType_[MapTypes::DEFAULT] = extractor->getMapFileByType(MapTypes::DEFAULT);
+    gameData->tankTurretInfoByType_[TurretTypes::DEFAULT] = extractor->getTurretInfoByType(TurretTypes::DEFAULT);
+
+    gameData->circleInfo_ = extractor->getCircleInfo();
+
+    gameData->hudInfo_ = extractor->getHudInfo();
     return gameData;
 }
 
@@ -59,22 +82,42 @@ GameData::GameData(GameData &&other) noexcept :
 
 }
 
-TankInfo GameData::getTankInfoByType(TankTypes type)
+TankInfo GameData::getTankInfoByType(TankTypes type) const
 {
-    return tankInfoByType_[type];
+
+    return tankInfoByType_.at(type);
 }
 
-TankBodyInfo GameData::getBodyInfoByType(BodyTypes type)
+TankBodyInfo GameData::getBodyInfoByType(BodyTypes type) const
 {
-    return tankBodyInfoByType_[type];
+    TankBodyInfo info;
+    try{
+        info = tankBodyInfoByType_.at(type);
+    }catch(const std::out_of_range& ex){
+        logger_->printLog("No such type of TankBody", "[GAMEDATA]");
+    }
+
+    return info;
 }
 
-TankTurretInfo GameData::getTurretInfoByType(TurretTypes type)
+TankTurretInfo GameData::getTurretInfoByType(TurretTypes type) const
 {
-    return tankTurretInfoByType_[type];
+    TankTurretInfo info;
+    try{
+        info = tankTurretInfoByType_.at(type);
+    }catch(const std::out_of_range& ex){
+        logger_->printLog("No such type of TankTurret", "[GAMEDATA]");
+    }
+    return info;
 }
 
-BulletInfo GameData::getBulletInfoByType(BulletTypes type)
+BulletInfo GameData::getBulletInfoByType(BulletTypes type) const
 {
-    return bulletInfoByType_[type];
+    BulletInfo info;
+    try{
+        info = bulletInfoByType_.at(type);
+    }catch(const std::out_of_range& ex){
+        logger_->printLog("No such type of Bullet", "[GAMEDATA]");
+    }
+    return info;
 }

@@ -9,6 +9,8 @@
 #include <utils/data/gameinfostruct.h>
 #include <utils/gameobjectstypes.h>
 #include <utils/data/network/serverinfo.h>
+#include <utils/data/circleinfostruct.h>
+#include <utils/data/hudinfostruct.h>
 
 class Extractor{
 public:
@@ -20,11 +22,14 @@ public:
     virtual TankBodyInfo getBodyInfoByType(BodyTypes type) = 0;
     virtual TankTurretInfo getTurretInfoByType(TurretTypes type) = 0;
     virtual BulletInfo getBulletInfoByType(BulletTypes type) = 0;
+    virtual std::string getMapFileByType(MapTypes type) = 0;
     virtual SingleplayerMenuInfo getSingleplayerMenuInfo() = 0;
     virtual MultiplayerMenuInfo getMultiplayerMenuInfo () = 0;
     virtual MenuWindowInfo getMenuWindowInfo() = 0;
     virtual GameWindowInfo getGameWindowInfo() = 0;
     virtual GameInfo getGameInfo() = 0;
     virtual ServerInfo getServerInfo() = 0;
+    virtual CircleInfo getCircleInfo() = 0;
+    virtual HudInfo getHudInfo() = 0;
 };
 #endif // CONFIGEXTRACTOR_H

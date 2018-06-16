@@ -16,6 +16,11 @@ public:
                const std::shared_ptr<Logger>& logger):
         x_(x), y_(y), type_(type), logger_(logger) {}
 
+    Coordinate(const Coordinate&) = default;
+    Coordinate&operator=(const Coordinate&) = default;
+    Coordinate(Coordinate&&) = default;
+    Coordinate&operator=(Coordinate&&) = default;
+
     Coordinate& toQt();
     Coordinate& toServer();
     Coordinate& toPhysicsengine();

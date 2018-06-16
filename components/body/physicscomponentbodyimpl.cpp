@@ -1,6 +1,5 @@
 #include "physicscomponentbodyimpl.h"
 
-PhysicsComponentBodyImpl::PhysicsComponentBodyImpl()
+void PhysicsComponentBodyImpl::update()
 {
-
 }

@@ -4,9 +4,8 @@
 #include "multiplayermenu.h"
 
 MultiplayerMenu::MultiplayerMenu(const std::shared_ptr<GameData>& gameData,
-                                 const std::shared_ptr<Game>& game,
                                  QWidget *parent) :
-    QWidget(parent), gameData_(gameData), game_(game)
+    QWidget(parent), gameData_(gameData)
 {
 
     multiplayerMenuInfo_ = gameData_->getMultiplayerMenuInfo();
