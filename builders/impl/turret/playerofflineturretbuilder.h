@@ -8,6 +8,7 @@
 #include <Physics/physics.h>
 #include <utils/data/turretinfostruct.h>
 #include <components/turret/logicturretcomponent.h>
+#include <objects/playerhud.h>
 
 class PlayerOfflineTurretBuilder : public OfflineBuilderImpl
 {
@@ -15,7 +16,8 @@ public:
     PlayerOfflineTurretBuilder(const std::shared_ptr<Graphics>&,
                                const std::shared_ptr<Physics>&,
                                const std::shared_ptr<Logger>&,
-                               const TankTurretInfo&);
+                               const TankTurretInfo&,
+                               const std::shared_ptr<PlayerHUD>&);
 
     ~PlayerOfflineTurretBuilder() = default;
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;

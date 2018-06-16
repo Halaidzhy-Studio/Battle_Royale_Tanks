@@ -24,6 +24,8 @@ public:
     TankBodyInfo* bodyInfoDynamicPtr();
     void setBodyInfoDynamic(const TankBodyInfo &bodyInfoDynamic);
 
+    int hp() const;
+
     // Turnable interface
     void turnR() override;
     void turnL() override;

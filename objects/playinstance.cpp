@@ -18,8 +18,10 @@ PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
     mapManager_ = std::make_unique<MapManager>(graphics_, nullptr, logger_);
     mapManager_->setMapManagerImpl(std::make_unique<MapManagerTxtImpl>(logger_));
 
+    playerHud_ =  std::make_shared<PlayerHUD>(gameData_, logger_);
     window_ = std::make_unique<PlayWindow>(gameData_, graphics_, logger_);
     window_->setRenderView(graphics_);
+    window_->initPlayerHud(playerHud_);
     window_->initInterface();
 
     gameInfo_ = gameData->getGameInfo();
@@ -51,6 +53,8 @@ void PlayInstance::update()
     circle_->update();
     for(const auto& el: tanksList_)
         el->update();
+
+    playerHud_->update();
 }
 
 TankTypes PlayInstance::playerTankType() const
@@ -72,13 +76,15 @@ void PlayInstance::initPlayer()
 
     auto body = director_->getTankBody(
                 std::make_shared<OfflineBuilder>(
-                    std::make_shared<PlayerOfflineBodyBuilder>(bodyInfo, graphics_, logger_)
+                    std::make_shared<PlayerOfflineBodyBuilder>(bodyInfo, graphics_,
+                                                               logger_, playerHud_)
                     )
                 );
 
     auto turret = director_->getTurret(
                 std::make_shared<OfflineBuilder>(
-                    std::make_shared<PlayerOfflineTurretBuilder>(graphics_, nullptr,logger_, turretInfo)
+                    std::make_shared<PlayerOfflineTurretBuilder>(graphics_, nullptr,logger_,
+                                                                 turretInfo, playerHud_)
                     )
                 );
 
@@ -91,7 +97,8 @@ void PlayInstance::initCircle()
     CircleInfo circleInfo = gameData_->getCircleInfo();
     std::shared_ptr<Builder> builder =
             std::make_shared<OfflineBuilder>(
-                std::make_shared<SimpleOfflineCircleBuilder>(graphics_, nullptr, logger_, circleInfo));
+                std::make_shared<SimpleOfflineCircleBuilder>(graphics_, nullptr, logger_,
+                                                             circleInfo, playerHud_));
 
     circle_ = director_->getCircle(builder);
 }

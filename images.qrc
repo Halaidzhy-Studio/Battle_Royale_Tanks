@@ -6,5 +6,6 @@
         <file>Resources/images/default_bullet.png</file>
         <file>Resources/images/default_body.png</file>
         <file>Resources/images/HP.png</file>
+        <file>Resources/images/Bullet.png</file>
     </qresource>
 </RCC>

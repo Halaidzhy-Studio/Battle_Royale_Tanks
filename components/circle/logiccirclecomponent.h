@@ -13,9 +13,13 @@ public:
     int getRadius() const;
     void decrease() override;
     CircleInfo getCircleInfo() const;
+
+    int circleToMoveTime() const;
 private:
     const CircleInfo circleInfoConst_;
     CircleInfo circleInfoDynamic_;
+
+    int timeToMove_;
 };
 
 #endif // LOGICCIRCLECOMPONENT_H

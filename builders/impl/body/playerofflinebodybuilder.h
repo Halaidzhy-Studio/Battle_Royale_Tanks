@@ -7,6 +7,7 @@
 #include <components/body/viewcomponentbodyimpl.h>
 #include <Graphics/graphics.h>
 #include <Graphics/graphicsitem.h>
+#include <objects/playerhud.h>
 
 class PlayerOfflineBodyBuilder : public OfflineBuilderImpl
 {
@@ -14,9 +15,11 @@ public:
     PlayerOfflineBodyBuilder() = default;
     PlayerOfflineBodyBuilder(const TankBodyInfo& tankBodyInfo,
                              const std::shared_ptr<Graphics>& graphics,
-                             const std::shared_ptr<Logger>& logger);
+                             const std::shared_ptr<Logger>& logger,
+                             const std::shared_ptr<PlayerHUD>& hud);
 
     ~PlayerOfflineBodyBuilder() = default;
+
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;
     std::shared_ptr<PhysicsComponent> getPhysicsComponent() override;
     std::shared_ptr<ViewComponent> getViewComponent() override;

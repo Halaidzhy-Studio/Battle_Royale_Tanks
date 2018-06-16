@@ -31,6 +31,11 @@ void LogicBodyComponent::setBodyInfoDynamic(const TankBodyInfo &bodyInfoDynamic)
     bodyInfoDynamic_ = bodyInfoDynamic;
 }
 
+int LogicBodyComponent::hp() const
+{
+    return bodyInfoDynamic_.hp;
+}
+
 
 void LogicBodyComponent::turnR()
 {

@@ -18,9 +18,10 @@ PlayWindow::PlayWindow(const std::shared_ptr<GameData> &data,
 }
 
 
-void PlayWindow::initPlayerHud(const std::shared_ptr<PlayerHUD> &)
+void PlayWindow::initPlayerHud(const std::shared_ptr<PlayerHUD> &hud)
 {
-
+    hud->setViewField(widget_);
+    hud->addHudToViewField();
 }
 
 void PlayWindow::setSize(int w, int h)

@@ -63,8 +63,8 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extract
     gameData->tankTurretInfoByType_[TurretTypes::DEFAULT] = extractor->getTurretInfoByType(TurretTypes::DEFAULT);
 
     gameData->circleInfo_ = extractor->getCircleInfo();
-
     gameData->hudInfo_ = extractor->getHudInfo();
+
     return gameData;
 }
 

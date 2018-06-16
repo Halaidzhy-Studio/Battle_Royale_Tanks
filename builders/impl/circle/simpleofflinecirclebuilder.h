@@ -7,6 +7,7 @@
 #include <utils/data/circleinfostruct.h>
 #include <utils/logger.h>
 #include <components/circle/logiccirclecomponent.h>
+#include <objects/playerhud.h>
 
 class SimpleOfflineCircleBuilder : public OfflineBuilderImpl
 {
@@ -14,7 +15,8 @@ public:
     SimpleOfflineCircleBuilder(const std::shared_ptr<Graphics>&,
                                const std::shared_ptr<Physics>&,
                                const std::shared_ptr<Logger>&,
-                               const CircleInfo&);
+                               const CircleInfo&,
+                               const std::shared_ptr<PlayerHUD>&);
 
     ~SimpleOfflineCircleBuilder() = default;
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;

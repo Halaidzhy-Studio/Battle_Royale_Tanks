@@ -7,11 +7,13 @@ PlayerOfflineTurretBuilder::PlayerOfflineTurretBuilder(
         const std::shared_ptr<Graphics> &graphics,
         const std::shared_ptr<Physics> &physics,
         const std::shared_ptr<Logger> &logger,
-        const TankTurretInfo &info) :
+        const TankTurretInfo &info,
+        const std::shared_ptr<PlayerHUD>& hud) :
     graphics_(graphics), physics_(physics), logger_(logger), info_(info),
     item_(new QtGraphicsItemAdapter(graphics, logger)),
     logicTurret_(std::make_shared<LogicTurretComponent>(info, logger))
 {
+    hud->setTurretLogic(logicTurret_);
 }
 
 std::shared_ptr<HandleInputComponent> PlayerOfflineTurretBuilder::getHandleInputComponent()

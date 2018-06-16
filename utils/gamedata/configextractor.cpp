@@ -9,6 +9,7 @@
 #include "configcircledata.h"
 #include "configmapfiledata.h"
 #include "configtankturretdata.h"
+#include "confighuddata.h"
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Logger> &logger, const std::string &configFile) :
     logger_(logger), configFile_(configFile)
@@ -99,6 +100,8 @@ CircleInfo ConfigExtractor::getCircleInfo()
 
 HudInfo ConfigExtractor::getHudInfo()
 {
+    data_.reset(new ConfigHudData(config_, logger_));
+    return data_->getHudInfo();
 }
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Config> &config,

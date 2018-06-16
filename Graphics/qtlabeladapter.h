@@ -17,6 +17,7 @@ public:
     void setText(const std::string &) override;
     void setTexture(int, int, const std::string &) override;
     void setParentWidget(std::shared_ptr<Widget>) override;
+    void setTextSize(int) override;
     QLabel* getSourceWidget();
 private:
     std::shared_ptr<Logger> logger_;

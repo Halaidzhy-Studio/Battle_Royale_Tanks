@@ -27,6 +27,11 @@ void LogicTurretComponent::turnTo(int angle)
     angle_ = angle;
 }
 
+int LogicTurretComponent::bulletRechargeTime()
+{
+    return bulletRechargeTime_;
+}
+
 int LogicTurretComponent::getAngle()
 {
     return angle_;

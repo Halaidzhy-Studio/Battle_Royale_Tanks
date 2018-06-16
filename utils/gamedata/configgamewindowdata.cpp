@@ -4,7 +4,7 @@ ConfigGameWindowData::ConfigGameWindowData(const std::shared_ptr<Config>& config
                      const std::shared_ptr<Logger>& logger) :
     ConfigExtractor(config, logger)
 {
-    logger_->printLog("ConGameWindowData is created", "[CONFIG]");
+    logger_->printLog("ConfigGameWindowData is created", "[CONFIG]");
 }
 
 GameWindowInfo ConfigGameWindowData::getGameWindowInfo()

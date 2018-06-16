@@ -11,6 +11,7 @@ public:
     virtual void setText(const std::string&) = 0;
     virtual void setTexture(int, int, const std::string&) = 0;
     virtual void setParentWidget(std::shared_ptr<Widget>) = 0;
+    virtual void setTextSize(int) = 0;
 };
 
 #endif // LABELWIDGET_H

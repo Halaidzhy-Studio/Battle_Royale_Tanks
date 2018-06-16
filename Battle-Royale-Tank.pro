@@ -92,18 +92,6 @@ RESOURCES += \
     map.qrc
 
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lBox2d
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./debug/ -lBox2d
-else:unix: LIBS += -L$$PWD/./ -lBox2d
-
-INCLUDEPATH += $$PWD/3rdparty/Box2D
-DEPENDPATH += $$PWD/3rdparty/Box2D
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/./release/libBox2d.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/./debug/libBox2d.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/./release/Box2d.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/./debug/Box2d.lib
-else:unix: PRE_TARGETDEPS += $$PWD/./libBox2d.a
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/3rdparty/libconfig/lib/.libs/release/ -lconfig++
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/3rdparty/libconfig/lib/.libs/debug/ -lconfig++
@@ -117,3 +105,16 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdparty/li
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/3rdparty/libconfig/lib/.libs/release/config++.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdparty/libconfig/lib/.libs/debug/config++.lib
 else:unix: PRE_TARGETDEPS += $$PWD/3rdparty/libconfig/lib/.libs/libconfig++.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/3rdparty/release/ -lBox2d
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/3rdparty/debug/ -lBox2d
+else:unix: LIBS += -L$$PWD/3rdparty/ -lBox2d
+
+INCLUDEPATH += $$PWD/3rdparty
+DEPENDPATH += $$PWD/3rdparty
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/3rdparty/release/libBox2d.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdparty/debug/libBox2d.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/3rdparty/release/Box2d.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdparty/debug/Box2d.lib
+else:unix: PRE_TARGETDEPS += $$PWD/3rdparty/libBox2d.a

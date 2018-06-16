@@ -6,7 +6,7 @@
 #include <objects/commands/movetocommand.h>
 #include <utils/data/infostruct.h>
 #include <Physics/physics.h>
-#include <Box2D.h>
+#include <3rdparty/Box2D/Box2D.h>
 
 class PhysicsComponentBodyImpl : public PhysicsComponent
 {

@@ -13,6 +13,7 @@ QtGraphicsAdapter::QtGraphicsAdapter(const std::shared_ptr<Logger>& logger) : sc
 void QtGraphicsAdapter::setSceneRect(int xp, int yp, int x, int y)
 {
     scene_->setSceneRect(xp, yp, x, y);
+    view_->resize(scene_->width(), scene_->height());
 }
 
 void QtGraphicsAdapter::addItem(GraphicsItem *item)

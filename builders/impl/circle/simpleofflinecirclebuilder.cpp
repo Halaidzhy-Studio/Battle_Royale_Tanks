@@ -7,9 +7,11 @@ SimpleOfflineCircleBuilder::SimpleOfflineCircleBuilder(
         const std::shared_ptr<Graphics> & graphics,
         const std::shared_ptr<Physics> & physics,
         const std::shared_ptr<Logger> &logger,
-        const CircleInfo &info) : graphics_(graphics), physics_(physics), logger_(logger),
+        const CircleInfo &info,
+        const std::shared_ptr<PlayerHUD>& hud) : graphics_(graphics), physics_(physics), logger_(logger),
     logicCircle_(std::make_shared<LogicCircleComponent>(info)), info_(info)
 {
+    hud->setCircleLogic(logicCircle_);
 }
 
 std::shared_ptr<HandleInputComponent> SimpleOfflineCircleBuilder::getHandleInputComponent()

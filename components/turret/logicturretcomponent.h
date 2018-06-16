@@ -21,12 +21,14 @@ public:
     void turnL() override;
     void turnTo(int angle) override;
 
+    int bulletRechargeTime();
     int getAngle();
 private:
     const TankTurretInfo turretInfoConst_;
     TankTurretInfo turretInfoDynamic_;
     std::shared_ptr<Logger> logger_;
     int angle_;
+    int bulletRechargeTime_;
 
 };
 

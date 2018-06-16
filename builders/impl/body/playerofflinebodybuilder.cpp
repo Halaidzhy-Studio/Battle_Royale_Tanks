@@ -4,10 +4,13 @@
 
 PlayerOfflineBodyBuilder::PlayerOfflineBodyBuilder(const TankBodyInfo &tankBodyInfo,
                                                    const std::shared_ptr<Graphics> &graphics,
-                                                   const std::shared_ptr<Logger>& logger) :
+                                                   const std::shared_ptr<Logger>& logger,
+                                                   const std::shared_ptr<PlayerHUD>& hud) :
     info_(tankBodyInfo), graphics_(graphics), logger_(logger)
 {
     bodyInfoComponent_ = std::make_shared<LogicBodyComponent>(info_, logger_);
+
+    hud->setBodyLogic(bodyInfoComponent_);
 
     // Графический объект отвечает за Нажатые клавиши и за отрисовку.
     item_ = new QtGraphicsItemAdapter(graphics_, logger_);

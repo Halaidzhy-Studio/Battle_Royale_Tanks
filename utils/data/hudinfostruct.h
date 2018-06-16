@@ -3,6 +3,9 @@
 
 #include <string>
 struct HudInfo{
+
+    int padding;
+
     int hp_image_w;
     int hp_image_h;
     int hp_image_x;
@@ -14,6 +17,7 @@ struct HudInfo{
     int hp_count_x;
     int hp_count_y;
     int hp_count_value;
+    int hp_count_text_size;
 
     int bullet_image_w;
     int bullet_image_h;
@@ -26,6 +30,7 @@ struct HudInfo{
     int bullet_time_x;
     int bullet_time_y;
     int bullet_time_value;
+    int bullet_time_text_size;
 
     int circle_image_w;
     int circle_image_h;
@@ -38,6 +43,7 @@ struct HudInfo{
     int circle_time_x;
     int circle_time_y;
     int circle_time_value;
+    int circle_time_text_size;
 };
 
 #endif // HUDINFOSTRUCT_H

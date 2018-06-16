@@ -19,8 +19,7 @@ void QtLabelAdapter::setText(const std::string & text)
 void QtLabelAdapter::setTexture(int w, int h, const std::string &path)
 {
     QPixmap pixmap(QString::fromStdString(path));
-    pixmap.scaled(w, h);
-    widget_->setPixmap(pixmap);
+    widget_->setPixmap(pixmap.scaled(w, h));
 }
 
 void QtLabelAdapter::setParentWidget(std::shared_ptr<Widget> parent)
@@ -31,6 +30,13 @@ void QtLabelAdapter::setParentWidget(std::shared_ptr<Widget> parent)
     }else {
         logger_->printLog("Can't cast Widget* to QtWidget*", "[QtLabelAdapter]");
     }
+}
+
+void QtLabelAdapter::setTextSize(int size)
+{
+    QFont font;
+    font.setPointSize(size);
+    widget_->setFont(font);
 }
 
 QLabel *QtLabelAdapter::getSourceWidget()
