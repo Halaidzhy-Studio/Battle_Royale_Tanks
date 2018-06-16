@@ -19,7 +19,7 @@ PlayerOfflineTurretBuilder::PlayerOfflineTurretBuilder(
 std::shared_ptr<HandleInputComponent> PlayerOfflineTurretBuilder::getHandleInputComponent()
 {
     std::shared_ptr<HandleInputComponent> input =
-            std::make_shared<HandleInputComponentTurretImpl>(item_, logicTurret_, logger_);
+            std::make_shared<HandleInputComponentTurretImpl>(graphics_, logicTurret_, logger_);
     input->initCommand();
     return input;
 }

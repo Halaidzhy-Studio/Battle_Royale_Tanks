@@ -21,6 +21,7 @@ public:
     virtual void addPushButtonWidget(std::shared_ptr<PushButtonWidget>) = 0;
     virtual void addLabelWidget(std::shared_ptr<LabelWidget>) = 0;
     virtual void centerViewOn(int x, int y) = 0;
+    virtual int getActiveKeys() = 0;
 };
 
 #endif // GRAPHICS_H

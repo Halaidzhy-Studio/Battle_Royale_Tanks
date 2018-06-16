@@ -1,8 +1,8 @@
 #ifndef HANDLEINPUTCOMPONENTTURRETIMPL_H
 #define HANDLEINPUTCOMPONENTTURRETIMPL_H
 
+#include <Graphics/graphics.h>
 #include <components/interfaces/componentsinterfaces.h>
-#include <Graphics/graphicsitem.h>
 #include <components/turret/logicturretcomponent.h>
 #include <memory>
 #include <objects/commands/command.h>
@@ -11,7 +11,7 @@ class HandleInputComponentTurretImpl : public HandleInputComponent
 {
 public:
     HandleInputComponentTurretImpl() = default;
-    HandleInputComponentTurretImpl(GraphicsItem*,
+    HandleInputComponentTurretImpl(const std::shared_ptr<Graphics>& graphics,
                             const std::shared_ptr<LogicTurretComponent>&,
                             const std::shared_ptr<Logger>&);
     ~HandleInputComponentTurretImpl() = default;
@@ -19,7 +19,7 @@ public:
     void update() override;
     void initCommand() override;
 private:
-    GraphicsItem* item_;
+    std::shared_ptr<Graphics> graphics_;
     std::shared_ptr<LogicTurretComponent> logicTurret_;
     std::shared_ptr<Logger> logger_;
     std::shared_ptr<Command> keyRight_;

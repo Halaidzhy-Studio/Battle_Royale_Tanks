@@ -19,9 +19,8 @@ PlayerOfflineBodyBuilder::PlayerOfflineBodyBuilder(const TankBodyInfo &tankBodyI
 
 std::shared_ptr<HandleInputComponent> PlayerOfflineBodyBuilder::getHandleInputComponent()
 {
-    item_->setControlable();
     std::shared_ptr<HandleInputComponent> handleInputComponent(
-                new HandleInputComponentImplBody(item_, bodyInfoComponent_, logger_));
+                new HandleInputComponentImplBody(graphics_, bodyInfoComponent_, logger_));
 
     handleInputComponent->initCommand();
     return handleInputComponent;

@@ -52,7 +52,7 @@ void PlayWindow::initInterface()
     });
 
     exitBTN_->setParent(widget_);
-    graphics_->addPushButtonWidget(exitBTN_);
+   // graphics_->addPushButtonWidget(exitBTN_);
 }
 
 void PlayWindow::exit()

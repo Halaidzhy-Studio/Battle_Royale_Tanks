@@ -5,15 +5,15 @@
 #include <engine.h>
 
 HandleInputComponentTurretImpl::HandleInputComponentTurretImpl(
-        GraphicsItem *item,
+        const std::shared_ptr<Graphics>& graphics,
         const std::shared_ptr<LogicTurretComponent> &logicTurret,
         const std::shared_ptr<Logger>& logger) :
-    item_(item), logicTurret_(logicTurret), logger_(logger)
+    graphics_(graphics), logicTurret_(logicTurret), logger_(logger)
 {
 }
 void HandleInputComponentTurretImpl::update()
 {
-    int keys = item_->getActiveKeys();
+    int keys = graphics_->getActiveKeys();
     if (keys & static_cast<int>(Engine::Keys::KEY_LEFT)){
         keyLeft_->execute();
     } else if (keys & static_cast<int>(Engine::Keys::KEY_RIGHT)) {

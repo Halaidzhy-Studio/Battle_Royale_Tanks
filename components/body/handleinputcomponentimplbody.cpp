@@ -6,16 +6,16 @@
 #include <objects/commands/turnrightcommand.h>
 #include <engine.h>
 
-HandleInputComponentImplBody::HandleInputComponentImplBody(GraphicsItem *item,
-                                                           const std::shared_ptr<LogicBodyComponent> bodyInfoComponent,
+HandleInputComponentImplBody::HandleInputComponentImplBody(const std::shared_ptr<Graphics>& graphics,
+                                                           const std::shared_ptr<LogicBodyComponent>& bodyInfoComponent,
                                                            const std::shared_ptr<Logger> &logger) :
-    item_(item), bodyInfoComponent_(bodyInfoComponent), logger_(logger)
+    graphics_(graphics), bodyInfoComponent_(bodyInfoComponent), logger_(logger)
 {
 }
 
 void HandleInputComponentImplBody::update()
 {
-    keys_ = item_->getActiveKeys();
+    keys_ = graphics_->getActiveKeys();
     if (keys_ & static_cast<int>(Engine::Keys::KEY_W)){
         keyW_->execute();
     } else if (keys_ & static_cast<int>(Engine::Keys::KEY_S)){

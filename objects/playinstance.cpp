@@ -8,10 +8,12 @@
 #include <utils/mapmanagertxtimpl.h>
 #include <builders/impl/turret/playerofflineturretbuilder.h>
 #include <Graphics/qtgraphicsadapter.h>
-
+#include <Graphics/qtgraphicssceneadapter.h>
 PlayInstance::PlayInstance(const std::shared_ptr<GameData> & gameData,
                            const std::shared_ptr<Logger>& logger) :
-    gameData_(gameData), logger_(logger), graphics_(std::make_shared<QtGraphicsAdapter>(logger))
+    gameData_(gameData), logger_(logger),
+    graphics_(std::make_shared<QtGraphicsAdapter>(
+        logger, std::make_shared<QtGraphicsSceneAdapter>(logger)))
 {
 
     director_ = std::make_unique<Director>();

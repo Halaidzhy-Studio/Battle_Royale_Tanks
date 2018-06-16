@@ -3,27 +3,30 @@
 #include "qtwidget.h"
 #include "qtpushbuttonadapter.h"
 #include "qtlabeladapter.h"
+#include "qtgraphicssceneadapter.h"
 
-QtGraphicsAdapter::QtGraphicsAdapter(const std::shared_ptr<Logger>& logger) : scene_(new QGraphicsScene()),
-                       view_(new QGraphicsView()), logger_(logger)
+QtGraphicsAdapter::QtGraphicsAdapter(const std::shared_ptr<Logger>& logger,
+                                     const std::shared_ptr<GraphicsScene>& scene) :
+                       view_(new QGraphicsView()), logger_(logger), scene_(scene)
 {
-    view_->setScene(scene_);
+
+    auto qtScene = std::dynamic_pointer_cast<QtGraphicsSceneAdapter>(scene);
+    if (qtScene){
+        view_->setScene(qtScene->sourceScene());
+    }else
+        logger_->printLog("Can't cast GraphicsScene* to QGraphicsScene", "[GRAPHICS]");
+
 }
 
 void QtGraphicsAdapter::setSceneRect(int xp, int yp, int x, int y)
 {
-    scene_->setSceneRect(xp, yp, x, y);
+    scene_->setRect(xp, yp, x, y);
     view_->resize(scene_->width(), scene_->height());
 }
 
 void QtGraphicsAdapter::addItem(GraphicsItem *item)
 {
-    auto qtItem = dynamic_cast<QtGraphicsItemAdapter*>(item);
-    if (qtItem){
-        scene_->addItem(qtItem);
-    }else {
-        logger_->printLog("Can't cast GraphicsItem* to QtGraphicsItemAdapter*", "[GRAPHICS]");
-    }
+    scene_->addItem(item);
 }
 
 void QtGraphicsAdapter::setControlable(GraphicsItem *item)
@@ -53,13 +56,7 @@ void QtGraphicsAdapter::setViewParent(std::shared_ptr<Widget> parent)
 
 void QtGraphicsAdapter::addWidget(std::shared_ptr<Widget> widget)
 {
-    auto qtWidget = std::dynamic_pointer_cast<QtWidget>(widget);
-
-    if (qtWidget){
-        scene_->addWidget(qtWidget->getSourceWidget());
-    }else {
-        logger_->printLog("Can't cast Widget* to QtWidget*", "[GRAPHICS]");
-    }
+    scene_->addWidget(widget);
 }
 
 void QtGraphicsAdapter::centerViewOn(int x, int y)
@@ -69,21 +66,16 @@ void QtGraphicsAdapter::centerViewOn(int x, int y)
 
 void QtGraphicsAdapter::addPushButtonWidget(std::shared_ptr<PushButtonWidget> pushButton)
 {
-    auto qtPushButton = std::dynamic_pointer_cast<QtPushButtonAdapter>(pushButton);
-    if (qtPushButton){
-        scene_->addWidget(qtPushButton->getSourceWidget());
-    } else {
-        logger_->printLog("Can't cast PushButtonWidget* to QtPushButtonAdapter*", "[GRAPHICS]");
-    }
+    scene_->addPushButtonWidget(pushButton);
 }
 
-void QtGraphicsAdapter::addLabelWidget(std::shared_ptr<LabelWidget>)
+void QtGraphicsAdapter::addLabelWidget(std::shared_ptr<LabelWidget> label)
 {
-    auto qtLabelWidget = std::dynamic_pointer_cast<QtLabelAdapter>(logger_);
-    if (qtLabelWidget){
-        scene_->addWidget(qtLabelWidget->getSourceWidget());
-    }else {
-        logger_->printLog("Can't cast LabelWidget* to QtLabelAdapter*", "[GRAPHICS]");
-    }
+    scene_->addLabelWidget(label);
+}
+
+int QtGraphicsAdapter::getActiveKeys()
+{
+    return scene_->getActiveKeys();
 }
 
