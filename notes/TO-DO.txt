@@ -1,0 +1,43 @@
+LEGEND:
+~ in-progress
++ done
+- free
+
+TO-DO
+============================================
+~ class GameData
+~ class ConfigGameData : public GameData
+
+--------------------------------------------
+
++ class ComplexTank
+~ class TankBody : public GameObject
+~ class TankTurret : public GameObject
+- class TankBullet : public GameObject
+
+--------------------------------------------
+
+~ class TankBuildDirector
+~ class TankBuilder
+~ class ConfigTankBuilder : public TankBuilder
+~~- class Body/Turret/Bullet BuilDirector
+~~- class Body/Turret/Bullet Builder
+~~- class ConfigBody/ConfigTurret/ConfigBullet Build : public Body/Turret/Bullet Builder
+
+--------------------------------------------
+
+-- class Keyboard Body/Turret HandleInputComponent : public HandleInputComponent
+--- class Body/Turret/Bullet ViewComponent : public ViewComponent
+--- class Body/Turret/Bullet PhysicsComponent : public PhysicsComponent
+
+--------------------------------------------
+
+- class Command
+
+--------------------------------------------
+
+- class PhysicsMediator
+- class ViewMediator
+- class HandleMediator
+
+---------------------------------------------
