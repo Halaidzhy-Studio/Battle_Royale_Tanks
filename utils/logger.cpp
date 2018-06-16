@@ -8,6 +8,8 @@ const std::string QtLogger::loggerQt = "[QT]";
 
 std::string QtLogger::loggerDist = "QDEBUG";
 
+const std::string QtLogger::QDEBUG_DIST = "QDEBUG";
+
 void QtLogger::setLoggerDist(const std::string &dist)
 {
     loggerDist = dist;
@@ -15,7 +17,7 @@ void QtLogger::setLoggerDist(const std::string &dist)
 
 void QtLogger::printLog(const std::string& data, const std::string& loggerType)
 {
-    if (loggerDist != "QDEBUG"){
+    if (loggerDist != QDEBUG_DIST){
         outFile_.write(loggerType.c_str(), loggerType.size());
         outFile_.put(':');
         outFile_.write(data.c_str(), data.size());
@@ -27,7 +29,7 @@ void QtLogger::printLog(const std::string& data, const std::string& loggerType)
 
 QtLogger::QtLogger()
 {
-    if (loggerDist != "QDEBUG"){
+    if (loggerDist != QDEBUG_DIST){
         outFile_.open(loggerDist, std::ios_base::app | std::ios_base::out);
         if (!outFile_){
             throw std::runtime_error("Can't initialize Logger");

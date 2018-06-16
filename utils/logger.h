@@ -28,5 +28,7 @@ private:
     std::string loggerType_;
     std::ofstream outFile_;
 
+    static const std::string QDEBUG_DIST;
+
 };
 #endif // LOGGER_H

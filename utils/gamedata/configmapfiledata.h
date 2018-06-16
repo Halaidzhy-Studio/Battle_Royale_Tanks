@@ -14,7 +14,6 @@ public:
     std::string getMapFileByType(MapTypes type) override;
 private:
     static const std::string listNameInConfig_;
-    int findIndexOfType(const int &type);
 };
 
 #endif // CONFIGMAPFILEDATA_H

@@ -20,6 +20,8 @@
 class GameData
 {
 public:
+    static const std::string DEFAULT_OBJECT_TYPE_NAME;
+
     GameData() = default;
     ~GameData() = default;
     GameData(const GameData&) = delete;

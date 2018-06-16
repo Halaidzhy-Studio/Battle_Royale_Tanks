@@ -15,8 +15,6 @@ public:
 
 private:
     static const std::string listNameInConfig_;
-
-    int findIndexOfType(const std::string &type);
 };
 
 #endif // CONFIGTANKBODYDATA_H

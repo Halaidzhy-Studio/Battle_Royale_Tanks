@@ -91,6 +91,8 @@ private:
     bool configIsUpload_;
 };
 
+const int Config::NO_FINDED_INDEX = -1;
+
 Config::~Config() = default;
 
 Config::Config(const std::shared_ptr<Logger>& logger)
@@ -159,7 +161,22 @@ int Config::findIndexOfType(const std::string& listNameInConfig, const std::stri
             return i;
     }
 
-    return -1;
+    return NO_FINDED_INDEX;
+}
+
+int Config::findIndexOfType(const std::string &listNameInConfig, const int &type)
+{
+    int lengthOfList = pImpl_->getLengthOfList(listNameInConfig);
+
+    for (int i = 0; i < lengthOfList; i++){
+        int tmp;
+        pImpl_->lookup(listNameInConfig, i, "type", tmp);
+
+        if (tmp == type)
+            return i;
+    }
+
+    return NO_FINDED_INDEX;
 }
 
 

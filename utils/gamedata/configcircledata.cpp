@@ -18,5 +18,14 @@ CircleInfo ConfigCircleData::getCircleInfo()
     info.start_delay = 0;
     info.styleInfo.pathToTexture = ":image/Resources/images/Circle.png";
 
+    config_->lookup("game.circle.min_r", info.min_r);
+    config_->lookup("game.circle.max_r", info.max_r);
+    config_->lookup("game.circle.r", info.r);
+    config_->lookup("game.circle.r_k", info.r_k);
+    config_->lookup("game.circle.simple_delay", info.simple_delay);
+    config_->lookup("game.circle.speed", info.speed);
+    config_->lookup("game.circle.start_delay", info.start_delay);
+    config_->lookup("game.circle.texture", info.styleInfo.pathToTexture);
+
     return info;
 }

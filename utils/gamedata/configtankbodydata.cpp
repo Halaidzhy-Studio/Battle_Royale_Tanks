@@ -18,7 +18,7 @@ TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
     switch (type) {
     default:
         logger_->printLog("There is no such type of tank, so DEFAULT type selected", "[GAME]");
-        typenameByEnum = "default";
+        typenameByEnum = GameData::DEFAULT_OBJECT_TYPE_NAME;
         break;
     }
 
@@ -26,7 +26,7 @@ TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
         logger_->printLog("ConfigTankBodyData is downloading", "[CONFIG]");
 
         int indexOfType = config_->findIndexOfType(listNameInConfig_, typenameByEnum);
-        if (indexOfType == -1){
+        if (indexOfType == Config::NO_FINDED_INDEX){
             std::string total = "No '" + typenameByEnum + "' in config in '" + listNameInConfig_ + "'\n";
             logger_->printLog(total, "[CONFIG]");
         }else {

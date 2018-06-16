@@ -1,4 +1,5 @@
 #include "gamedata.h"
+const std::string GameData::DEFAULT_OBJECT_TYPE_NAME = "default";
 
 SingleplayerMenuInfo GameData::getSingleplayerMenuInfo() const
 {

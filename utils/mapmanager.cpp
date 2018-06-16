@@ -25,7 +25,7 @@ void MapManager::upload(const std::string & file)
     if (impl_)
         impl_ ->upload(file);
     else
-        logger_->printLog("Can't upload Map, because MapManagerImpl wasn't installed", "[MapManager]");
+        loggerLookUp("Can't upload Map, because MapManagerImpl wasn't installed");
 }
 
 void MapManager::create()
@@ -35,7 +35,7 @@ void MapManager::create()
         int height = impl_->getSceneHeight();
         graphics_->setSceneRect(-width/2, -height/2, width, height);
     }else
-        logger_->printLog("Can't create Map, because MapManagerImpl wasn't installed", "[MapManager]");
+        loggerLookUp("Can't create Map, because MapManagerImpl wasn't installed");
 }
 
 Coordinate MapManager::getPlayerStartCoord()
@@ -43,9 +43,14 @@ Coordinate MapManager::getPlayerStartCoord()
     if (impl_){
         return impl_->getPlayerPos();
     } else {
-        logger_->printLog("Can't get Player Pos, because MapManagerImpl wasn't installed", "[MapManager]");
+        loggerLookUp("Can't get Player Pos, because MapManagerImpl wasn't installed");
     }
 
     return Coordinate();
+}
+
+void MapManager::loggerLookUp(const std::string &str)
+{
+    logger_->printLog(str, "[MapManager]");
 }
 

@@ -40,6 +40,8 @@ private:
     WallInfo wallInfo_;
     int sceneWidth_;
     int sceneHeight_;
+
+    void loggerLookUp(const std::string& str);
 };
 
 #endif // MAPMANAGER_H
