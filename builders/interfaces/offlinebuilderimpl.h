@@ -10,5 +10,6 @@ public:
     virtual std::shared_ptr<HandleInputComponent> getHandleInputComponent() = 0;
     virtual std::shared_ptr<PhysicsComponent> getPhysicsComponent() = 0;
     virtual std::shared_ptr<ViewComponent> getViewComponent() = 0;
+    virtual std::shared_ptr<ContactComponent> getContactComponent() = 0;
 };
 #endif // OFFLINEBUILDERIMPL_H

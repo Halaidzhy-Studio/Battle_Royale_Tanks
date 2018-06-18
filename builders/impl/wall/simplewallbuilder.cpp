@@ -1,6 +1,7 @@
 #include "simplewallbuilder.h"
 #include <Graphics/qtgraphicsitemadapter.h>
 #include <components/wall/viewcomponentwallimpl.h>
+#include <components/wall/physicscomponentwallimpl.h>
 
 SimpleWallBuilder::SimpleWallBuilder(const std::shared_ptr<Graphics> &graphisc,
                                      const std::shared_ptr<Physics> &physics,
@@ -12,10 +13,15 @@ SimpleWallBuilder::SimpleWallBuilder(const std::shared_ptr<Graphics> &graphisc,
 
 std::shared_ptr<HandleInputComponent> SimpleWallBuilder::getHandleInputComponent()
 {
+    return nullptr;
 }
 
 std::shared_ptr<PhysicsComponent> SimpleWallBuilder::getPhysicsComponent()
 {
+    std::shared_ptr<PhysicsComponent> physics =
+            std::make_shared<PhysicsComponentWallImpl>(physics_, logger_,  info_);
+
+    return physics;
 }
 
 std::shared_ptr<ViewComponent> SimpleWallBuilder::getViewComponent()
@@ -34,4 +40,9 @@ std::shared_ptr<ViewComponent> SimpleWallBuilder::getViewComponent()
             std::make_shared<ViewComponentWallImpl>(item);
 
     return view;
+}
+
+std::shared_ptr<ContactComponent> SimpleWallBuilder::getContactComponent()
+{
+    return nullptr;
 }

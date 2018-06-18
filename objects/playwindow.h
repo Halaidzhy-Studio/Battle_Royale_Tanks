@@ -20,6 +20,9 @@ public:
     void setRenderView(const std::shared_ptr<Graphics>& );
     void show();
     void initInterface();
+
+    void showWinState();
+    void showLoseState();
 signals:
     void exitSignal();
 private:
@@ -27,6 +30,8 @@ private:
     std::shared_ptr<Widget> widget_;
     std::shared_ptr<Logger> logger_;
     std::shared_ptr<PushButtonWidget> exitBTN_;
+    std::shared_ptr<LabelWidget> winLabel_;
+    std::shared_ptr<LabelWidget> loseLabel_;
     GameWindowInfo info_;
 
     void exit();

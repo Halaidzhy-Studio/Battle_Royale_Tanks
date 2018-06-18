@@ -49,6 +49,16 @@ Coordinate MapManager::getPlayerStartCoord()
     return Coordinate();
 }
 
+std::vector<GeometryRect> MapManager::getWalls()
+{
+    if (impl_)
+        return impl_->getWalls();
+    else
+        loggerLookUp("Can't get Walls, because MapManagerImpl wasn't installed");
+
+    return {};
+}
+
 void MapManager::loggerLookUp(const std::string &str)
 {
     logger_->printLog(str, "[MapManager]");

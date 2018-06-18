@@ -11,6 +11,19 @@ struct GameWindowInfo
     std::string back_btn_txt;
     int width;
     int height;
+
+    int winlabel_w;
+    int winlabel_h;
+    std::string winlabel_txt;
+    int winlabel_txt_size;
+
+    int loselabel_w;
+    int loselabel_h;
+    std::string loselabel_txt;
+    int loselabel_txt_size;
+
+    int state_label_time;
+
 };
 
 #endif // GAMEWINDOW_H

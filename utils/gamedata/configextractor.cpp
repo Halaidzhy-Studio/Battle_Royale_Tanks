@@ -10,6 +10,8 @@
 #include "configmapfiledata.h"
 #include "configtankturretdata.h"
 #include "confighuddata.h"
+#include "configworldphysicsdata.h"
+#include "configwalldata.h"
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Logger> &logger, const std::string &configFile) :
     logger_(logger), configFile_(configFile)
@@ -102,6 +104,18 @@ HudInfo ConfigExtractor::getHudInfo()
 {
     data_.reset(new ConfigHudData(config_, logger_));
     return data_->getHudInfo();
+}
+
+WorldPhysicsInfo ConfigExtractor::getWorldPhysicsInfo()
+{
+    data_.reset(new ConfigWorldPhysicsData(config_, logger_));
+    return data_->getWorldPhysicsInfo();
+}
+
+WallInfo ConfigExtractor::getWallInfo()
+{
+    data_.reset(new ConfigWallData(config_, logger_));
+    return data_->getWallInfo();
 }
 
 ConfigExtractor::ConfigExtractor(const std::shared_ptr<Config> &config,

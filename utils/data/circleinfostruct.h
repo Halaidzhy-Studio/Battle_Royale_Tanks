@@ -9,6 +9,14 @@ struct CircleInfo : public InfoStruct, public CircleShapeInfo {
     int max_r;
     int start_delay;
     int simple_delay;
+    int dmg;
+    int check_interval;
+    int center_x;
+    int center_y;
+
+    struct CircleShapeInfo{
+        double opacity;
+    } circleShape;
 };
 
 #endif // CIRCLEINFOSTRUCT_H

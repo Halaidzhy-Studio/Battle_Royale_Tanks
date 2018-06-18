@@ -19,8 +19,6 @@ public:
                        const std::shared_ptr<Logger>& logger,
                        QWidget *parent = nullptr);
 
-signals:
-
 public slots:
     void showSingleplayerMenu();
     void showMultiplayerMenu();

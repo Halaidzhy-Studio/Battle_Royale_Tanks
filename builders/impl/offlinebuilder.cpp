@@ -19,3 +19,8 @@ std::shared_ptr<ViewComponent> OfflineBuilder::getViewComponent()
 {
     return impl_->getViewComponent();
 }
+
+std::shared_ptr<ContactComponent> OfflineBuilder::getContactComponent()
+{
+    return impl_->getContactComponent();
+}

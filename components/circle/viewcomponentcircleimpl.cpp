@@ -12,3 +12,8 @@ void ViewComponentCircleImpl::update()
     int radius = logicCircle_->getRadius();
     graphicsItem_->setRect(radius*2, radius*2);
 }
+
+void ViewComponentCircleImpl::close()
+{
+    graphicsItem_->close();
+}

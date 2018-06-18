@@ -11,6 +11,7 @@ class Director
 public:
     Director() = default;
     std::shared_ptr<Circle> getCircle(const std::shared_ptr<Builder>&);
+    std::shared_ptr<Circle> getShapeCircle(const std::shared_ptr<Builder>&);
     std::shared_ptr<TankBody> getTankBody(const std::shared_ptr<Builder>&);
     std::shared_ptr<Wall> getWall(const std::shared_ptr<Builder>&);
     std::shared_ptr<TankTurret> getTurret(const std::shared_ptr<Builder>&);

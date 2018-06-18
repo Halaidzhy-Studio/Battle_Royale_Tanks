@@ -27,6 +27,11 @@ void LogicTurretComponent::turnTo(int angle)
     angle_ = angle;
 }
 
+void LogicTurretComponent::turnTo(double angle)
+{
+
+}
+
 int LogicTurretComponent::bulletRechargeTime()
 {
     return bulletRechargeTime_;

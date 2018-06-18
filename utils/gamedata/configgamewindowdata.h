@@ -12,6 +12,9 @@ public:
     ~ConfigGameWindowData() = default;
 
     GameWindowInfo getGameWindowInfo() override;
+private:
+    template<typename T>
+    void lookupWrapper(const std::string&, T&);
 };
 
 #endif // CONFIGGAMEWINDOWDATA_H

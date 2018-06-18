@@ -3,7 +3,7 @@
 
 QtGraphicsItemAdapter::QtGraphicsItemAdapter(const std::shared_ptr<Graphics> & graphics,
                                              const std::shared_ptr<Logger>& logger) :
-    graphics_(graphics), logger_(logger), keys_(0), isScalableTexture_(true)
+    graphics_(graphics), logger_(logger), keys_(0), isScalableTexture_(true), opacity_(1)
 {
     graphics_->addItem(this);
 }
@@ -16,6 +16,7 @@ QRectF QtGraphicsItemAdapter::boundingRect() const
 void QtGraphicsItemAdapter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF res(0, 0,pixmap.width(), pixmap.height());
+    painter->setOpacity(opacity_);
     painter->drawPixmap(boundingRect(), pixmap, res);
 }
 
@@ -110,4 +111,14 @@ void QtGraphicsItemAdapter::setParent(GraphicsItem *graphicsItem)
 void QtGraphicsItemAdapter::setIsScalableTexture(bool isScalableTexture)
 {
     isScalableTexture_ = isScalableTexture;
+}
+
+void QtGraphicsItemAdapter::setOpacity(double opacity)
+{
+    opacity_ = opacity;
+}
+
+void QtGraphicsItemAdapter::close()
+{
+    hide();
 }

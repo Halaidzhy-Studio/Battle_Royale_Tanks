@@ -9,6 +9,14 @@ ConfigMultiplayerMenuData::ConfigMultiplayerMenuData(const std::shared_ptr<Confi
     logger_->printLog(total, "[CONFIG]");
 }
 
+template<typename T>
+void ConfigMultiplayerMenuData::lookupWrapper(const std::string &setting, T &var)
+{
+   std::string totalSetting = "windows.menu.menu_multiplayer." + setting;
+   config_->lookup(totalSetting, var);
+}
+
+
 MultiplayerMenuInfo ConfigMultiplayerMenuData::getMultiplayerMenuInfo()
 {
     MultiplayerMenuInfo info;
@@ -31,17 +39,17 @@ MultiplayerMenuInfo ConfigMultiplayerMenuData::getMultiplayerMenuInfo()
         logger_->printLog("ConfigMultiplayerMenuData is downloading config...", "[CONFIG]");
         config_->lookup("windows.menu.width", info.width);
         config_->lookup("windows.menu.height", info.height);
-        config_->lookup("windows.menu.menu_multiplayer.btn_padding", info.btn_padding );
-        config_->lookup("windows.menu.menu_multiplayer.back_btn_w", info.back_btn_w );
-        config_->lookup("windows.menu.menu_multiplayer.back_btn_h_k", info.back_btn_h_k );
-        config_->lookup("windows.menu.menu_multiplayer.start_btn_w", info.start_btn_w );
-        config_->lookup("windows.menu.menu_multiplayer.start_btn_h_k", info.start_btn_h_k);
-        config_->lookup("windows.menu.menu_multiplayer.txt_label_w", info.txt_label_w);
-        config_->lookup("windows.menu.menu_multiplayer.txt_label_h_k", info.txt_label_h_k);
-        config_->lookup("windows.menu.menu_multiplayer.prevt_btn_w", info.prevt_btn_w);
-        config_->lookup("windows.menu.menu_multiplayer.prevt_btn_h_k", info.prevt_btn_h_k);
-        config_->lookup("windows.menu.menu_multiplayer.nextt_btn_w", info.nextt_btn_w);
-        config_->lookup("windows.menu.menu_multiplayer.nextt_btn_h_k", info.nextt_btn_h_k);
+        lookupWrapper("btn_padding", info.btn_padding );
+        lookupWrapper("back_btn_w", info.back_btn_w );
+        lookupWrapper("back_btn_h_k", info.back_btn_h_k );
+        lookupWrapper("start_btn_w", info.start_btn_w );
+        lookupWrapper("start_btn_h_k", info.start_btn_h_k);
+        lookupWrapper("txt_label_w", info.txt_label_w);
+        lookupWrapper("txt_label_h_k", info.txt_label_h_k);
+        lookupWrapper("prevt_btn_w", info.prevt_btn_w);
+        lookupWrapper("prevt_btn_h_k", info.prevt_btn_h_k);
+        lookupWrapper("nextt_btn_w", info.nextt_btn_w);
+        lookupWrapper("nextt_btn_h_k", info.nextt_btn_h_k);
         config_->lookup("windows.menu.background_color", info.color);
     }
     return info;

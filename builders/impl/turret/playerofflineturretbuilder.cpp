@@ -8,10 +8,11 @@ PlayerOfflineTurretBuilder::PlayerOfflineTurretBuilder(
         const std::shared_ptr<Physics> &physics,
         const std::shared_ptr<Logger> &logger,
         const TankTurretInfo &info,
-        const std::shared_ptr<PlayerHUD>& hud) :
+        const std::shared_ptr<PlayerHUD>& hud,
+        const std::shared_ptr<LogicTurretComponent>& logic) :
     graphics_(graphics), physics_(physics), logger_(logger), info_(info),
     item_(new QtGraphicsItemAdapter(graphics, logger)),
-    logicTurret_(std::make_shared<LogicTurretComponent>(info, logger))
+    logicTurret_(logic)
 {
     hud->setTurretLogic(logicTurret_);
 }
@@ -26,7 +27,7 @@ std::shared_ptr<HandleInputComponent> PlayerOfflineTurretBuilder::getHandleInput
 
 std::shared_ptr<PhysicsComponent> PlayerOfflineTurretBuilder::getPhysicsComponent()
 {
-
+    return nullptr;
 }
 
 std::shared_ptr<ViewComponent> PlayerOfflineTurretBuilder::getViewComponent()
@@ -44,4 +45,9 @@ std::shared_ptr<ViewComponent> PlayerOfflineTurretBuilder::getViewComponent()
     std::shared_ptr<ViewComponent> view =
             std::make_shared<ViewComponentTurretImpl>(item_, logicTurret_);
     return view;
+}
+
+std::shared_ptr<ContactComponent> PlayerOfflineTurretBuilder::getContactComponent()
+{
+    return nullptr;
 }

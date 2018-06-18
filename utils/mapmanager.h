@@ -28,6 +28,7 @@ public:
     void upload(const std::string&);
     void create();
     Coordinate getPlayerStartCoord();
+    std::vector<GeometryRect> getWalls();
 private:
     std::string file_;
     std::unique_ptr<MapManagerImpl> impl_;

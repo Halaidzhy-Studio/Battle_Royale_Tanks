@@ -12,6 +12,7 @@ ConfigMapFileData::ConfigMapFileData(const std::shared_ptr<Config> &config,
 std::string ConfigMapFileData::getMapFileByType(MapTypes type)
 {
     std::string file = ":map/Resources/map/default.map";
+
     if (config_->isConfigUpload()){
         logger_->printLog("ConfigMapFileData is downloading", "[CONFIG]");
 

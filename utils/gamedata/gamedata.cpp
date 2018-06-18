@@ -46,6 +46,16 @@ ServerInfo GameData::getServerInfo() const
     return serverInfo_;
 }
 
+WorldPhysicsInfo GameData::getWorldPhysicsInfo() const
+{
+    return worldPhysicsInfo_;
+}
+
+WallInfo GameData::getWallInfo() const
+{
+    return wallInfo_;
+}
+
 std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extractor> &extractor,
                                                    const std::shared_ptr<Logger> &logger)
 {
@@ -64,7 +74,8 @@ std::shared_ptr<GameData> GameData::createGameData(const std::shared_ptr<Extract
 
     gameData->circleInfo_ = extractor->getCircleInfo();
     gameData->hudInfo_ = extractor->getHudInfo();
-
+    gameData->worldPhysicsInfo_ = extractor->getWorldPhysicsInfo();
+    gameData->wallInfo_ = extractor->getWallInfo();
     return gameData;
 }
 

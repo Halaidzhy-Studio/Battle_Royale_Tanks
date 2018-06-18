@@ -1,8 +1,10 @@
 #include "playwindow.h"
 #include <Graphics/qtwidget.h>
 #include <Graphics/qtpushbuttonadapter.h>
+#include <Graphics/qtlabeladapter.h>
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QTimer>
 
 PlayWindow::PlayWindow(const std::shared_ptr<GameData> &data,
                        const std::shared_ptr<Graphics> &graphics,
@@ -52,7 +54,38 @@ void PlayWindow::initInterface()
     });
 
     exitBTN_->setParent(widget_);
-   // graphics_->addPushButtonWidget(exitBTN_);
+}
+
+void PlayWindow::showWinState()
+{
+    winLabel_ = std::make_shared<QtLabelAdapter>(logger_);
+    winLabel_->setGeometry(
+                widget_->getW()/2 - info_.winlabel_w/2,
+                widget_->getH()/2 - info_.winlabel_h/2,
+                info_.winlabel_w,
+                info_.winlabel_h
+    );
+    winLabel_->setText(info_.winlabel_txt);
+    winLabel_->setTextSize(info_.winlabel_txt_size);
+    winLabel_->setParentWidget(widget_);
+    winLabel_->show();
+    QTimer::singleShot(SECOND*info_.state_label_time, this, &PlayWindow::exit);
+}
+
+void PlayWindow::showLoseState()
+{
+    loseLabel_ = std::make_shared<QtLabelAdapter>(logger_);
+    loseLabel_->setGeometry(
+                widget_->getW()/2 - info_.loselabel_w/2,
+                widget_->getH()/2 - info_.loselabel_h/2,
+                info_.loselabel_w,
+                info_.loselabel_h
+    );
+    loseLabel_->setText(info_.loselabel_txt);
+    loseLabel_->setTextSize(info_.loselabel_txt_size);
+    loseLabel_->setParentWidget(widget_);
+    loseLabel_->show();
+    QTimer::singleShot(SECOND*info_.state_label_time, this, &PlayWindow::exit);
 }
 
 void PlayWindow::exit()

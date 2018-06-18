@@ -13,6 +13,13 @@ ConfigTankBodyData::ConfigTankBodyData(const std::shared_ptr<Config> &config,
 TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
 {
     TankBodyInfo info;
+    info.physicsInfo.density = 1;
+    info.physicsInfo.restitution = 0.1;
+    info.physicsInfo.friction = 1.5;
+    info.physicsInfo.linearDumping = 10.5;
+    info.physicsInfo.w = 14;
+    info.physicsInfo.h = 14;
+    info.physicsInfo.type = BodyType::DynamicBody;
 
     std::string typenameByEnum;
     switch (type) {
@@ -42,6 +49,19 @@ TankBodyInfo ConfigTankBodyData::getBodyInfoByType(BodyTypes type)
             config_->lookup(listNameInConfig_, indexOfType, "body.logic.speed", info.speed);
             config_->lookup(listNameInConfig_, indexOfType, "body.logic.speed_angle", info.turnSpeed);
             config_->lookup(listNameInConfig_, indexOfType, "body.logic.hp", info.hp);
+
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.density", info.physicsInfo.density);
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.friction", info.physicsInfo.friction);
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.restitution", info.physicsInfo.restitution);
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.linearDumping", info.physicsInfo.linearDumping);
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.mass", info.physicsInfo.mass);
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.I", info.physicsInfo.I);
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.width", info.physicsInfo.w);
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.height", info.physicsInfo.h);
+
+            int indexType = 0;
+            config_->lookup(listNameInConfig_, indexOfType, "body.physics.type", indexType);
+            info.physicsInfo.type = static_cast<BodyType>(indexType);
         }
     }
 

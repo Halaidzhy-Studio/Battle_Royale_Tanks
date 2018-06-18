@@ -18,6 +18,7 @@ public:
 
     void update() override;
     GraphicsItem* getGraphicsItem() override;
+    Coordinate getPos() override;
 private:
     GraphicsItem* graphicsItem_;
     std::shared_ptr<LogicBodyComponent> bodyInfo_;

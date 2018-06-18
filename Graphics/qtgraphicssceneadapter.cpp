@@ -6,7 +6,7 @@
 #include <engine.h>
 
 QtGraphicsSceneAdapter::QtGraphicsSceneAdapter(const std::shared_ptr<Logger> &logger) :
-    logger_(logger)
+    logger_(logger), keys_(0)
 {
 }
 
@@ -51,7 +51,7 @@ void QtGraphicsSceneAdapter::addLabelWidget(std::shared_ptr<LabelWidget> label)
 {
     auto qtLabelWidget = std::dynamic_pointer_cast<QtLabelAdapter>(label);
     if (qtLabelWidget){
-        QGraphicsScene::addWidget(qtLabelWidget->getSourceWidget());
+        QGraphicsScene::addWidget(qtLabelWidget->getSourceWidget().get());
     }else {
         loggerPrintWrapper("Can't cast LabelWidget* to QtLabelAdapter*");
     }

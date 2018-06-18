@@ -17,6 +17,7 @@ public:
     
     ~ViewComponentCircleImpl() = default;
     void update() override;
+    void close() override;
 
 private:
     GraphicsItem* graphicsItem_;

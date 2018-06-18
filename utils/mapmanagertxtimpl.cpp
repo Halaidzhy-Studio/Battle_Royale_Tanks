@@ -84,6 +84,7 @@ Coordinate MapManagerTxtImpl::readCoord(std::stringstream &ss)
 
 std::vector<GeometryRect> MapManagerTxtImpl::getWalls()
 {
+    return walls_;
 }
 
 int MapManagerTxtImpl::getSceneWidth()

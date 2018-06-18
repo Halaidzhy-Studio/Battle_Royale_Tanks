@@ -19,3 +19,13 @@ void TankBody::setNetworkComponent(const std::shared_ptr<NetworkComponent> &netw
 {
     networkComponent_ = networkComponent;
 }
+
+std::shared_ptr<ContactComponent> TankBody::contactComponent() const
+{
+    return contactComponent_;
+}
+
+void TankBody::setContactComponent(const std::shared_ptr<ContactComponent> &contactComponent)
+{
+    contactComponent_ = contactComponent;
+}

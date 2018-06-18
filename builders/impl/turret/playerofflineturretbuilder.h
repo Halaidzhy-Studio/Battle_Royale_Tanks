@@ -17,12 +17,14 @@ public:
                                const std::shared_ptr<Physics>&,
                                const std::shared_ptr<Logger>&,
                                const TankTurretInfo&,
-                               const std::shared_ptr<PlayerHUD>&);
+                               const std::shared_ptr<PlayerHUD>&,
+                               const std::shared_ptr<LogicTurretComponent>&);
 
     ~PlayerOfflineTurretBuilder() = default;
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;
     std::shared_ptr<PhysicsComponent> getPhysicsComponent() override;
     std::shared_ptr<ViewComponent> getViewComponent() override;
+    std::shared_ptr<ContactComponent> getContactComponent() override;
 
 private:
     std::shared_ptr<Graphics> graphics_;

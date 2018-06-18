@@ -1,12 +1,18 @@
 #include "coordinate.h"
 #include <utils/logger.h>
+#include <cmath>
 
-float Coordinate::qtTophysicsTransformationValue;
+float Coordinate::qtTophysicsTransformationValue = 0.1;
 float Coordinate::qtToserverTransformationValue;
 float Coordinate::serverTophysicsTransformationValue;
 
 
 Coordinate::Coordinate() : x_(0), y_(0), type_(CoordTypes::QT)
+{
+}
+
+Coordinate::Coordinate(const Coordinate & other) : x_(other.x_), y_(other.y_),
+    type_(other.type_)
 {
 }
 
@@ -82,12 +88,12 @@ Coordinate &Coordinate::toPhysicsengine()
     return *this;
 }
 
-int Coordinate::x()
+double Coordinate::x()
 {
     return x_;
 }
 
-void Coordinate::setX(int x, const Coordinate::CoordTypes &type)
+void Coordinate::setX(double x, const Coordinate::CoordTypes &type)
 {
     if (type == type_){
         x_ = x;
@@ -121,12 +127,12 @@ void Coordinate::setX(int x, const Coordinate::CoordTypes &type)
     }
 }
 
-int Coordinate::y()
+double Coordinate::y()
 {
     return y_;
 }
 
-void Coordinate::setY(int y, const Coordinate::CoordTypes &type)
+void Coordinate::setY(double y, const Coordinate::CoordTypes &type)
 {
     if (type == type_){
         y_ = y;
@@ -173,5 +179,16 @@ void Coordinate::setQtToserverTransformationValue(float value)
 void Coordinate::setServerTophysicsTransformationValue(float value)
 {
     serverTophysicsTransformationValue = value;
+}
+
+double Coordinate::qtConvertToPhysics(double var)
+{
+    return var * qtTophysicsTransformationValue;
+}
+
+double Coordinate::length(Coordinate &a, Coordinate &b)
+{
+    double length = sqrt((a.x() - b.x() ) * (a.x() - b.x() ) + (a.y() - b.y() ) * (a.y() - b.y() ));
+    return length;
 }
 

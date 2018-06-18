@@ -17,6 +17,8 @@
 #include <utils/loggerinterface.h>
 #include <utils/data/hudinfostruct.h>
 
+#define SECOND 1000
+
 class GameData
 {
 public:
@@ -42,6 +44,8 @@ public:
     GameInfo getGameInfo() const;
     CircleInfo getCircleInfo() const;
     ServerInfo getServerInfo() const;
+    WorldPhysicsInfo getWorldPhysicsInfo() const;
+    WallInfo getWallInfo() const;
 
     static std::shared_ptr<GameData> createGameData(const std::shared_ptr<Extractor>& extractor,
                                                     const std::shared_ptr<Logger> &logger);
@@ -61,6 +65,8 @@ private:
     CircleInfo circleInfo_;
     ServerInfo serverInfo_;
     HudInfo hudInfo_;
+    WorldPhysicsInfo worldPhysicsInfo_;
+    WallInfo wallInfo_;
     std::shared_ptr<Logger> logger_;
 };
 

@@ -1,15 +1,19 @@
 #ifndef INFOSTRUCT_H
 #define INFOSTRUCT_H
 #include <string>
+#include <Physics/physicsbody.h>
 
 // Структура, которая описывает физические свойства объекта. Общая для всех.
 struct PhysicsInfo{
-    int type;
+    BodyType type;
     float density;
     float restitution;
     float friction;
     float mass;
     float linearDumping;
+    double w;
+    double h;
+    float I;
 };
 
 // Структура, которая описывает все прямоугольные объекты
@@ -32,6 +36,8 @@ struct StyleInfo{
     bool default_rect_pos;
     int x;
     int y;
+    bool is_scalable;
+    double opacity;
 };
 
 struct InfoStruct{

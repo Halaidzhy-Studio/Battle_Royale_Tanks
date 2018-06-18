@@ -19,12 +19,18 @@ public:
     void lookup(const std::string &setting, int& var) const;
     void lookup(const std::string &setting, bool& var) const;
     void lookup(const std::string &setting, float& var) const;
+    void lookup(const std::string &setting, double& var) const;
+
     void lookup(const std::string &list, int groupIndex,
                 const std::string &setting, std::string& var) const;
     void lookup(const std::string &list, int groupIndex,
                 const std::string &setting, int& var) const;
     void lookup(const std::string &list, int groupIndex,
                 const std::string &setting, bool& var) const;
+    void lookup(const std::string &list, int groupIndex,
+                const std::string &setting, double& var) const;
+    void lookup(const std::string &list, int groupIndex,
+                const std::string &setting, float& var) const;
     int findIndexOfType(const std::string &listNameInConfig, const std::string &type);
     int findIndexOfType(const std::string &listNameInConfig, const int &type);
 

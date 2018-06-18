@@ -30,3 +30,13 @@ void Circle::setNetworkComponent(const std::shared_ptr<NetworkComponent> &networ
 {
     networkComponent_ = networkComponent;
 }
+
+std::shared_ptr<ContactComponent> Circle::contactComponent() const
+{
+    return contactComponent_;
+}
+
+void Circle::setContactComponent(const std::shared_ptr<ContactComponent> &contactComponent)
+{
+    contactComponent_ = contactComponent;
+}

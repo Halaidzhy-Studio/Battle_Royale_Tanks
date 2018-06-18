@@ -12,6 +12,9 @@ public:
     ConfigMenuWindowData(const std::shared_ptr<Config>& config,
                          const std::shared_ptr<Logger>& logger);
     MenuWindowInfo getMenuWindowInfo() override;
+private:
+    template<typename T>
+    void lookupWrapper(const std::string &setting, T &var);
 };
 
 #endif // CONFIGMENUWINDOWDATA_H

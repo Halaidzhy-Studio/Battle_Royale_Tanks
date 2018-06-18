@@ -11,6 +11,7 @@ public:
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;
     std::shared_ptr<PhysicsComponent> getPhysicsComponent() override;
     std::shared_ptr<ViewComponent> getViewComponent() override;
+    std::shared_ptr<ContactComponent> getContactComponent() override;
 
 private:
     std::shared_ptr<OfflineBuilderImpl> impl_;

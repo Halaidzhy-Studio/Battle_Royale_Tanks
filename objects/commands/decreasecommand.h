@@ -10,7 +10,8 @@ public:
     DecreaseCommand() = default;
     DecreaseCommand(const std::shared_ptr<Modifiable>& object) : object_(object) {}
     void execute() override{
-        object_->decrease();
+        if (object_)
+            object_->decrease();
     }
     ~DecreaseCommand() = default;
 

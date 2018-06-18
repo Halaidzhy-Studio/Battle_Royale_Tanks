@@ -12,6 +12,7 @@ public:
     virtual std::shared_ptr<PhysicsComponent> getPhysicsComponent() {}
     virtual std::shared_ptr<ViewComponent> getViewComponent() {}
     virtual std::shared_ptr<NetworkComponent> getNetworkComponent() {}
+    virtual std::shared_ptr<ContactComponent> getContactComponent() {}
 
 };
 

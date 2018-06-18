@@ -3,7 +3,6 @@
 
 #include <utils/data/bodyinfostruct.h>
 #include "igameobject.h"
-#include <components/body/logicbodycomponent.h>
 class TankBody: public GameObject
 {
 public:
@@ -27,11 +26,13 @@ public:
     std::shared_ptr<NetworkComponent> networkComponent() const;
     void setNetworkComponent(const std::shared_ptr<NetworkComponent> &networkComponent);
 
+    std::shared_ptr<ContactComponent> contactComponent() const;
+    void setContactComponent(const std::shared_ptr<ContactComponent> &contactComponent);
+
 protected:
     std::shared_ptr<HandleInputComponent> handleInputComponent_;
     std::shared_ptr<NetworkComponent> networkComponent_;
-
-    std::shared_ptr<LogicBodyComponent> logicBodyComponent_;
+    std::shared_ptr<ContactComponent> contactComponent_;
 };
 
 

@@ -15,9 +15,13 @@ public:
     std::shared_ptr<NetworkComponent> networkComponent() const;
     void setNetworkComponent(const std::shared_ptr<NetworkComponent> &networkComponent);
 
+    std::shared_ptr<ContactComponent> contactComponent() const;
+    void setContactComponent(const std::shared_ptr<ContactComponent> &contactComponent);
+
 private:
     std::shared_ptr<HandleInputComponent> handleInputComponent_;
     std::shared_ptr<NetworkComponent> networkComponent_;
+    std::shared_ptr<ContactComponent> contactComponent_;
 };
 
 #endif // CIRCLE_H

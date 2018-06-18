@@ -11,6 +11,9 @@ public:
 
     MultiplayerMenuInfo getMultiplayerMenuInfo() override;
 
+private:
+    template<typename T>
+    void lookupWrapper(const std::string &setting, T &var);
 };
 
 #endif // CONFIGMULTIPLAYERMENUDATA_H

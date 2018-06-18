@@ -23,6 +23,8 @@ private:
     std::shared_ptr<Command> keyD_;
     std::shared_ptr<Command> keyA_;
     std::shared_ptr<Command> keyS_;
+    std::shared_ptr<Command> stopMove_;
+    std::shared_ptr<Command> stopTurn_;
 
     int keys_;
     std::shared_ptr<Graphics> graphics_;

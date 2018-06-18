@@ -20,7 +20,7 @@ public:
     void turnR() override;
     void turnL() override;
     void turnTo(int angle) override;
-
+    void turnTo(double angle) override;
     int bulletRechargeTime();
     int getAngle();
 private:

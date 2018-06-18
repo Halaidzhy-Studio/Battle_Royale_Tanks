@@ -38,19 +38,22 @@ private:
 
     // 0 танк - это игрок
     std::vector<std::shared_ptr<TankComplexObject>> tanksList_;
-    std::shared_ptr<Wall> wall_;
+    std::vector<std::shared_ptr<Wall>> walls_;
     std::shared_ptr<Circle> circle_;
     std::unique_ptr<QTimer> timer_;
     std::unique_ptr<MapManager> mapManager_;
     std::unique_ptr<PlayWindow> window_;
     std::shared_ptr<PlayerHUD> playerHud_;
     std::shared_ptr<Graphics> graphics_;
+    std::shared_ptr<Physics> physics_;
     TankTypes playerTankType_;
     GameInfo gameInfo_;
 
     void initPlayer();
     void initCircle();
     void initMap();
+    void initWalls();
+    void checkGameState();
 };
 
 #endif // PLAYINSTANCE_H

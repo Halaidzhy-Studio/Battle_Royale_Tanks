@@ -28,11 +28,11 @@ INCLUDEPATH += "Box2D/"
 
 SOURCES += \
     main.cpp \
-    engineqt.cpp
+    engineqt.cpp \
 
 HEADERS += \
     engine.h \
-    engineqt.h
+    engineqt.h \
 
 SOURCES += $$files($$PWD/Graphics/*.cpp)
 HEADERS += $$files($$PWD/Graphics/*.h)

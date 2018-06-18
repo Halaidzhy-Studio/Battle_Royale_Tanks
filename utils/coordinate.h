@@ -12,11 +12,11 @@ public:
     };
 
     Coordinate();
-    Coordinate(const int& x, const int& y, const CoordTypes& type,
+    Coordinate(const double& x, const double& y, const CoordTypes& type,
                const std::shared_ptr<Logger>& logger):
         x_(x), y_(y), type_(type), logger_(logger) {}
 
-    Coordinate(const Coordinate&) = default;
+    Coordinate(const Coordinate&);
     Coordinate&operator=(const Coordinate&) = default;
     Coordinate(Coordinate&&) = default;
     Coordinate&operator=(Coordinate&&) = default;
@@ -25,11 +25,11 @@ public:
     Coordinate& toServer();
     Coordinate& toPhysicsengine();
 
-    int x();
-    void setX(int x, const CoordTypes& type);
+    double x();
+    void setX(double x, const CoordTypes& type);
 
-    int y();
-    void setY(int y, const CoordTypes& type);
+    double y();
+    void setY(double y, const CoordTypes& type);
 
     static void setQtTophysicsTransformationValue(float value);
 
@@ -37,9 +37,11 @@ public:
 
     static void setServerTophysicsTransformationValue(float value);
 
+    static double qtConvertToPhysics(double);
+    static double length(Coordinate&, Coordinate&);
 private:
-    int x_;
-    int y_;
+    double x_;
+    double y_;
 
     CoordTypes type_;
 

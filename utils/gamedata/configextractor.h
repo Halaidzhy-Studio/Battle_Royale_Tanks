@@ -33,6 +33,8 @@ public:
     ServerInfo getServerInfo() override;
     CircleInfo getCircleInfo() override;
     HudInfo getHudInfo() override;
+    WorldPhysicsInfo getWorldPhysicsInfo() override;
+    WallInfo getWallInfo() override;
 
 private:
     // Переменная для хранения класса наследника

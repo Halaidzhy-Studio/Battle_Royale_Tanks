@@ -11,6 +11,9 @@ public:
                          const std::shared_ptr<Logger>& logger);
 
     HudInfo getHudInfo() override;
+private:
+    template<typename T>
+    void lookupWrapper(const std::string &setting, T &var);
 };
 
 #endif // CONFIGHUDDATA_H

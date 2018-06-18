@@ -13,6 +13,9 @@ public:
     ~ConfigCircleData() = default;
 
     CircleInfo getCircleInfo() override;
+private:
+    template<typename T>
+    void lookupWrapper(const std::string &setting, T &var);
 };
 
 #endif // CONFIGCIRCLEDATA_H

@@ -39,12 +39,12 @@ int LogicBodyComponent::hp() const
 
 void LogicBodyComponent::turnR()
 {
-    bodyInfoDynamic_.turnSpeed = -bodyInfoConst_.turnSpeed;
+    bodyInfoDynamic_.turnSpeed = bodyInfoConst_.turnSpeed;
 }
 
 void LogicBodyComponent::turnL()
 {
-    bodyInfoDynamic_.turnSpeed = bodyInfoConst_.turnSpeed;
+    bodyInfoDynamic_.turnSpeed = -bodyInfoConst_.turnSpeed;
 }
 
 void LogicBodyComponent::turnTo(int angle)
@@ -52,14 +52,24 @@ void LogicBodyComponent::turnTo(int angle)
     angle_ = angle;
 }
 
+void LogicBodyComponent::turnTo(double angle)
+{
+    angle_ = angle;
+}
+
+void LogicBodyComponent::stopTurn()
+{
+    bodyInfoDynamic_.turnSpeed = 0;
+}
+
 void LogicBodyComponent::moveF()
 {
-    bodyInfoDynamic_.speed = bodyInfoConst_.speed;
+    bodyInfoDynamic_.speed = -bodyInfoConst_.speed;
 }
 
 void LogicBodyComponent::moveB()
 {
-    bodyInfoDynamic_.speed = -bodyInfoConst_.speed;
+    bodyInfoDynamic_.speed = bodyInfoConst_.speed;
 
 }
 
@@ -67,6 +77,18 @@ void LogicBodyComponent::moveTo(int x, int y)
 {
     coord_.setX(x, Coordinate::CoordTypes::QT);
     coord_.setY(y, Coordinate::CoordTypes::QT);
+}
+
+void LogicBodyComponent::moveTo(const Coordinate& coord)
+{
+    auto tmpCoord = coord;
+    coord_.setX(tmpCoord.toQt().x(), Coordinate::CoordTypes::QT);
+    coord_.setY(tmpCoord.toQt().y(), Coordinate::CoordTypes::QT);
+}
+
+void LogicBodyComponent::stopMove()
+{
+    bodyInfoDynamic_.speed = 0;
 }
 
 Coordinate LogicBodyComponent::coord() const
@@ -79,7 +101,7 @@ void LogicBodyComponent::setCoord(const Coordinate &coord)
     coord_ = coord;
 }
 
-int LogicBodyComponent::angle() const
+double LogicBodyComponent::angle() const
 {
     return angle_;
 }
@@ -112,4 +134,20 @@ LogicBodyComponent::operator std::string()
     res+=" \" ]";
 
     return res;
+}
+
+
+ContactEntityTypes LogicBodyComponent::getEntityType()
+{
+    return ContactEntityTypes::BODY;
+}
+
+
+void LogicBodyComponent::hit(int dmg)
+{
+    auto newHp = bodyInfoDynamic_.hp - dmg;
+    if (newHp < 0)
+        bodyInfoDynamic_.hp = 0;
+    else
+        bodyInfoDynamic_.hp = newHp;
 }

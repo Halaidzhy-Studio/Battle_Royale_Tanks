@@ -27,12 +27,15 @@ public:
     int getActiveKeys() override;
     void setParent(GraphicsItem *) override;
     void setIsScalableTexture(bool) override;
+    void setOpacity(double) override;
+    void close() override;
 
 private:
     std::shared_ptr<Graphics> graphics_;
     std::shared_ptr<Logger> logger_;
     QPixmap pixmap;
     bool isScalableTexture_;
+    double opacity_;
     QRectF rectF_;
     int keys_;
 

@@ -2,7 +2,7 @@
 #include "qtwidget.h"
 
 QtLabelAdapter::QtLabelAdapter(const std::shared_ptr<Logger> &logger) :
-    logger_(logger), widget_(new QLabel())
+    logger_(logger), widget_(std::make_shared<QLabel>())
 {
 }
 
@@ -39,7 +39,12 @@ void QtLabelAdapter::setTextSize(int size)
     widget_->setFont(font);
 }
 
-QLabel *QtLabelAdapter::getSourceWidget()
+void QtLabelAdapter::show()
+{
+    widget_->show();
+}
+
+std::shared_ptr<QLabel> QtLabelAdapter::getSourceWidget()
 {
     return widget_;
 }

@@ -12,9 +12,9 @@ public:
     virtual void isControlable(bool) = 0;
     virtual void setControlable() = 0;
     virtual void setTexture(const std::string&) = 0;
-
+    virtual void setOpacity(double) = 0;
     virtual void setIsScalableTexture(bool) = 0;
-
+    virtual void close() = 0;
     // центр координат Item == центру Rect
     virtual void setRect(int, int) = 0;
 

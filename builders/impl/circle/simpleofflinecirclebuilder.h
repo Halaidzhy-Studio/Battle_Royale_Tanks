@@ -8,6 +8,7 @@
 #include <utils/logger.h>
 #include <components/circle/logiccirclecomponent.h>
 #include <objects/playerhud.h>
+#include <objects/tankcomplexobject.h>
 
 class SimpleOfflineCircleBuilder : public OfflineBuilderImpl
 {
@@ -16,18 +17,21 @@ public:
                                const std::shared_ptr<Physics>&,
                                const std::shared_ptr<Logger>&,
                                const CircleInfo&,
-                               const std::shared_ptr<PlayerHUD>&);
+                               const std::shared_ptr<PlayerHUD>&,
+                               const std::vector<std::shared_ptr<TankComplexObject>>&);
 
     ~SimpleOfflineCircleBuilder() = default;
     std::shared_ptr<HandleInputComponent> getHandleInputComponent() override;
     std::shared_ptr<PhysicsComponent> getPhysicsComponent() override;
     std::shared_ptr<ViewComponent> getViewComponent() override;
+    std::shared_ptr<ContactComponent> getContactComponent() override;
 
 private:
     std::shared_ptr<Graphics> graphics_;
     std::shared_ptr<Physics> physics_;
     std::shared_ptr<Logger> logger_;
     std::shared_ptr<LogicCircleComponent> logicCircle_;
+    std::vector<std::shared_ptr<TankComplexObject>> tanks_;
     CircleInfo info_;
 };
 

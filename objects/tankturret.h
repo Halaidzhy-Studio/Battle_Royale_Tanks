@@ -5,7 +5,7 @@
 #include <utils/data/turretinfostruct.h>
 
 
-class TankTurret : public GameObject, public Turnable, public Shootable
+class TankTurret : public GameObject
 {
 public:
     TankTurret() = default;
@@ -22,14 +22,6 @@ public:
 
     std::shared_ptr<HandleInputComponent> handleInputComponent() const;
     void setHandleInputComponent(const std::shared_ptr<HandleInputComponent> &handleInputComponent);
-
-    // Shootable interface
-    void shoot() override;
-
-    // Turnable interface
-    void turnR() override;
-    void turnL() override;
-    void turnTo(int angle) override;
 
 protected:
     TankTurretInfo tankTUrretInfo_;

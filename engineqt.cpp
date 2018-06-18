@@ -7,6 +7,7 @@ EngineQT::EngineQT(int &argc, char **argv) : QApplication(argc, argv)
 void EngineQT::setGameData(const std::shared_ptr<GameData> &gameData)
 {
     gameData_ = gameData;
+
 }
 
 void EngineQT::setLogger(const std::shared_ptr<Logger> &logger)

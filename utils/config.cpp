@@ -29,6 +29,9 @@ public:
         } catch(const libconfig::SettingNotFoundException& ex){
             std::string totalMsg = "No '" + setting + "' in config file";
             logger_->printLog(totalMsg, "[CONFIG]");
+        }catch (const libconfig::SettingTypeException& ex){
+            std::string totalMsg = "SettingTypeException '" + setting  + "' in config file";
+            logger_->printLog(totalMsg, "[CONFIG]");
         }
     }
 
@@ -39,6 +42,9 @@ public:
             var = config_->lookup(setting);
         } catch(const libconfig::SettingNotFoundException& ex){
             std::string totalMsg = "No '" + setting + "' in config file";
+            logger_->printLog(totalMsg, "[CONFIG]");
+        }catch (const libconfig::SettingTypeException& ex){
+            std::string totalMsg = "SettingTypeException '" + setting  + "' in config file";
             logger_->printLog(totalMsg, "[CONFIG]");
         }
     }
@@ -53,6 +59,10 @@ public:
             std::string totalMsg = "No '" + listSetting + "[" + std::to_string(groupIndex)
                     + "]" + setting + "' in config file";
             logger_->printLog(totalMsg, "[CONFIG]");
+        }catch (const libconfig::SettingTypeException& ex){
+            std::string totalMsg = "SettingTypeException '" + listSetting + "[" + std::to_string(groupIndex)
+                    + "]" + setting + "' in config file";
+            logger_->printLog(totalMsg, "[CONFIG]");
         }
     }
 
@@ -65,6 +75,10 @@ public:
             var = listElement.lookup(setting);
         }catch (const libconfig::SettingNotFoundException& ex){
             std::string totalMsg = "No '" + listSetting + "[" + std::to_string(groupIndex)
+                    + "]" + setting + "' in config file";
+            logger_->printLog(totalMsg, "[CONFIG]");
+        }catch (const libconfig::SettingTypeException& ex){
+            std::string totalMsg = "SettingTypeException '" + listSetting + "[" + std::to_string(groupIndex)
                     + "]" + setting + "' in config file";
             logger_->printLog(totalMsg, "[CONFIG]");
         }
@@ -125,6 +139,11 @@ void Config::lookup(const std::string &setting, float &var) const
     pImpl_->lookup(setting, var);
 }
 
+void Config::lookup(const std::string &setting, double &var) const
+{
+    pImpl_->lookup(setting, var);
+}
+
 void Config::lookup(const std::string &list, int groupIndex, const std::string &setting, std::string &var) const
 {
     pImpl_->lookup(list, groupIndex, setting, var);
@@ -136,6 +155,16 @@ void Config::lookup(const std::string &list, int groupIndex, const std::string &
 }
 
 void Config::lookup(const std::string &list, int groupIndex, const std::string &setting, bool &var) const
+{
+    pImpl_->lookup(list, groupIndex, setting, var);
+}
+
+void Config::lookup(const std::string &list, int groupIndex, const std::string &setting, double &var) const
+{
+    pImpl_->lookup(list, groupIndex, setting, var);
+}
+
+void Config::lookup(const std::string &list, int groupIndex, const std::string &setting, float &var) const
 {
     pImpl_->lookup(list, groupIndex, setting, var);
 }
